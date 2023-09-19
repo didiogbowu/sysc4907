@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+        <title>Degree Program Portal</title>
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        
+        <form method="POST" action="">
+            {{ submit_button.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="row mb-4 ml-5">
+                    {{ submit_button.submit(class="btn") }}
+                </div>    
+            </fieldset>
+	    </form>
+        
+        <div class="flex-container-main">
+            {% for semester in courses %}
+            <div class="flex-container-sub">
+                {% for course in semester %}
+                <div onclick="modifyBox(this)">
+                    <p><strong>{{ course['course_code'] }}</strong></p>
+                    <p>{{ course['course_title'] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+    <script>
+        function modifyBox(currBox) {
+            
+            console.log(currBox.p.strong.style.color);
+            
+            if (currBox.style.color == '') {
+                currBox.style.color == 'gray';
+                currBox.style.borderColor == 'gray';
+            }
+        
+            else if (currBox.style.color == 'gray') {
+                currBox.style.color == 'black';
+                currBox.style.borderColor == 'black';
+            }
+        }
+    </script>
+</html>

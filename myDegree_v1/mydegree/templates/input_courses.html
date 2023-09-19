@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Input Courses</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="">
+            {{ text_field.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="col-4">
+                    <div class="row mb-4">
+                        <div class="col-md-4 mr-0">{{ text_field.name_of_course.label(class="form-label") }}</div>
+                        <div class="col-md-4 mr-0">{{ text_field.name_of_course(class="form-control form-control-md") }}</div>
+                        <div class="col-md-2 mr-0">{{ text_field.submit(class="btn")}}</div>
+                     </div>
+                </div>
+            </fieldset>
+	    </form>
+        <form method="POST" action="">
+            {{ submit_button.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="row mb-4 ml-5">
+                    {{ submit_button.submit(class="btn") }}
+                </div>    
+            </fieldset>
+	    </form>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
