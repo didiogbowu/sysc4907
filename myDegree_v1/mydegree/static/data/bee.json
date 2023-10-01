@@ -1,0 +1,247 @@
+[
+{
+	"course_code" : "MATH 1004",
+	"course_title" : "Calculus for Eng. Students",
+	"semester" : "1F"
+},
+{
+	"course_code" : "CHEM 1001",
+	"course_title" : "General Chemistry I"
+	"semester" : "1F"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Complementary Studies Elective",
+	"semester" : "1F"
+},
+{
+	"course_code" : "ECOR 1041",
+	"course_title" : "Computation & Prog.",
+	"semester" : "1F"
+},
+{
+	"course_code" : "ECOR 1043",
+	"course_title" : "Circuits",
+	"semester" : "1F"
+},
+{
+	"course_code" : "ECOR 1045",
+	"course_title" : "Statics",
+	"semester" : "1F"
+},
+{
+	"course_code" : "ECOR 1047",
+	"course_title" : "Visual Communications",
+	"semester" : "1F"
+},
+{
+	"course_code" : "ECOR 1055",
+	"course_title" : "Introduction to Engineering Disciplines I",
+	"semester" : "1F"
+},
+{
+	"course_code" : "ECOR 1057",
+	"course_title" : "Engineering Disciplines",
+	"semester" : "1F"
+},
+{
+	"course_code" : "MATH 1104",
+	"course_title" : "Linear Algebra for Eng. Students",
+	"semester" : "1W"
+},
+{
+	"course_code" : "CHEM 1002",
+	"course_title" : "General Chemistry II",
+	"semester" : "1W"
+},
+{
+	"course_code" : "PHYS 1004",
+	"course_title" : "Introductory Electromagnetism & Wave Motion",
+	"semester" : "1W"
+},
+{
+	"course_code" : "ECOR 1042",
+	"course_title" : "Data Management",
+	"semester" : "1W"
+},
+{
+	"course_code" : "ECOR 1044",
+	"course_title" : "Mechatronics",
+	"semester" : "1W"
+},
+{
+	"course_code" : "ECOR 1046",
+	"course_title" : "Mechanics",
+	"semester" : "1W"
+},
+{
+	"course_code" : "ECOR 1048",
+	"course_title" : "Dynamics",
+	"semester" : "1W"
+},
+{
+	"course_code" : "ECOR 1056",
+	"course_title" : "Introduction to Engineering Disciplines II",
+	"semester" : "1W"
+},
+{
+	"course_code" : "MATH 1005",
+	"course_title" : "Differential Equations & Infinite Series for Eng. Students",
+	"semester" : "2F"
+},
+{
+	"course_code" : "SYSC 2006",
+	"course_title" : "Foundation of Imperative Programming",
+	"semester" : "2F"
+},
+{
+	"course_code" : "ECOR 2050",
+	"course_title" : "Design & Analysis of Engineering Experiment",
+	"semester" : "2F"
+},
+{
+	"course_code" : "BIOL 1103",
+	"course_title" : "Foundations of Biology I",
+	"semester" : "2F"
+},
+{
+	"course_code" : "ELEC 2501",
+	"course_title" : "Circuits & Signals",
+	"semester" : "2F"
+},
+{
+	"course_code" : "MATH 2004",
+	"course_title" : "Multivariable Calculus for Eng. Students",
+	"semester" : "2W"
+},
+{
+	"course_code" : "ELEC 2507",
+	"course_title" : "Electronics I",
+	"semester" : "2W"
+},
+{
+	"course_code" : "ELEC 2607",
+	"course_title" : "Switching Circuits",
+	"semester" : "2W"
+},
+{
+	"course_code" : "SYSC 2510",
+	"course_title" : "Probability, Statistics & Random Processes",
+	"semester" : "2W"
+},
+{
+	"course_code" : "CCDP 2100",
+	"course_title" : "Communication Skills for Eng. Students",
+	"semester" : "2W"
+},
+{
+	"course_code" : "ELEC 3105",
+	"course_title" : "Basic EM & Power Engineering",
+	"semester" : "3F"
+},
+{
+	"course_code" : "SYSC 3006",
+	"course_title" : "Computer Organization",
+	"semester" : "3F"
+},
+{
+	"course_code" : "SYSC 3203",
+	"course_title" : "Bioelectrical Systems",
+	"semester" : "3F"
+},
+{
+	"course_code" : "SYSC 3610",
+	"course_title" : "Biomedical Systems, Modeling & Control",
+	"semester" : "3F"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Science Elective",
+	"semester" : "3F"
+},
+{
+	"course_code" : "ELEC 3500",
+	"course_title" : "Digital ELectronics",
+	"semester" : "3W"
+},
+{
+	"course_code" : "ELEC 3909",
+	"course_title" : "Electromagnetic Waves",
+	"semester" : "3W"
+},
+{
+	"course_code" : "SYSC 4201",
+	"course_title" : "Ethics, Research Methods & Standards for BME",
+	"semester" : "3W"
+},
+{
+	"course_code" : "SYSC 3501",
+	"course_title" : "Communication Theory",
+	"semester" : "3W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Engineering Elective",
+	"semester" : "3W"
+},
+{
+	"course_code" : "ECOR 3800",
+	"course_title" : "Engineering Economics",
+	"semester" : "3W"
+},
+{
+	"course_code" : "SYSC 4907",
+	"course_title" : "Engineering Project",
+	"semester" : "4F"
+},
+{
+	"course_code" : "ELEC 4601",
+	"course_title" : "Microprocessor Systems",
+	"semester" : "4F"
+},
+{
+	"course_code" : "SYSC 4203",
+	"course_title" : "Bioinstrumentation & Signals",
+	"semester" : "4F"
+},
+{
+	"course_code" : "SYSC 4405",
+	"course_title" : "Digital Signal Processing",
+	"semester" : "4F"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Science Elective",
+	"semester" : "4F"
+},
+{
+	"course_code" : "SYSC 4907",
+	"course_title" : "Engineering Project",
+	"semester" : "4W"
+},
+{
+	"course_code" : "ECOR 4995",
+	"course_title" : "Professional Practice",
+	"semester" : "4W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Engineering Elective",
+	"semester" : "4W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Engineering Elective",
+	"semester" : "4W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Engineering Elective",
+	"semester" : "4W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Complementary Studies Elective",
+	"semester" : "4W"
+}
+]
