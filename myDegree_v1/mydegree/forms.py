@@ -2,7 +2,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
-PROGRAM_CHOICES = [("cse", "Systems and Computer Engineering"), ("se", "Software Engineering")]
+PROGRAM_CHOICES = [
+    ("cse", "Systems and Computer Engineering"), 
+    ("se", "Software Engineering"),
+    ("comm_eng", "Communications Engineering"),
+    ("bee", "Biomedical & Electrical Engineering")
+]
 
 class SubmitButtonForm(FlaskForm):
     submit = SubmitField('Submit', validators=[DataRequired()])

@@ -19,11 +19,11 @@
                         </div>    
                     </fieldset>
                 </form>    
-            {% for course in courses %}
-            {% if course.semester == "1F" %}
-                <div class="{{ course['course_code'].split()[0].lower() }}" onclick="modifyBox(this)">
-                    <p><strong>{{ course['course_code'] }}</strong></p>
-                    <p>{{ course['course_title'] }}</p>
+            {% for i in range(len(courses)) %}
+            {% if courses[i].semester == "1F" %}
+                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
+                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                    <p>{{ courses[i]['course_title'] }}</p>
                 </div>
             {% endif %}
             {% endfor %}
@@ -37,11 +37,11 @@
                         </div>    
                     </fieldset>
                 </form>    
-            {% for course in courses %}
-            {% if course.semester == "1W" %}
-                <div class="{{ course['course_code'].split()[0].lower() }}" onclick="modifyBox(this)">
-                    <p><strong>{{ course['course_code'] }}</strong></p>
-                    <p>{{ course['course_title'] }}</p>
+            {% for i in range(len(courses)) %}
+            {% if courses[i].semester == "1W" %}
+                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
+                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                    <p>{{ courses[i]['course_title'] }}</p>
                 </div>
             {% endif %}
             {% endfor %}
@@ -55,11 +55,11 @@
                         </div>    
                     </fieldset>
                 </form>    
-            {% for course in courses %}
-            {% if course.semester == "2F" %}
-                <div class="{{ course['course_code'].split()[0].lower() }}" onclick="modifyBox(this)">
-                    <p><strong>{{ course['course_code'] }}</strong></p>
-                    <p>{{ course['course_title'] }}</p>
+            {% for i in range(len(courses)) %}
+            {% if courses[i].semester == "2F" %}
+                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
+                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                    <p>{{ courses[i]['course_title'] }}</p>
                 </div>
             {% endif %}
             {% endfor %}
@@ -73,11 +73,11 @@
                         </div>    
                     </fieldset>
                 </form>    
-            {% for course in courses %}
-            {% if course.semester == "2W" %}
-                <div class="{{ course['course_code'].split()[0].lower() }}" onclick="modifyBox(this)">
-                    <p><strong>{{ course['course_code'] }}</strong></p>
-                    <p>{{ course['course_title'] }}</p>
+            {% for i in range(len(courses)) %}
+            {% if courses[i].semester == "2W" %}
+                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
+                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                    <p>{{ courses[i]['course_title'] }}</p>
                 </div>
             {% endif %}
             {% endfor %}
@@ -91,11 +91,11 @@
                         </div>    
                     </fieldset>
                 </form>    
-            {% for course in courses %}
-            {% if course.semester == "3F" %}
-                <div class="{{ course['course_code'].split()[0].lower() }}" onclick="modifyBox(this)">
-                    <p><strong>{{ course['course_code'] }}</strong></p>
-                    <p>{{ course['course_title'] }}</p>
+            {% for i in range(len(courses)) %}
+            {% if courses[i].semester == "3F" %}
+                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
+                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                    <p>{{ courses[i]['course_title'] }}</p>
                 </div>
             {% endif %}
             {% endfor %}
@@ -109,11 +109,11 @@
                         </div>    
                     </fieldset>
                 </form>    
-            {% for course in courses %}
-            {% if course.semester == "3W" %}
-                <div class="{{ course['course_code'].split()[0].lower() }}" onclick="modifyBox(this)">
-                    <p><strong>{{ course['course_code'] }}</strong></p>
-                    <p>{{ course['course_title'] }}</p>
+            {% for i in range(len(courses)) %}
+            {% if courses[i].semester == "3W" %}
+                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
+                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                    <p>{{ courses[i]['course_title'] }}</p>
                 </div>
             {% endif %}
             {% endfor %}
@@ -127,11 +127,11 @@
                         </div>    
                     </fieldset>
                 </form>    
-            {% for course in courses %}
-            {% if course.semester == "4F" %}
-                <div class="{{ course['course_code'].split()[0].lower() }}" onclick="modifyBox(this)">
-                    <p><strong>{{ course['course_code'] }}</strong></p>
-                    <p>{{ course['course_title'] }}</p>
+            {% for i in range(len(courses)) %}
+            {% if courses[i].semester == "4F" %}
+                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
+                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                    <p>{{ courses[i]['course_title'] }}</p>
                 </div>
             {% endif %}
             {% endfor %}
@@ -145,11 +145,11 @@
                         </div>    
                     </fieldset>
                 </form>    
-            {% for course in courses %}
-            {% if course.semester == "4W" %}
-                <div class="{{ course['course_code'].split()[0].lower() }}" onclick="modifyBox(this)">
-                    <p><strong>{{ course['course_code'] }}</strong></p>
-                    <p>{{ course['course_title'] }}</p>
+            {% for i in range(len(courses)) %}
+            {% if courses[i].semester == "4W" %}
+                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
+                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                    <p>{{ courses[i]['course_title'] }}</p>
                 </div>
             {% endif %}
             {% endfor %}
@@ -157,19 +157,16 @@
         </div>
     </body>
     <script>
-        function modifyBox(currBox) {
+        function modifyBox(id) {
             
-            console.log(currBox.innerHTML);
+            console.log(id);
             
-            if (currBox.style.color == '') {
-                currBox.style.color == 'gray';
-                currBox.style.borderColor == 'gray';
-            }
-        
-            else if (currBox.style.color == 'gray') {
-                currBox.style.color == 'black';
-                currBox.style.borderColor == 'black';
-            }
+            currBox = document.getElementById(id);
+            
+            console.log(currBox.style.opacity);
+            
+            if (currBox.style.opacity == 1) currBox.style.opacity = 0.2;
+            else currBox.style.opacity = 1;
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

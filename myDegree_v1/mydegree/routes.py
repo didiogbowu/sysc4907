@@ -6,14 +6,8 @@ from mydegree.data_structures import all_timetables
 from mydegree.render_timetable import course_height, course_mt, course_ml
 
 list_of_names = []
-
-program = "Systems and Computer Engineering"
-
-with app.app_context():
-    file = os.path.join(current_app.static_folder, 'data', 'cse.json')
-
-    with open(file) as f:
-        courses = json.load(f)
+courses = []
+program = ""
 
 @app.route("/")
 @app.route("/input_page", methods=['GET', 'POST'])
@@ -45,23 +39,15 @@ def result():
         course_ml = course_ml,
         timetables = timetables       
     )
-        
-@app.route("/home")
-def home():
-    submit_button = SubmitButtonForm()
-    if submit_button.is_submitted():
-        #flash(f'{list_of_names}', 'success')
-        return redirect(url_for('result'))
-    return render_template('home.html', courses = courses, title = program, submit_button = submit_button, str = str)
     
 @app.route("/select_program", methods=['GET', 'POST'])
 def select_program():
     select_form = SelectProgramForm()
     
     if select_form.validate_on_submit():
-        flash("yeah", "success")
+        global program
+        global courses
         
-        """
         program = dict(PROGRAM_CHOICES).get(select_form.name_of_course.data)
         
         with app.app_context():
@@ -69,7 +55,23 @@ def select_program():
 
             with open(file) as f:
                 courses = json.load(f)
-        """
+        
         return redirect(url_for('home'))
     
     return render_template('select_program.html', select_form = select_form);
+    
+    
+@app.route("/home")
+def home():
+    submit_button = SubmitButtonForm()
+    if submit_button.is_submitted():
+        return redirect(url_for('result'))
+    return render_template(
+        'home.html', 
+        len = len,
+        range = range,
+        str = str,
+        courses = courses, 
+        title = program, 
+        submit_button = submit_button
+    )

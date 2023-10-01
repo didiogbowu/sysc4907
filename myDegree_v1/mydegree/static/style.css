@@ -1,4 +1,4 @@
-div.math, div.chem, div.elective, div.ecor, div.phys, div.sysc, div.elec, div.ccdp {
+div.math, div.chem, div.elective, div.ecor, div.phys, div.biol, div.sysc, div.elec, div.ccdp {
 	width: 100px;
 	height: 120px;
 	font-size: 9pt;
@@ -12,7 +12,7 @@ div.math {
 	border-color: green;
 }
 
-div.chem, div.phys {
+div.biol, div.chem, div.phys {
 	border-color: yellow;
 }
 
