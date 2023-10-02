@@ -75,3 +75,11 @@ def home():
         title = program, 
         submit_button = submit_button
     )
+    
+@app.route("/handle_input", methods=['POST', 'GET']) 
+def handle_input():
+    if request.method == "POST":
+        recieved = request.get_data()
+        return redirect(url_for('handle_input'))
+        
+    return "<h1>Nice</h1>"

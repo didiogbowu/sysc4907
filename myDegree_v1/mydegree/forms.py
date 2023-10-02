@@ -10,7 +10,7 @@ PROGRAM_CHOICES = [
 ]
 
 class SubmitButtonForm(FlaskForm):
-    submit = SubmitField('Submit', validators=[DataRequired()])
+    submit = SubmitField('Load Timetables', validators=[DataRequired()])
         
 class TextFieldForm(FlaskForm):
     name_of_course = StringField('Name of Course', validators=[DataRequired()])

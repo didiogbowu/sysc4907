@@ -10,15 +10,9 @@
         <h4>{{ title }}</h4>
         <br />    
         <div class="row">
-            <div class="col" id="1F">
-                <form method="POST" action="">
-                    {{ submit_button.hidden_tag() }}
-                    <fieldset class="form-group">
-                        <div class="row mb-4 ml-5">
-                            {{ submit_button.submit(class="btn") }}
-                        </div>    
-                    </fieldset>
-                </form>    
+            <div class="col ml-2" id="1F">   
+                <button class="btn mb-2", id="btn1F", onclick="handleLoadRequest(this.id)">Load Timetables</button>
+                <p class="semesterHeader">1F</p>
             {% for i in range(len(courses)) %}
             {% if courses[i].semester == "1F" %}
                 <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
@@ -29,14 +23,8 @@
             {% endfor %}
             </div>
             <div class="col" id="1W">
-                <form method="POST" action="">
-                    {{ submit_button.hidden_tag() }}
-                    <fieldset class="form-group">
-                        <div class="row mb-4 ml-5">
-                            {{ submit_button.submit(class="btn") }}
-                        </div>    
-                    </fieldset>
-                </form>    
+                <button class="btn mb-2", id="btn1W", onclick="handleLoadRequest(this.id)">Load Timetables</button>
+                <p class="semesterHeader">1W</p>  
             {% for i in range(len(courses)) %}
             {% if courses[i].semester == "1W" %}
                 <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
@@ -47,14 +35,8 @@
             {% endfor %}
             </div>
             <div class="col" id="2F">
-                <form method="POST" action="">
-                    {{ submit_button.hidden_tag() }}
-                    <fieldset class="form-group">
-                        <div class="row mb-4 ml-5">
-                            {{ submit_button.submit(class="btn") }}
-                        </div>    
-                    </fieldset>
-                </form>    
+                <button class="btn mb-2", id="btn2F", onclick="handleLoadRequest(this.id)">Load Timetables</button>
+                <p class="semesterHeader">2F</p>
             {% for i in range(len(courses)) %}
             {% if courses[i].semester == "2F" %}
                 <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
@@ -65,14 +47,8 @@
             {% endfor %}
             </div>
             <div class="col" id="2W">
-                <form method="POST" action="">
-                    {{ submit_button.hidden_tag() }}
-                    <fieldset class="form-group">
-                        <div class="row mb-4 ml-5">
-                            {{ submit_button.submit(class="btn") }}
-                        </div>    
-                    </fieldset>
-                </form>    
+                <button class="btn mb-2", id="btn2W", onclick="handleLoadRequest(this.id)">Load Timetables</button>
+                <p class="semesterHeader">2W</p>                
             {% for i in range(len(courses)) %}
             {% if courses[i].semester == "2W" %}
                 <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
@@ -83,14 +59,8 @@
             {% endfor %}
             </div>
             <div class="col" id="3F">
-                <form method="POST" action="">
-                    {{ submit_button.hidden_tag() }}
-                    <fieldset class="form-group">
-                        <div class="row mb-4 ml-5">
-                            {{ submit_button.submit(class="btn") }}
-                        </div>    
-                    </fieldset>
-                </form>    
+                <button class="btn mb-2", id="btn3F", onclick="handleLoadRequest(this.id)">Load Timetables</button>  
+                <p class="semesterHeader">3F</p>
             {% for i in range(len(courses)) %}
             {% if courses[i].semester == "3F" %}
                 <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
@@ -101,14 +71,8 @@
             {% endfor %}
             </div>
             <div class="col" id="3W">
-                <form method="POST" action="">
-                    {{ submit_button.hidden_tag() }}
-                    <fieldset class="form-group">
-                        <div class="row mb-4 ml-5">
-                            {{ submit_button.submit(class="btn") }}
-                        </div>    
-                    </fieldset>
-                </form>    
+                <button class="btn mb-2", id="btn3W", onclick="handleLoadRequest(this.id)">Load Timetables</button>
+                <p class="semesterHeader">3W</p>
             {% for i in range(len(courses)) %}
             {% if courses[i].semester == "3W" %}
                 <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
@@ -119,14 +83,8 @@
             {% endfor %}
             </div>
             <div class="col" id="4F">
-                <form method="POST" action="">
-                    {{ submit_button.hidden_tag() }}
-                    <fieldset class="form-group">
-                        <div class="row mb-4 ml-5">
-                            {{ submit_button.submit(class="btn") }}
-                        </div>    
-                    </fieldset>
-                </form>    
+                <button class="btn mb-2", id="btn4F", onclick="handleLoadRequest(this.id)">Load Timetables</button> 
+                <p class="semesterHeader">4F</p>
             {% for i in range(len(courses)) %}
             {% if courses[i].semester == "4F" %}
                 <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
@@ -137,14 +95,8 @@
             {% endfor %}
             </div>
             <div class="col" id="4W">
-                <form method="POST" action="">
-                    {{ submit_button.hidden_tag() }}
-                    <fieldset class="form-group">
-                        <div class="row mb-4 ml-5">
-                            {{ submit_button.submit(class="btn") }}
-                        </div>    
-                    </fieldset>
-                </form>    
+                <button class="btn mb-2", id="btn4W", onclick="handleLoadRequest(this.id)">Load Timetables</button>    
+                <p class="semesterHeader">4W</p>
             {% for i in range(len(courses)) %}
             {% if courses[i].semester == "4W" %}
                 <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" onclick="modifyBox(this.id)">
@@ -157,19 +109,58 @@
         </div>
     </body>
     <script>
+        
+        
         function modifyBox(id) {
             
             console.log(id);
             
-            currBox = document.getElementById(id);
+            let currBox = document.getElementById(id);
             
             console.log(currBox.style.opacity);
             
             if (currBox.style.opacity == 1) currBox.style.opacity = 0.2;
             else currBox.style.opacity = 1;
         }
+        
+        function handleLoadRequest(id) {
+            let currentElement = document.getElementById(id);
+            let parentColumn = currentElement.parentElement;
+            let siblings = parentColumn.children;
+            const courseCodes = [];
+            const termData = {
+                course_codes: [],
+                fall: true
+            }
+            console.log(currentElement.tagName);
+            
+            for (let i = 0; i < siblings.length; ++i) {
+                let sibling = siblings[i];
+                
+                if (sibling.tagName != 'DIV') {
+                    if ((sibling.tagName == 'P') && (sibling.innerHTML[1] == 'W')) termData.fall = false;
+                    continue;
+                }
+                if (sibling.style.opacity == 1) { 
+                    courseCodes.push(sibling.children[0].children[0].innerHTML);
+                }
+            }
+            
+            console.log(termData);
+        
+            termData.course_codes = courseCodes;
+            
+            $.ajax({
+                url: '/handle_input',
+                data: {'term_data': termData},
+                type: 'POST',
+                dataType: 'json'
+            }).done(function(data) {
+                console.log(data);
+            });
+        }
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>

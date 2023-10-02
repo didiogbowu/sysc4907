@@ -190,6 +190,11 @@
 	"semester" : "3W"
 },
 {
+	"course_code" : "SYSC 4907",
+	"course_title" : "Engineering Project (Fall)",
+	"semester" : "4F"
+},
+{
 	"course_code" : "SYSC 4310",
 	"course_title" : "Computer Systems Architecture",
 	"semester" : "4F"
@@ -208,5 +213,35 @@
 	"course_code" : "SYSC 4810",
 	"course_title" : "Introduction to Network & Software Security",
 	"semester" : "4F"
+},
+{
+	"course_code" : "SYSC 4907",
+	"course_title" : "Engineering Project (Winter)",
+	"semester" : "4W"
+},
+{
+	"course_code" : "ECOR 4995",
+	"course_title" : "Professional Practice",
+	"semester" : "4W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Engineering Elective",
+	"semester" : "4W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Engineering Elective",
+	"semester" : "4W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Engineering Elective",
+	"semester" : "4W"
+},
+{
+	"course_code" : "Elective",
+	"course_title" : "Complementary Studies Elective",
+	"semester" : "4W"
 }
 ]
