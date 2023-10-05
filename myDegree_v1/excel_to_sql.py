@@ -7,9 +7,10 @@ from mydegree.models import CourseData
 # number of columns: len(df.columns)
 # number of elements: df.size
 
-data = pd.read_excel('fall_schedule.xlsx')
+data = pd.read_excel('winter_schedule.xlsx')
 column_headers = list(data.columns)
 
+TERM = column_headers[2]
 CRN = column_headers[3]
 SUBJ = column_headers[4]
 CRSE = column_headers[5]
@@ -30,10 +31,8 @@ char_to_day_num = {
 
 biweekly_str_to_num = {'O' : 1, 'E' : 2}
 
-# 'AERO', 'ACSE', 'ARCC'
-
 department_codes = [
-                      'ARCH', 'BIOC', 'BIOM'
+                      'AERO', 'ACSE', 'ARCC', 'ARCH', 'BIOC', 'BIOM'
                       'BIOL', 'CCDP', 'CDNS', 'CHEM', 'CIVE', 'COMP',
                       'ECOR', 'ELEC', 'ENVE', 'ERTH ', 'MAAE', 'MATH',
                       'MECH', 'PHYS', 'SREE', 'SYSC'
@@ -47,12 +46,23 @@ for i in range(len(department_codes)):
 
     for j in range(len(rows_of_courses)):     
         row = rows_of_courses.iloc[j]
+
+        term = str(int(row[TERM]))
         crn = int(row[CRN])
         dept_code = str(row[SUBJ])
         crse_num = str(row[CRSE])
         crse_section = str(row[SEQ])
         crse_title = str(row[CATALOG_TITLE]) 
-        days = str(row[DAYS])       
+        days = str(row[DAYS])
+
+        if (term == '202330'):
+            semester = "Fall"
+        elif (term == '202410'):
+            semester = "Winter"
+        else:
+            bad_apples.append(dept_code + ' ' + crse_num + ' ' + crse_section)
+            continue
+        
         try:
             start_time = str(int(row[START_TIME]))
         except ValueError:
@@ -65,16 +75,6 @@ for i in range(len(department_codes)):
             bad_apples.append(dept_code + ' ' + crse_num + ' ' + crse_section)
             continue
 
-        """
-        print(crn)
-        print(dept_code)
-        print(crse_num)
-        print(crse_section)
-        print(crse_title)
-        print(days)
-        print(start_time)
-        print(end_time)
-        """
         if (days == 'nan') or (start_time == 'nan') or (end_time == 'nan'):
             bad_apples.append(dept_code + ' ' + crse_num + ' ' + crse_section)
             continue
@@ -82,7 +82,6 @@ for i in range(len(department_codes)):
 
         day_nums_data = []
 
-        # print(days)
         for k in range(len(days)):
             day_nums_data.append(char_to_day_num[days[k]])
 
@@ -114,7 +113,7 @@ for i in range(len(department_codes)):
             regst_num = crn,
             course_code = dept_code + ' ' + crse_num + ' ' + crse_section,
             course_title = crse_title,
-            semester = "Fall",
+            semester = semester,
             first_day = day_nums_data[0],
             second_day = day_nums_data[1],
             week_frequency = week,
@@ -123,6 +122,7 @@ for i in range(len(department_codes)):
         )
 
         with app.app_context():
+            db.create_all()
             db.session.add(course_data)
             db.session.commit()
 
