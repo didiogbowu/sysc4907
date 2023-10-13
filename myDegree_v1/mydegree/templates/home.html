@@ -22,7 +22,7 @@
             {% endif %}
             {% endfor %}
             </div>
-            <div class="col" id="1W">
+            <div class="col ml-2" id="1W">
                 <button class="btn mb-2", id="btn1W", onclick="handleLoadRequest(this.id)">Load Timetables</button>
                 <p class="semesterHeader">1W</p>  
             {% for i in range(len(courses)) %}
@@ -34,7 +34,7 @@
             {% endif %}
             {% endfor %}
             </div>
-            <div class="col" id="2F">
+            <div class="col ml-2" id="2F">
                 <button class="btn mb-2", id="btn2F", onclick="handleLoadRequest(this.id)">Load Timetables</button>
                 <p class="semesterHeader">2F</p>
             {% for i in range(len(courses)) %}
@@ -46,7 +46,7 @@
             {% endif %}
             {% endfor %}
             </div>
-            <div class="col" id="2W">
+            <div class="col ml-2" id="2W">
                 <button class="btn mb-2", id="btn2W", onclick="handleLoadRequest(this.id)">Load Timetables</button>
                 <p class="semesterHeader">2W</p>                
             {% for i in range(len(courses)) %}
@@ -58,7 +58,7 @@
             {% endif %}
             {% endfor %}
             </div>
-            <div class="col" id="3F">
+            <div class="col ml-2" id="3F">
                 <button class="btn mb-2", id="btn3F", onclick="handleLoadRequest(this.id)">Load Timetables</button>  
                 <p class="semesterHeader">3F</p>
             {% for i in range(len(courses)) %}
@@ -70,7 +70,7 @@
             {% endif %}
             {% endfor %}
             </div>
-            <div class="col" id="3W">
+            <div class="col ml-2" id="3W">
                 <button class="btn mb-2", id="btn3W", onclick="handleLoadRequest(this.id)">Load Timetables</button>
                 <p class="semesterHeader">3W</p>
             {% for i in range(len(courses)) %}
@@ -82,7 +82,7 @@
             {% endif %}
             {% endfor %}
             </div>
-            <div class="col" id="4F">
+            <div class="col ml-2" id="4F">
                 <button class="btn mb-2", id="btn4F", onclick="handleLoadRequest(this.id)">Load Timetables</button> 
                 <p class="semesterHeader">4F</p>
             {% for i in range(len(courses)) %}
@@ -94,7 +94,7 @@
             {% endif %}
             {% endfor %}
             </div>
-            <div class="col" id="4W">
+            <div class="col ml-2" id="4W">
                 <button class="btn mb-2", id="btn4W", onclick="handleLoadRequest(this.id)">Load Timetables</button>    
                 <p class="semesterHeader">4W</p>
             {% for i in range(len(courses)) %}
@@ -128,17 +128,17 @@
             let parentColumn = currentElement.parentElement;
             let siblings = parentColumn.children;
             const courseCodes = [];
-            const termData = {
-                course_codes: [],
-                fall: true
-            }
+            const termData = {course_codes: []};
             console.log(currentElement.tagName);
             
             for (let i = 0; i < siblings.length; ++i) {
                 let sibling = siblings[i];
                 
                 if (sibling.tagName != 'DIV') {
-                    if ((sibling.tagName == 'P') && (sibling.innerHTML[1] == 'W')) termData.fall = false;
+                    if (sibling.tagName == 'P') {
+                        if (sibling.innerHTML[1] == 'W') termData.semester = "Winter";
+                        else if (sibling.innerHTML[1] == 'F') termData.semester = "Fall";
+                    }
                     continue;
                 }
                 if (sibling.style.opacity == 1) { 
@@ -146,17 +146,23 @@
                 }
             }
             
-            console.log(termData);
-        
             termData.course_codes = courseCodes;
+            console.log(termData);
+            termJson = JSON.stringify(termData);
             
             $.ajax({
                 url: '/handle_input',
-                data: {'term_data': termData},
-                type: 'POST',
-                dataType: 'json'
-            }).done(function(data) {
-                console.log(data);
+                type: 'get',
+                contentType: 'application/json',
+                data: {'term_data': termJson},
+                success: function(data) {
+                    console.log(data.url);
+                    window.location.replace(data.url);
+                },
+                error: function(error){
+                  console.log('Error');
+                  console.log(error);
+                }
             });
         }
     </script>

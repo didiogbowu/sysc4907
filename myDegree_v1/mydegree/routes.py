@@ -1,11 +1,13 @@
 import os
-from flask import render_template, json, redirect, url_for, request, flash, current_app
+from flask import render_template, json, jsonify, redirect, url_for, request, flash, current_app
 from mydegree import app
 from mydegree.forms import SubmitButtonForm, TextFieldForm, SelectProgramForm, PROGRAM_CHOICES
 from mydegree.data_structures import all_timetables
 from mydegree.render_timetable import course_height, course_mt, course_ml
 
 list_of_names = []
+semester = ""
+
 courses = []
 program = ""
 
@@ -25,21 +27,6 @@ def input_page():
         return redirect(url_for('result'))
     return render_template('input_courses.html', text_field = text_field, submit_button = submit_button)
 
-@app.route("/result")
-def result():
-    timetables = all_timetables(list_of_names) 
-    list_of_names.clear()
-    return render_template(
-        'result.html',
-        len = len,
-        range = range,
-        str = str,
-        course_height = course_height,
-        course_mt = course_mt,
-        course_ml = course_ml,
-        timetables = timetables       
-    )
-    
 @app.route("/select_program", methods=['GET', 'POST'])
 def select_program():
     select_form = SelectProgramForm()
@@ -78,8 +65,34 @@ def home():
     
 @app.route("/handle_input", methods=['POST', 'GET']) 
 def handle_input():
-    if request.method == "POST":
-        recieved = request.get_data()
-        return redirect(url_for('handle_input'))
-        
-    return "<h1>Nice</h1>"
+    recieved = request.args.get('term_data')
+    data = json.loads(recieved)
+
+    global list_of_names
+    global semester
+
+    course_codes = data['course_codes']
+    semester = data['semester']
+    
+    for i in range(len(course_codes)):
+        list_of_names.append(course_codes[i])
+
+    url = url_for('result')
+    return jsonify(dict(url = url))
+
+@app.route("/result")
+def result():
+    timetables = all_timetables(list_of_names, semester) 
+    list_of_names.clear()
+
+    return render_template(
+        'result.html',
+        len = len,
+        range = range,
+        str = str,
+        course_height = course_height,
+        course_mt = course_mt,
+        course_ml = course_ml,
+        timetables = timetables       
+    )
+    

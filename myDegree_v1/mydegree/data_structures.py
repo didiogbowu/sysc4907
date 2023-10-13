@@ -162,7 +162,7 @@ def recursive_merge(num_of_crses: int, section_combos: List[List['data_structure
     else:
         return merge_crses(recursive_merge(num_of_crses - 1, section_combos), section_combos[num_of_crses - 1])
 
-def all_timetables(input_courses: List[str]) -> List['data_structures.Timetable']:    
+def all_timetables(input_courses: List[str], semester: str) -> List['data_structures.Timetable']:    
     NUM_OF_CRSES = len(input_courses)
     num_of_reg_crses = NUM_OF_CRSES
     
@@ -178,7 +178,7 @@ def all_timetables(input_courses: List[str]) -> List['data_structures.Timetable'
         lab_sections.append(list())
         
         with app.app_context():
-            all_sections[i] = CourseData.query.filter(CourseData.course_code.op('regexp')(r'' + input_courses[i])).all()
+            all_sections[i] = CourseData.query.filter(CourseData.course_code.op('regexp')(r'' + input_courses[i]), CourseData.semester == semester).all()
             
             for course_data_obj in all_sections[i]:
                 lect_pattern = re.compile(r'' + input_courses[i] + r'\s\w$')
