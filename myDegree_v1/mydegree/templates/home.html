@@ -7,136 +7,266 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">       
     </head>
     <body>
-        <h4>{{ title }}</h4>
-        <br />    
         <div class="row">
-            <div class="col ml-0" id="2020F" ondrop="drop(event)" ondragover="allowDrop(event)">   
-                <button class="btn mb-2", id="btn1F", style="visibility: hidden;">Load</button>
-                <p class="semesterHeader">2020F</p>
-            {% for i in range(len(courses)) %}
-            {% if courses[i].semester == "1F" %}
-                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)">
-                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                    <p>{{ courses[i]['course_title'] }}</p>
+            <div class="col-12" id="mainContent">
+                <h4>{{ title }}</h4>
+                <br />    
+                <div class="row" style="margin-left: 1vw; margin-right: 1vw;">
+                    <div class="col ml-0 pl-0 pr-0" id="2020F" ondrop="drop(event)" ondragover="allowDrop(event)">   
+                        <button id="btn1F", style="visibility: hidden;">Load</button>
+                        <p class="semesterHeader">2020F</p>
+                    {% for i in range(len(courses)) %}
+                    {% if courses[i].semester == "1F" %}
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                            <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                        {% if courses[i]['course_code'] == "Elective" %}
+                            <p>{{ courses[i]['course_title'] }}</p>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div class="col ml-0 pl-0 pr-0" id="2021W" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <button id="btn1W", style="visibility: hidden;">Load</button>
+                        <p class="semesterHeader">2021W</p>  
+                    {% for i in range(len(courses)) %}
+                    {% if courses[i].semester == "1W" %}
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                            <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                        {% if courses[i]['course_code'] == "Elective" %}
+                            <p>{{ courses[i]['course_title'] }}</p>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>           
+                    <div class="col ml-0 hidden" id="2021S" style="flex-grow: 0">
+                        <button id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
+                        <div class="semesterHeader hiddable" id="2021SHeader" onclick="hide(this.id)">
+                            <span>2021S</span>
+                        </div>            
+                    </div>
+                    <div class="col ml-0 pl-0 pr-0" id="2021F" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <button id="btn2F", onclick="handleLoadRequest(this.id)">Load</button>
+                        <p class="semesterHeader">2021F</p>
+                    {% for i in range(len(courses)) %}
+                    {% if courses[i].semester == "2F" %}
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                            <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                        {% if courses[i]['course_code'] == "Elective" %}
+                            <p>{{ courses[i]['course_title'] }}</p>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div class="col ml-0 pl-0 pr-0" id="2022W" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <button id="btn2W", onclick="handleLoadRequest(this.id)">Load</button>
+                        <p class="semesterHeader">2022W</p>                
+                    {% for i in range(len(courses)) %}
+                    {% if courses[i].semester == "2W" %}
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                            <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                        {% if courses[i]['course_code'] == "Elective" %}
+                            <p>{{ courses[i]['course_title'] }}</p>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div class="col ml-0 hidden" id="2022S" style="flex-grow: 0">
+                        <button id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
+                        <div class="semesterHeader hiddable" id="2022SHeader" onclick="hide(this.id)">
+                            <span>2022S</span>
+                        </div>
+                    </div>
+                    <div class="col ml-0 pl-0 pr-0" id="2022F" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                        <button id="btn3F", onclick="handleLoadRequest(this.id)">Load</button>  
+                        <p class="semesterHeader">2022F</p>
+                    {% for i in range(len(courses)) %}
+                    {% if courses[i].semester == "3F" %}
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                            <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                        {% if courses[i]['course_code'] == "Elective" %}
+                            <p>{{ courses[i]['course_title'] }}</p>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div class="col ml-0 pl-0 pr-0" id="2023W" ondrop="drop(event)" ondragover="allowDrop(event)" style="flex-grow: 0">
+                        <button id="btn3W", onclick="handleLoadRequest(this.id)">Load</button>
+                        <p class="semesterHeader">2023W</p>
+                    {% for i in range(len(courses)) %}
+                    {% if courses[i].semester == "3W" %}
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                            <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                        {% if courses[i]['course_code'] == "Elective" %}
+                            <p>{{ courses[i]['course_title'] }}</p>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div class="col ml-0 hidden" id="2023S" style="flex-grow: 0">
+                        <button id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
+                        <div class="semesterHeader hiddable" id="2023SHeader" onclick="hide(this.id)">
+                            <span>2023S</span>
+                        </div>
+                    </div>
+                    <div class="col ml-0 pl-0 pr-0" id="2023F" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <button id="btn4F", onclick="handleLoadRequest(this.id)">Load</button> 
+                        <p class="semesterHeader">2023F</p>
+                    {% for i in range(len(courses)) %}
+                    {% if courses[i].semester == "4F" %}
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                            <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                        {% if courses[i]['course_code'] == "Elective" %}
+                            <p>{{ courses[i]['course_title'] }}</p>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div class="col ml-0 pl-0 pr-0" id="2024W" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <button id="btn4W", onclick="handleLoadRequest(this.id)">Load</button>    
+                        <p class="semesterHeader">2024W</p>
+                    {% for i in range(len(courses)) %}
+                    {% if courses[i].semester == "4W" %}
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                            <p><strong>{{ courses[i]['course_code'] }}</strong></p>
+                        {% if courses[i]['course_code'] == "Elective" %}
+                            <p>{{ courses[i]['course_title'] }}</p>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
                 </div>
-            {% endif %}
-            {% endfor %}
-            </div>
-            <div class="col ml-0" id="2021W" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <button class="btn mb-2", id="btn1W", style="visibility: hidden;">Load</button>
-                <p class="semesterHeader">2021W</p>  
-            {% for i in range(len(courses)) %}
-            {% if courses[i].semester == "1W" %}
-                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)">
-                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                    <p>{{ courses[i]['course_title'] }}</p>
+                <div class="closed" id="infoBox">
+                    <h4></h4>
                 </div>
-            {% endif %}
-            {% endfor %}
-            </div>           
-            <div class="col ml-0 hidden" id="2021S">
-                <button class="btn mb-2", id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
-                <div class="semesterHeader hiddable" id="2021SHeader" onclick="hide(this.id)">
-                    <span>2021S</span>
-                </div>            
-            </div>
-            <div class="col ml-0" id="2021F" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <button class="btn mb-2", id="btn2F", onclick="handleLoadRequest(this.id)">Load</button>
-                <p class="semesterHeader">2021F</p>
-            {% for i in range(len(courses)) %}
-            {% if courses[i].semester == "2F" %}
-                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)">
-                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                    <p>{{ courses[i]['course_title'] }}</p>
-                </div>
-            {% endif %}
-            {% endfor %}
-            </div>
-            <div class="col ml-0" id="2022W" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <button class="btn mb-2", id="btn2W", onclick="handleLoadRequest(this.id)">Load
-                </button>
-                <p class="semesterHeader">2022W</p>                
-            {% for i in range(len(courses)) %}
-            {% if courses[i].semester == "2W" %}
-                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)">
-                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                    <p>{{ courses[i]['course_title'] }}</p>
-                </div>
-            {% endif %}
-            {% endfor %}
-            </div>
-            <div class="col ml-0 hidden" id="2022S">
-                <button class="btn mb-2", id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
-                <div class="semesterHeader hiddable" id="2022SHeader" onclick="hide(this.id)">
-                    <span>2022S</span>
-                </div>
-            </div>
-            <div class="col ml-0" id="2022F" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <button class="btn mb-2", id="btn3F", onclick="handleLoadRequest(this.id)">Load</button>  
-                <p class="semesterHeader">2023F</p>
-            {% for i in range(len(courses)) %}
-            {% if courses[i].semester == "3F" %}
-                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)">
-                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                    <p>{{ courses[i]['course_title'] }}</p>
-                </div>
-            {% endif %}
-            {% endfor %}
-            </div>
-            <div class="col ml-0" id="2023W" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <button class="btn mb-2", id="btn3W", onclick="handleLoadRequest(this.id)">Load</button>
-                <p class="semesterHeader">2023W</p>
-            {% for i in range(len(courses)) %}
-            {% if courses[i].semester == "3W" %}
-                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)">
-                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                    <p>{{ courses[i]['course_title'] }}</p>
-                </div>
-            {% endif %}
-            {% endfor %}
-            </div>
-            <div class="col ml-0 hidden" id="2023S">
-                <button class="btn mb-2", id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
-                <div class="semesterHeader hiddable" id="2023SHeader" onclick="hide(this.id)">
-                    <span>2023S</span>
-                </div>
-            </div>
-            <div class="col ml-0" id="2023F" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <button class="btn mb-2", id="btn4F", onclick="handleLoadRequest(this.id)">Load</button> 
-                <p class="semesterHeader">2023F</p>
-            {% for i in range(len(courses)) %}
-            {% if courses[i].semester == "4F" %}
-                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)">
-                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                    <p>{{ courses[i]['course_title'] }}</p>
-                </div>
-            {% endif %}
-            {% endfor %}
-            </div>
-            <div class="col ml-0" id="2024W" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <button class="btn mb-2", id="btn4W", onclick="handleLoadRequest(this.id)">Load</button>    
-                <p class="semesterHeader">2024W</p>
-            {% for i in range(len(courses)) %}
-            {% if courses[i].semester == "4W" %}
-                <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)">
-                    <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                    <p>{{ courses[i]['course_title'] }}</p>
-                </div>
-            {% endif %}
-            {% endfor %}
             </div>
         </div>
     </body>
     <script>
+        const program = "{{ title }}"; // USE THIS TO KNOW WHAT PROGRAM
+        
+        const BASIC_SCI = "Basic Science Elective";
+        const COMPLEMENTARY = "Complementary Studies Elective";
+        
+        const cseElectives = {
+            basicScience: [
+                {course: "BIOL 1103", semester: "Fall", added: false},
+                {course: "BIOL 2107", semester: "Winter", added: false},
+                {course: "CHEM 2207", semester: "Fall", added: false},
+                {course: "PHYS 1001", semester: "Fall", added: false},
+                {course: "PHYS 2202", semester: "Winter", added: false}
+            ],            
+            complemetary: [
+                {course: "AFRI 1002", semester: "Winter", added: false},
+                {course: "ARTH 2107", semester: "Fall", added: false},
+                {course: "CLCV 2104", semester: "Winter", added: false},
+                {course: "CLCV 2304", semester: "Winter", added: false},
+                {course: "ENGL 2012", semester: "Fall", added: false}
+            ], 
+            engineering: [
+                {course: "", semester: "", added: false}
+            ]
+        };
+        
+        const seElectives = {
+            basicScience: [
+                {course: "", semester: "", added: false}
+            ],            
+            complemetary: [
+                {course: "", semester: "", added: false}
+            ], 
+            engineering: [
+                {course: "", semester: "", added: false}
+            ]
+        };
+        
+        const beeElectives = {
+            science: [
+                {course: "", semester: "", added: false}
+            ],            
+            complemetary: [
+                {course: "", semester: "", added: false}
+            ], 
+            engineering: [
+                {course: "", semester: "", added: false}
+            ]
+        };
+        
+        const commEngElectives = {
+            basicScience: [
+                {course: "", semester: "", added: false}
+            ],            
+            complemetary: [
+                {course: "", semester: "", added: false}
+            ], 
+            engineering: [
+                {course: "", semester: "", added: false}
+            ]
+        };
+        
+        function displayInfo(id) {
+            let infoBox = document.getElementById("infoBox");
+            let mainContent = document.getElementById("mainContent");
+            
+            if (infoBox.className == "col-3 border border-success rounded-left") {
+                infoBox.className = "closed"
+                // mainContent.className = "col-12"
+                
+                for (let i = infoBox.children.length - 1; i > -1; --i) {
+                    if (infoBox.children[i].tagName == 'P') infoBox.removeChild(infoBox.children[i]);
+                }
+            }
+            else if (infoBox.className == "closed") {
+                infoBox.className = "col-3 border border-success rounded-left";  
+                // mainContent.className = "col-9"
+                
+                let currBox = document.getElementById(id);
+                let contents = currBox.children;
+                
+                if (contents.length == 1) return;
+                else if (contents.length == 2) {
+                    if (contents[1].innerHTML == BASIC_SCI) {
+                        infoBox.children[0].innerHTML = "Basic Science Elective";
+                        
+                        let elctvObjects = cseElectives.basicScience;
+                        
+                        for (let i = 0; i < elctvObjects.length; ++i) {
+                            const element = document.createElement("p");
+                            const text = document.createTextNode(elctvObjects[i].course);
+                            element.appendChild(text);  
+                            infoBox.appendChild(element);
+                        }
+                    }
+                    else if (contents[1].innerHTML == COMPLEMENTARY) {
+                        infoBox.children[0].innerHTML = "Complementary Studies Elective";
+                    
+                        let elctvObjects = cseElectives.complemetary;
+                        
+                        for (let i = 0; i < elctvObjects.length; ++i) {
+                            const element = document.createElement("span");
+                            const button = document.createElement("button");
+                            const name_of_course = document.createElement("p");
+                            const text = document.createTextNode(elctvObjects[i].course);
+                            name_of_course.appendChild(text);  
+                            infoBox.appendChild(element);
+                        }
+                    }
+                }
+            }
+        }
         
         function hide(id) {
             console.log(id.split("Header")[0]);
             let currentElement = document.getElementById(id);
             let column = document.getElementById(id.split("Header")[0]);
             // let column = currentElement.nextSibling;
-
-            console.log(column.className.split(' '));
-            console.log(column.ondrop);
             
             if (column.children.length > 2) {
                 alert("Cannot hide non-empty column");
@@ -164,13 +294,8 @@
             }
         }
         
-        function modifyBox(id) {
-            
-            console.log(id);
-            
+        function modifyBox(id) {  
             let currBox = document.getElementById(id);
-            
-            console.log(currBox.style.opacity);
             
             if (currBox.style.opacity == 1) currBox.style.opacity = 0.2;
             else currBox.style.opacity = 1;

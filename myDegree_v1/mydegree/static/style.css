@@ -1,12 +1,7 @@
-body {
-	margin: 1;
-	overflow: scroll;
-}
-
 div.math, div.chem, div.elective, div.ecor, div.phys, div.biol, div.sysc, div.elec, div.ccdp, div.comp {
-	width: 100px;
-	height: 120px;
-	font-size: 9pt;
+	width: 85px;
+	height: 90px;
+	font-size: 7.5pt;
 	text-align: center;
 	border-width: 3px;
 	border-style: solid;
@@ -37,9 +32,14 @@ div.elec {
 	border-color: orange;
 }
 
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
 div[class~="col"] {
-	width: 100px;
 	margin: 0;
+	flex-grow: 0;
 }
 
 .semesterHeader {
@@ -60,6 +60,10 @@ div[class~="col"] {
 	margin: 0px;
 }
 
+div.closed {
+	display: none;
+}
+
 div.hidden .hiddable span {
 	display: none;
 }
@@ -76,11 +80,23 @@ div.hidden .semesterHeader {
 div.hidden .hiddable::before {
 	content: "\25BC";
 	width: 30px;
+	position: relative;
+	right: 7.5px;
+	top: 30px;
 }
 
 button {
 	width: 100px;
 	font-size: 4pt;
 	text-wrap: wrap;
+}
+
+#infoBox {
+	box-shadow: -10px 0px 30px gray; 
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: white;
+	z-index: 1;
 }
 

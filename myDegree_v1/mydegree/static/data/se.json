@@ -36,7 +36,7 @@
     },
     {
         "course_code": "ECOR 1055",
-        "course_title": "Introduction to Engineering Disciplines I",
+        "course_title": "Intro. to Engineering Disciplines I",
         "semester": "1F"
     },
     {
@@ -81,12 +81,12 @@
     },
     {
         "course_code": "ECOR 1056",
-        "course_title": "Introduction to Engineering Disciplines II",
+        "course_title": "Intro. to Engineering Disciplines II",
         "semester": "1W"
     },
     {
         "course_code": "MATH 1005",
-        "course_title": "Differential Equations & Infinite Series for Eng. Students",
+        "course_title": "Diff. Equations & Inf. Series for Eng. Students",
         "semester": "2F"
     },
     {
@@ -96,7 +96,7 @@
     },
     {
         "course_code": "SYSC 2310",
-        "course_title": "Introduction to Digital Systems",
+        "course_title": "Intro. to Digital Systems",
         "semester": "2F"
     },
     {
@@ -146,7 +146,7 @@
     },
     {
         "course_code": "SYSC 3310",
-        "course_title": "Introduction to Real-Time Systems",
+        "course_title": "Intro. to Real-Time Systems",
         "semester": "3F"
     },
     {
@@ -206,7 +206,7 @@
     },
     {
         "course_code": "SYSC 4810",
-        "course_title": "Introduction to Network & Software Security",
+        "course_title": "Intro. to Network & Software Security",
         "semester": "4F"
     },
     {

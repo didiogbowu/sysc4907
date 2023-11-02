@@ -36,7 +36,7 @@
 },
 {
 	"course_code" : "ECOR 1055",
-	"course_title" : "Introduction to Engineering Disciplines I",
+	"course_title" : "Intro. to Engineering Disciplines I",
 	"semester" : "1F"
 },
 {
@@ -81,12 +81,12 @@
 },
 {
 	"course_code" : "ECOR 1056",
-	"course_title" : "Introduction to Engineering Disciplines II",
+	"course_title" : "Intro. to Engineering Disciplines II",
 	"semester" : "1W"
 },
 {
 	"course_code" : "MATH 1005",
-	"course_title" : "Differential Equations & Infinite Series for Eng. Students",
+	"course_title" : "Diff. Equations & Inf. Series for Eng. Students",
 	"semester" : "2F"
 },
 {
@@ -96,7 +96,7 @@
 },
 {
 	"course_code" : "ECOR 2050",
-	"course_title" : "Design & Analysis of Engineering Experiment",
+	"course_title" : "Design & Analysis of Engineering Experiments",
 	"semester" : "2F"
 },
 {
@@ -161,7 +161,7 @@
 },
 {
 	"course_code" : "ELEC 3500",
-	"course_title" : "Digital ELectronics",
+	"course_title" : "Digital Electronics",
 	"semester" : "3W"
 },
 {
