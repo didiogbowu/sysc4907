@@ -1,3 +1,8 @@
+html, body { 
+	margin: 0; 
+	padding: 0; 
+}
+
 div.math, div.chem, div.elective, div.ecor, div.phys, div.biol, div.sysc, div.elec, div.ccdp, div.comp {
 	width: 85px;
 	height: 90px;
@@ -89,6 +94,37 @@ button {
 	width: 100px;
 	font-size: 4pt;
 	text-wrap: wrap;
+}
+
+button.inserter {
+	background-color: red;
+	color: white;
+	width: 50px;
+	height: 30px;
+	margin-left: 2px;
+	font-size: 6pt;
+}
+
+button.selected {
+	background-color: gray;
+	color: black;
+	width: 50px;
+	height: 30px;
+	margin-left: 2px;
+	font-size: 6pt;
+}
+
+button.closer {
+	background-color: #CC0000;
+	color: white;
+	width: 30px;
+	height: 25px;
+	border-radius: 2px;
+	border-width: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-family: "Monosten", sans-serif;
 }
 
 #infoBox {

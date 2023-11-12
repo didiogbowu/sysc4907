@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Degree Program Portal</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">       
@@ -17,11 +18,9 @@
                         <p class="semesterHeader">2020F</p>
                     {% for i in range(len(courses)) %}
                     {% if courses[i].semester == "1F" %}
-                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                             <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        {% if courses[i]['course_code'] == "Elective" %}
-                            <p>{{ courses[i]['course_title'] }}</p>
-                        {% endif %}
+                            <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
                         </div>
                     {% endif %}
                     {% endfor %}
@@ -31,11 +30,9 @@
                         <p class="semesterHeader">2021W</p>  
                     {% for i in range(len(courses)) %}
                     {% if courses[i].semester == "1W" %}
-                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                             <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        {% if courses[i]['course_code'] == "Elective" %}
-                            <p>{{ courses[i]['course_title'] }}</p>
-                        {% endif %}
+                            <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
                         </div>
                     {% endif %}
                     {% endfor %}
@@ -51,11 +48,9 @@
                         <p class="semesterHeader">2021F</p>
                     {% for i in range(len(courses)) %}
                     {% if courses[i].semester == "2F" %}
-                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                             <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        {% if courses[i]['course_code'] == "Elective" %}
-                            <p>{{ courses[i]['course_title'] }}</p>
-                        {% endif %}
+                            <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
                         </div>
                     {% endif %}
                     {% endfor %}
@@ -65,11 +60,9 @@
                         <p class="semesterHeader">2022W</p>                
                     {% for i in range(len(courses)) %}
                     {% if courses[i].semester == "2W" %}
-                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                             <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        {% if courses[i]['course_code'] == "Elective" %}
-                            <p>{{ courses[i]['course_title'] }}</p>
-                        {% endif %}
+                            <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
                         </div>
                     {% endif %}
                     {% endfor %}
@@ -85,11 +78,9 @@
                         <p class="semesterHeader">2022F</p>
                     {% for i in range(len(courses)) %}
                     {% if courses[i].semester == "3F" %}
-                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                             <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        {% if courses[i]['course_code'] == "Elective" %}
-                            <p>{{ courses[i]['course_title'] }}</p>
-                        {% endif %}
+                            <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
                         </div>
                     {% endif %}
                     {% endfor %}
@@ -99,11 +90,9 @@
                         <p class="semesterHeader">2023W</p>
                     {% for i in range(len(courses)) %}
                     {% if courses[i].semester == "3W" %}
-                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                             <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        {% if courses[i]['course_code'] == "Elective" %}
-                            <p>{{ courses[i]['course_title'] }}</p>
-                        {% endif %}
+                            <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
                         </div>
                     {% endif %}
                     {% endfor %}
@@ -119,11 +108,9 @@
                         <p class="semesterHeader">2023F</p>
                     {% for i in range(len(courses)) %}
                     {% if courses[i].semester == "4F" %}
-                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                             <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        {% if courses[i]['course_code'] == "Elective" %}
-                            <p>{{ courses[i]['course_title'] }}</p>
-                        {% endif %}
+                            <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
                         </div>
                     {% endif %}
                     {% endfor %}
@@ -133,11 +120,9 @@
                         <p class="semesterHeader">2024W</p>
                     {% for i in range(len(courses)) %}
                     {% if courses[i].semester == "4W" %}
-                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="modifyBox(this.id)" ondblclick="displayInfo(this.id)">
+                        <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                             <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        {% if courses[i]['course_code'] == "Elective" %}
-                            <p>{{ courses[i]['course_title'] }}</p>
-                        {% endif %}
+                            <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
                         </div>
                     {% endif %}
                     {% endfor %}
@@ -145,6 +130,7 @@
                 </div>
                 <div class="closed" id="infoBox">
                     <h4></h4>
+                    <button class="closer" onclick="removeInfo()">X</button>
                 </div>
             </div>
         </div>
@@ -211,54 +197,85 @@
             ]
         };
         
+        var elctvBoxSelected;
+        
         function displayInfo(id) {
             let infoBox = document.getElementById("infoBox");
-            let mainContent = document.getElementById("mainContent");
             
-            if (infoBox.className == "col-3 border border-success rounded-left") {
-                infoBox.className = "closed"
-                // mainContent.className = "col-12"
+            if (infoBox.className == "closed") {
+                infoBox.className = "col-4 border border-success rounded-left";  
                 
-                for (let i = infoBox.children.length - 1; i > -1; --i) {
-                    if (infoBox.children[i].tagName == 'P') infoBox.removeChild(infoBox.children[i]);
-                }
-            }
-            else if (infoBox.className == "closed") {
-                infoBox.className = "col-3 border border-success rounded-left";  
-                // mainContent.className = "col-9"
-                
-                let currBox = document.getElementById(id);
+                elctvBoxSelected = document.getElementById(id);
+                let currBox = elctvBoxSelected;
                 let contents = currBox.children;
                 
-                if (contents.length == 1) return;
-                else if (contents.length == 2) {
-                    if (contents[1].innerHTML == BASIC_SCI) {
-                        infoBox.children[0].innerHTML = "Basic Science Elective";
-                        
-                        let elctvObjects = cseElectives.basicScience;
-                        
-                        for (let i = 0; i < elctvObjects.length; ++i) {
-                            const element = document.createElement("p");
-                            const text = document.createTextNode(elctvObjects[i].course);
-                            element.appendChild(text);  
-                            infoBox.appendChild(element);
-                        }
-                    }
-                    else if (contents[1].innerHTML == COMPLEMENTARY) {
-                        infoBox.children[0].innerHTML = "Complementary Studies Elective";
+                if (contents[1].innerHTML == BASIC_SCI) updateInfoBox(cseElectives.basicScience, BASIC_SCI);
+                else if (contents[1].innerHTML == COMPLEMENTARY) updateInfoBox(cseElectives.complemetary, COMPLEMENTARY);  
+            }
+        }
+        
+        function updateInfoBox(elctvObjects, electiveTitle) {
+            infoBox.children[0].innerHTML = electiveTitle;
+            
+            for (let i = 0; i < elctvObjects.length; ++i) {
+                const element = document.createElement("span");
+                element.className = "row p-1";
+                
+                const button = document.createElement("button");
+                
+                if (elctvBoxSelected.children[0].children[0].innerHTML == elctvObjects[i].course) { // maybe make these variables since theyre used again
+                    button.className = "selected";
+                    button.innerHTML = "SELECTED";
+                }
+                else {
+                    button.className = "inserter";
+                    button.innerHTML = "INSERT";
+                }
+                
+                button.onclick = function insertElective() {
+                    let courseCode = elctvBoxSelected.children[0].children[0].innerHTML;
                     
-                        let elctvObjects = cseElectives.complemetary;
+                    if (courseCode != this.parentElement.children[0].innerHTML) { // SPAN -> P (Name of elective being selected)
                         
-                        for (let i = 0; i < elctvObjects.length; ++i) {
-                            const element = document.createElement("span");
-                            const button = document.createElement("button");
-                            const name_of_course = document.createElement("p");
-                            const text = document.createTextNode(elctvObjects[i].course);
-                            name_of_course.appendChild(text);  
-                            infoBox.appendChild(element);
+                        for (let j = 0; j < infoBox.children.length; ++j) {
+                            if (infoBox.children[j].tagName != "SPAN") continue;
+                            
+                            if (courseCode == infoBox.children[j].children[0].innerHTML) { // SPAN -> P
+                                infoBox.children[j].children[1].className = "inserter"; // SPAN -> BUTTON
+                                infoBox.children[j].children[1].innerHTML = "INSERT";
+                            }
                         }
+                        
+                        elctvBoxSelected.children[0].children[0].innerHTML = this.parentElement.children[0].innerHTML;
+                        console.log(this.parentElement.children[0].innerHTML);
+                        
+                        this.className = "selected";
+                        this.innerHTML = "SELECTED";                       
+                    }
+                    else {
+                        elctvBoxSelected.children[0].children[0].innerHTML = "Elective";   
+                        this.className = "inserter";
+                        this.innerHTML = "INSERT";      
                     }
                 }
+                        
+                const name_of_course = document.createElement("p");
+                const text = document.createTextNode(elctvObjects[i].course);
+                
+                name_of_course.appendChild(text);  
+                element.appendChild(name_of_course);
+                element.appendChild(button);
+                infoBox.appendChild(element);
+            }
+        }
+        
+        function removeInfo() {
+            let infoBox = document.getElementById("infoBox");
+        
+            infoBox.className = "closed"
+                
+            for (let i = infoBox.children.length - 1; i > -1; --i) {
+                if (infoBox.children[i].tagName == 'SPAN') infoBox.removeChild(infoBox.children[i]);
             }
         }
         
