@@ -12,22 +12,7 @@ courses = []
 program = ""
 
 @app.route("/")
-@app.route("/input_page", methods=['GET', 'POST'])
-def input_page():
-    text_field = TextFieldForm()
-    submit_button = SubmitButtonForm()
-    
-    if text_field.validate_on_submit():
-        list_of_names.append(text_field.name_of_course.data)
-        flash(f'{list_of_names}', 'success')
-        return redirect(url_for('input_page'))
-        
-    if submit_button.is_submitted():
-        #flash(f'{list_of_names}', 'success')
-        return redirect(url_for('result'))
-    return render_template('input_courses.html', text_field = text_field, submit_button = submit_button)
-
-@app.route("/select_program", methods=['GET', 'POST'])
+@app.route("/select_program/", methods=['GET', 'POST'])
 def select_program():
     select_form = SelectProgramForm()
     
@@ -45,25 +30,21 @@ def select_program():
         
         return redirect(url_for('home'))
     
-    return render_template('select_program.html', select_form = select_form);
+    return render_template('select_program.html', select_form = select_form)
     
     
-@app.route("/home")
+@app.route("/home/")
 def home():
-    submit_button = SubmitButtonForm()
-    if submit_button.is_submitted():
-        return redirect(url_for('result'))
     return render_template(
         'home.html', 
         len = len,
         range = range,
         str = str,
         courses = courses, 
-        title = program, 
-        submit_button = submit_button
+        title = program
     )
     
-@app.route("/handle_input", methods=['POST', 'GET']) 
+@app.route("/handle_input/", methods=['POST', 'GET']) 
 def handle_input():
     recieved = request.args.get('term_data')
     data = json.loads(recieved)
@@ -77,10 +58,25 @@ def handle_input():
     for i in range(len(course_codes)):
         list_of_names.append(course_codes[i])
 
-    url = url_for('result')
+    url = url_for('filters')
     return jsonify(dict(url = url))
 
-@app.route("/result")
+@app.route("/filters/")
+def filters():
+    global list_of_names
+    
+    return render_template(
+        'filters.html',
+        len = len,
+        range = range,
+        str = str,
+        course_height = course_height,
+        course_mt = course_mt,
+        course_ml = course_ml,
+        list_of_names = list_of_names
+    )
+
+@app.route("/result/")
 def result():
     timetables = all_timetables(list_of_names, semester) 
     list_of_names.clear()
@@ -95,4 +91,17 @@ def result():
         course_ml = course_ml,
         timetables = timetables       
     )
+ 
+@app.route("/input_page/", methods=['GET', 'POST'])
+def input_page():
+    text_field = TextFieldForm()
+    submit_button = SubmitButtonForm()
     
+    if text_field.validate_on_submit():
+        list_of_names.append(text_field.name_of_course.data)
+        flash(f'{list_of_names}', 'success')
+        return redirect(url_for('input_page'))
+        
+    if submit_button.is_submitted():
+        return redirect(url_for('result'))
+    return render_template('input_courses.html', text_field = text_field, submit_button = submit_button) 

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Filters</title> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <style>        
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2px;
+        }
+        
+        table#timeColumn td {
+            width: 45px;
+            height: {{ str(course_height(30, 0) / 1.5) ~ 'px' }};            
+            padding: 2px;
+            font-size: 6.85pt;
+            font-family: sans-serif;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #CCCCCC;
+            color: black;
+            box-sizing: border-box;            
+        }
+        
+        table#dayRow td {
+            width: 100px;
+            height: {{ str(course_height(30, 0) / 1.5) ~ 'px' }};
+            padding: 2px;
+            font-size: 6.85pt;
+            font-family: sans-serif;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;    
+            background-color: #CCCCCC;
+            color: black;
+            box-sizing: border-box;            
+        }
+        
+        .timetable {
+            width: 500px;
+            background-color: white;
+            position: relative;
+
+        }
+        
+        .courseBlock {
+            width: 100px;
+            background-color: white;
+            border: 1px solid black;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+        }
+        
+        .courseBlock.blocked {
+            background-color: #1F51FF;
+            border-color: #1F51FF;
+        }
+    </style>
+    <body>
+        <header class="row m-0">
+            <div class="col-5"></div>
+            <button class="col-2 mt-1">Apply</button>
+            <div class="col-5"></div>
+        </header>
+        <div class="row m-0">
+            <div class="col-6">
+                <h4>Class Time Filter</h4>
+                <table style="border: 1px solid black; border-collapse: separate">
+                    <tr>
+                        <td style="background-color: #CCCCCC"></td>
+                        <td>
+                            <table id="dayRow" border=1 style="border-color: white; border-collapse: collapse">
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>Tuesday</td>
+                                    <td>Wednesday</td>
+                                    <td>Thursday</td>
+                                    <td>Friday</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table id="timeColumn" border=1 style="border-color: white; border-collapse: collapse">
+                                <tr>
+                                    <td>8:00</td>
+                                </tr>
+                                <tr>
+                                    <td>8:30</td>
+                                </tr>
+                                <tr>
+                                    <td>9:00</td>
+                                </tr>
+                                <tr>
+                                    <td>9:30</td>
+                                </tr>
+                                <tr>
+                                    <td>10:00</td>
+                                </tr>
+                                <tr>
+                                    <td>10:30</td>
+                                </tr>
+                                <tr>
+                                    <td>11:00</td>
+                                </tr>
+                                <tr>
+                                    <td>11:30</td>
+                                </tr>
+                                <tr>
+                                    <td>12:00</td>
+                                </tr>
+                                <tr>
+                                    <td>12:30</td>
+                                </tr>
+                                <tr>
+                                    <td>13:00</td>
+                                </tr>
+                                <tr>
+                                    <td>13:30</td>
+                                </tr>
+                                <tr>
+                                    <td>14:00</td>
+                                </tr>
+                                <tr>
+                                    <td>14:30</td>
+                                </tr>
+                                <tr>
+                                    <td>15:00</td>
+                                </tr>
+                                <tr>
+                                    <td>15:30</td>
+                                </tr>
+                                <tr>
+                                    <td>16:00</td>
+                                </tr>
+                                <tr>
+                                    <td>16:30</td>
+                                </tr>
+                                <tr>
+                                    <td>17:00</td>
+                                </tr>
+                                <tr>
+                                    <td>17:30</td>
+                                </tr>
+                                <tr>
+                                    <td>18:00</td>
+                                </tr>
+                                <tr>
+                                    <td>18:30</td>
+                                </tr>
+                                <tr>
+                                    <td>19:00</td>
+                                </tr>
+                                <tr>
+                                    <td>19:30</td>
+                                </tr>
+                                <tr>
+                                    <td>20:00</td>
+                                </tr>
+                                <tr>
+                                    <td>20:30</td>
+                                </tr>
+                                <tr>
+                                    <td>21:00</td>
+                                </tr>
+                                <tr>
+                                    <td>21:30</td>
+                                </tr>
+                                <tr>
+                                    <td>22:00</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="timetable">
+                            {% for i in range(5) %}
+                            {% for j in range(29) %}
+                                <div onclick="blockOff(this.className, this.id)" class="courseBlock" id={{ "courseBlock" ~ str(i) ~ str(j)}} style="height: {{ str(course_height(30, 0) / 1.5) ~ 'px' }}; margin-top: {{ str(course_mt((8 + (j / 2)) * 60) / 1.5) ~ 'px' }}; margin-left: {{ str(course_ml(i + 1)) ~ 'px' }}"></div>
+                            {% endfor %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-6">
+                <h4>Course Section Filter</h4>
+                {% for i in range(len(list_of_names)) %}
+                <div>
+                    <span><strong>{{ list_of_names[i] }}</strong></span>
+                    <br>
+                    <input type="radio" id="include" name="inex" value="include">
+                    <label for="include">Include</label><br />
+                    <input type="radio" id="exclude" name="inex" value="exclude">
+                    <label for="exclude">Exclude</label><br />
+                    <br>
+                    <input type="checkbox" id="first_section" name="first_section">
+                    <label for="first_section">A</label><br />
+                    <input type="checkbox" id="second_section" name="second_section">
+                    <label for="second_section">B</label><br />
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <script type="text/javascript">
+            function blockOff(classId, id) {
+                if (classId == "courseBlock") document.getElementById(id).className = "courseBlock blocked";
+                else if (classId == "courseBlock blocked") document.getElementById(id).className = "courseBlock";
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
