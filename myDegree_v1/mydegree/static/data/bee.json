@@ -1,247 +1,413 @@
 [
-{
-	"course_code" : "MATH 1004",
-	"course_title" : "Calculus for Eng. Students",
-	"semester" : "1F"
-},
-{
-	"course_code" : "CHEM 1001",
-	"course_title" : "General Chemistry I",
-	"semester" : "1F"
-},
-{
-	"course_code" : "Elective",
-	"course_title" : "Complementary Studies Elective",
-	"semester" : "1F"
-},
-{
-	"course_code" : "ECOR 1041",
-	"course_title" : "Computation & Prog.",
-	"semester" : "1F"
-},
-{
-	"course_code" : "ECOR 1043",
-	"course_title" : "Circuits",
-	"semester" : "1F"
-},
-{
-	"course_code" : "ECOR 1045",
-	"course_title" : "Statics",
-	"semester" : "1F"
-},
-{
-	"course_code" : "ECOR 1047",
-	"course_title" : "Visual Communications",
-	"semester" : "1F"
-},
-{
-	"course_code" : "ECOR 1055",
-	"course_title" : "Intro. to Engineering Disciplines I",
-	"semester" : "1F"
-},
-{
-	"course_code" : "ECOR 1057",
-	"course_title" : "Engineering Disciplines",
-	"semester" : "1F"
-},
-{
-	"course_code" : "MATH 1104",
-	"course_title" : "Linear Algebra for Eng. Students",
-	"semester" : "1W"
-},
-{
-	"course_code" : "CHEM 1002",
-	"course_title" : "General Chemistry II",
-	"semester" : "1W"
-},
-{
-	"course_code" : "PHYS 1004",
-	"course_title" : "Introductory Electromagnetism & Wave Motion",
-	"semester" : "1W"
-},
-{
-	"course_code" : "ECOR 1042",
-	"course_title" : "Data Management",
-	"semester" : "1W"
-},
-{
-	"course_code" : "ECOR 1044",
-	"course_title" : "Mechatronics",
-	"semester" : "1W"
-},
-{
-	"course_code" : "ECOR 1046",
-	"course_title" : "Mechanics",
-	"semester" : "1W"
-},
-{
-	"course_code" : "ECOR 1048",
-	"course_title" : "Dynamics",
-	"semester" : "1W"
-},
-{
-	"course_code" : "ECOR 1056",
-	"course_title" : "Intro. to Engineering Disciplines II",
-	"semester" : "1W"
-},
-{
-	"course_code" : "MATH 1005",
-	"course_title" : "Diff. Equations & Inf. Series for Eng. Students",
-	"semester" : "2F"
-},
-{
-	"course_code" : "SYSC 2006",
-	"course_title" : "Foundation of Imperative Programming",
-	"semester" : "2F"
-},
-{
-	"course_code" : "ECOR 2050",
-	"course_title" : "Design & Analysis of Engineering Experiments",
-	"semester" : "2F"
-},
-{
-	"course_code" : "BIOL 1103",
-	"course_title" : "Foundations of Biology I",
-	"semester" : "2F"
-},
-{
-	"course_code" : "ELEC 2501",
-	"course_title" : "Circuits & Signals",
-	"semester" : "2F"
-},
-{
-	"course_code" : "MATH 2004",
-	"course_title" : "Multivariable Calculus for Eng. Students",
-	"semester" : "2W"
-},
-{
-	"course_code" : "ELEC 2507",
-	"course_title" : "Electronics I",
-	"semester" : "2W"
-},
-{
-	"course_code" : "ELEC 2607",
-	"course_title" : "Switching Circuits",
-	"semester" : "2W"
-},
-{
-	"course_code" : "SYSC 2510",
-	"course_title" : "Probability, Statistics & Random Processes",
-	"semester" : "2W"
-},
-{
-	"course_code" : "CCDP 2100",
-	"course_title" : "Communication Skills for Eng. Students",
-	"semester" : "2W"
-},
-{
-	"course_code" : "ELEC 3105",
-	"course_title" : "Basic EM & Power Engineering",
-	"semester" : "3F"
-},
-{
-	"course_code" : "SYSC 3006",
-	"course_title" : "Computer Organization",
-	"semester" : "3F"
-},
-{
-	"course_code" : "SYSC 3203",
-	"course_title" : "Bioelectrical Systems",
-	"semester" : "3F"
-},
-{
-	"course_code" : "SYSC 3610",
-	"course_title" : "Biomedical Systems, Modeling & Control",
-	"semester" : "3F"
-},
-{
-	"course_code" : "Elective",
-	"course_title" : "Science Elective",
-	"semester" : "3F"
-},
-{
-	"course_code" : "ELEC 3500",
-	"course_title" : "Digital Electronics",
-	"semester" : "3W"
-},
-{
-	"course_code" : "ELEC 3909",
-	"course_title" : "Electromagnetic Waves",
-	"semester" : "3W"
-},
-{
-	"course_code" : "SYSC 4201",
-	"course_title" : "Ethics, Research Methods & Standards for BME",
-	"semester" : "3W"
-},
-{
-	"course_code" : "SYSC 3501",
-	"course_title" : "Communication Theory",
-	"semester" : "3W"
-},
-{
-	"course_code" : "Elective",
-	"course_title" : "Engineering Elective",
-	"semester" : "3W"
-},
-{
-	"course_code" : "ECOR 3800",
-	"course_title" : "Engineering Economics",
-	"semester" : "3W"
-},
-{
-	"course_code" : "SYSC 4907",
-	"course_title" : "Engineering Project (Fall)",
-	"semester" : "4F"
-},
-{
-	"course_code" : "ELEC 4601",
-	"course_title" : "Microprocessor Systems",
-	"semester" : "4F"
-},
-{
-	"course_code" : "SYSC 4203",
-	"course_title" : "Bioinstrumentation & Signals",
-	"semester" : "4F"
-},
-{
-	"course_code" : "SYSC 4405",
-	"course_title" : "Digital Signal Processing",
-	"semester" : "4F"
-},
-{
-	"course_code" : "Elective",
-	"course_title" : "Science Elective",
-	"semester" : "4F"
-},
-{
-	"course_code" : "SYSC 4907",
-	"course_title" : "Engineering Project (Winter)",
-	"semester" : "4W"
-},
-{
-	"course_code" : "ECOR 4995",
-	"course_title" : "Professional Practice",
-	"semester" : "4W"
-},
-{
-	"course_code" : "Elective",
-	"course_title" : "Engineering Elective",
-	"semester" : "4W"
-},
-{
-	"course_code" : "Elective",
-	"course_title" : "Engineering Elective",
-	"semester" : "4W"
-},
-{
-	"course_code" : "Elective",
-	"course_title" : "Engineering Elective",
-	"semester" : "4W"
-},
-{
-	"course_code" : "Elective",
-	"course_title" : "Complementary Studies Elective",
-	"semester" : "4W"
-}
+    {
+        "course_code": "MATH 1004",
+        "course_title": "Calculus for Eng. Students",
+        "semester": "1F",
+        "schedule": "Lectures three hours a week, tutorial one hour a week.",
+        "preclusions": [
+            "BIT 1000",
+            "BIT 1100",
+            "BIT 1200",
+            "MATH 1007",
+            "MATH 1052"
+        ]
+    },
+    {
+        "course_code": "CHEM 1001",
+        "course_title": "General Chemistry I",
+        "semester": "1F",
+        "schedule": "Lectures and tutorial four hours a week, laboratory three hours every other week.",
+        "preclusions": [
+            "CHEM 1005",
+            "CHEM 1101"
+        ]
+    },
+    {
+        "course_code": "Elective",
+        "course_title": "Complementary Studies Elective",
+        "semester": "1F"
+    },
+    {
+        "course_code": "ECOR 1041",
+        "course_title": "Computation & Prog.",
+        "semester": "1F",
+        "schedule": "Lectures three hours per week, laboratories three hours per week.",
+        "preclusions": [
+            "COMP 1005",
+            "COMP 1405",
+            "ECOR 1051",
+            "ECOR 1606",
+            "SYSC 1005"
+        ]
+    },
+    {
+        "course_code": "ECOR 1043",
+        "course_title": "Circuits",
+        "semester": "1F",
+        "schedule": "Lectures three hours per week, laboratories three hours per week.",
+        "preclusions": [
+            "ECOR 1052"
+        ]
+    },
+    {
+        "course_code": "ECOR 1045",
+        "course_title": "Statics",
+        "semester": "1F",
+        "schedule": "Lectures three hours per week, laboratories three hours per week.",
+        "preclusions": [
+            "ECOR 1053",
+            "ECOR 1101"
+        ]
+    },
+    {
+        "course_code": "ECOR 1047",
+        "course_title": "Visual Communications",
+        "semester": "1F",
+        "schedule": "Lectures three hours per week, laboratories three hours per week.",
+        "preclusions": [
+            "ECOR 1054",
+            "ECOR 1010"
+        ]
+    },
+    {
+        "course_code": "ECOR 1055",
+        "course_title": "Intro. to Engineering Disciplines I",
+        "semester": "1F",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "ECOR 1057",
+        "course_title": "Engineering Disciplines",
+        "semester": "1F",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "MATH 1104",
+        "course_title": "Linear Algebra for Eng. Students",
+        "semester": "1W",
+        "schedule": "Lectures three hours a week and tutorial one hour a week.",
+        "preclusions": [
+            "BIT 1001",
+            "BIT 1101",
+            "BIT 1201",
+            "MATH 1107",
+            "MATH 1119",
+            "MATH 1401",
+            "ECON 1401",
+            "MATH 1402",
+            "ECON 1402",
+            "MATH 1152"
+        ]
+    },
+    {
+        "course_code": "CHEM 1002",
+        "course_title": "General Chemistry II",
+        "semester": "1W",
+        "schedule": "Lectures and tutorial four hours a week, laboratory three hours every other week.",
+        "preclusions": [
+            "CHEM 1006"
+        ]
+    },
+    {
+        "course_code": "PHYS 1004",
+        "course_title": "Introductory Electromagnetism & Wave Motion",
+        "semester": "1W",
+        "schedule": "Lectures three hours a week, laboratory or tutorial three hours a week.",
+        "preclusions": [
+            "BIT 1007",
+            "BIT 1204",
+            "PHYS 1002",
+            "PHYS 1008"
+        ]
+    },
+    {
+        "course_code": "ECOR 1042",
+        "course_title": "Data Management",
+        "semester": "1W",
+        "schedule": "Lectures three hours per week, laboratories three hours per week.",
+        "preclusions": [
+            "COMP 1005",
+            "COMP 1405",
+            "ECOR 1051",
+            "ECOR 1606",
+            "SYSC 1005"
+        ]
+    },
+    {
+        "course_code": "ECOR 1044",
+        "course_title": "Mechatronics",
+        "semester": "1W",
+        "schedule": "Lectures three hours per week, laboratories three hours per week.",
+        "preclusions": [
+            "ECOR 1052"
+        ]
+    },
+    {
+        "course_code": "ECOR 1046",
+        "course_title": "Mechanics",
+        "semester": "1W",
+        "schedule": "Lectures three hours per week, laboratories three hours per week.",
+        "preclusions": [
+            "ECOR 1053"
+        ]
+    },
+    {
+        "course_code": "ECOR 1048",
+        "course_title": "Dynamics",
+        "semester": "1W",
+        "schedule": "Lectures three hours per week, laboratories three hours per week.",
+        "preclusions": [
+            "ECOR 1054",
+            "ECOR 1101"
+        ]
+    },
+    {
+        "course_code": "ECOR 1056",
+        "course_title": "Intro. to Engineering Disciplines II",
+        "semester": "1W",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "MATH 1005",
+        "course_title": "Diff. Equations & Inf. Series for Eng. Students",
+        "semester": "2F",
+        "schedule": "Lectures three hours a week, tutorial one hour a week.",
+        "preclusions": [
+            "MATH 2007",
+            "MATH 2052",
+            "MATH 2404"
+        ]
+    },
+    {
+        "course_code": "SYSC 2006",
+        "course_title": "Foundation of Imperative Programming",
+        "semester": "2F",
+        "schedule": "Lectures three hours a week, laboratory two hours a week.",
+        "preclusions": [
+            "COMP 2401",
+            "SYSC 4006"
+        ]
+    },
+    {
+        "course_code": "ECOR 2050",
+        "course_title": "Design & Analysis of Engineering Experiments",
+        "semester": "2F",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "BIOL 1103",
+        "course_title": "Foundations of Biology I",
+        "semester": "2F",
+        "schedule": "Lectures three hours a week, laboratory or tutorial three hours a week.",
+        "preclusions": []
+    },
+    {
+        "course_code": "ELEC 2501",
+        "course_title": "Circuits & Signals",
+        "semester": "2F",
+        "schedule": "Lectures three hours a week, laboratory and problem analysis three hours a week.",
+        "preclusions": [
+            "ELEC 3605"
+        ]
+    },
+    {
+        "course_code": "MATH 2004",
+        "course_title": "Multivariable Calculus for Eng. Students",
+        "semester": "2W",
+        "schedule": "Lectures three hours a week, tutorial one hour a week.",
+        "preclusions": [
+            "MATH 2000",
+            "MATH 2008"
+        ]
+    },
+    {
+        "course_code": "ELEC 2507",
+        "course_title": "Electronics I",
+        "semester": "2W",
+        "schedule": "Lectures three hours a week, laboratory and problem analysis three hours a week.",
+        "preclusions": [
+            "OSS 2006"
+        ]
+    },
+    {
+        "course_code": "ELEC 2607",
+        "course_title": "Switching Circuits",
+        "semester": "2W",
+        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
+        "preclusions": [
+            "SYSC 2310"
+        ]
+    },
+    {
+        "course_code": "SYSC 2510",
+        "course_title": "Probability, Statistics & Random Processes",
+        "semester": "2W",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "CCDP 2100",
+        "course_title": "Communication Skills for Eng. Students",
+        "semester": "2W",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "ELEC 3105",
+        "course_title": "Basic EM & Power Engineering",
+        "semester": "3F",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "SYSC 3006",
+        "course_title": "Computer Organization",
+        "semester": "3F",
+        "schedule": "Lectures three hours a week, laboratory two hours a week.",
+        "preclusions": [
+            "SYSC 2001",
+            "SYSC 2003",
+            "SYSC 2320"
+        ]
+    },
+    {
+        "course_code": "SYSC 3203",
+        "course_title": "Bioelectrical Systems",
+        "semester": "3F",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "SYSC 3610",
+        "course_title": "Biomedical Systems, Modeling & Control",
+        "semester": "3F",
+        "schedule": "Lectures three hours a week, laboratory three hours a week.",
+        "preclusions": [
+            "SYSC 3500",
+            "SYSC 3600"
+        ]
+    },
+    {
+        "course_code": "Elective",
+        "course_title": "Science Elective",
+        "semester": "3F"
+    },
+    {
+        "course_code": "ELEC 3500",
+        "course_title": "Digital Electronics",
+        "semester": "3W",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "ELEC 3909",
+        "course_title": "Electromagnetic Waves",
+        "semester": "3W",
+        "schedule": "Lectures three hours a week, problem analysis three hours alternate weeks.",
+        "preclusions": [
+            "PHYS 3308"
+        ]
+    },
+    {
+        "course_code": "SYSC 4201",
+        "course_title": "Ethics, Research Methods & Standards for BME",
+        "semester": "3W",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "SYSC 3501",
+        "course_title": "Communication Theory",
+        "semester": "3W",
+        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
+        "preclusions": [
+            "SYSC 3503"
+        ]
+    },
+    {
+        "course_code": "Elective",
+        "course_title": "Engineering Elective",
+        "semester": "3W"
+    },
+    {
+        "course_code": "ECOR 3800",
+        "course_title": "Engineering Economics",
+        "semester": "3W",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "SYSC 4907",
+        "course_title": "Engineering Project (Fall)",
+        "semester": "4F",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "ELEC 4601",
+        "course_title": "Microprocessor Systems",
+        "semester": "4F",
+        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
+        "preclusions": [
+            "SYSC 3320",
+            "SYSC 3601"
+        ]
+    },
+    {
+        "course_code": "SYSC 4203",
+        "course_title": "Bioinstrumentation & Signals",
+        "semester": "4F",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "SYSC 4405",
+        "course_title": "Digital Signal Processing",
+        "semester": "4F",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "Elective",
+        "course_title": "Science Elective",
+        "semester": "4F"
+    },
+    {
+        "course_code": "SYSC 4907",
+        "course_title": "Engineering Project (Winter)",
+        "semester": "4W",
+        "schedule": "",
+        "preclusions": []
+    },
+    {
+        "course_code": "ECOR 4995",
+        "course_title": "Professional Practice",
+        "semester": "4W",
+        "schedule": "Lectures three hours a week.",
+        "preclusions": []
+    },
+    {
+        "course_code": "Elective",
+        "course_title": "Engineering Elective",
+        "semester": "4W"
+    },
+    {
+        "course_code": "Elective",
+        "course_title": "Engineering Elective",
+        "semester": "4W"
+    },
+    {
+        "course_code": "Elective",
+        "course_title": "Engineering Elective",
+        "semester": "4W"
+    },
+    {
+        "course_code": "Elective",
+        "course_title": "Complementary Studies Elective",
+        "semester": "4W"
+    }
 ]

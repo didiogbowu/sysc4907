@@ -12,5 +12,5 @@ class CourseData(db.Model):
     end_time = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f"{self.course_code}\n{self.course_title}\n"
+        return f"\n{self.course_code}\n{self.course_title}"
 

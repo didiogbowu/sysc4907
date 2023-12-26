@@ -8,7 +8,6 @@
     </head>
     <style>        
         table {
-            margin-left: auto;
             margin-right: auto;
             padding: 2px;
         }
@@ -27,6 +26,10 @@
             box-sizing: border-box;            
         }
         
+        table#timeColumn td:active {
+            background-color: #333333;
+        }
+        
         table#dayRow td {
             width: 100px;
             height: {{ str(course_height(30, 0) / 1.5) ~ 'px' }};
@@ -39,6 +42,10 @@
             background-color: #CCCCCC;
             color: black;
             box-sizing: border-box;            
+        }
+        
+        table#dayRow td:active {
+            background-color: #333333;
         }
         
         .timetable {
@@ -65,7 +72,7 @@
     <body>
         <header class="row m-0">
             <div class="col-5"></div>
-            <button class="col-2 mt-1">Apply</button>
+            <button class="col-2 mt-1" onclick="sendFilters()">Apply</button>
             <div class="col-5"></div>
         </header>
         <div class="row m-0">
@@ -77,11 +84,11 @@
                         <td>
                             <table id="dayRow" border=1 style="border-color: white; border-collapse: collapse">
                                 <tr>
-                                    <td>Monday</td>
-                                    <td>Tuesday</td>
-                                    <td>Wednesday</td>
-                                    <td>Thursday</td>
-                                    <td>Friday</td>
+                                    <td id="col0" onclick="blockOffAll(this.id)">Monday</td>
+                                    <td id="col1" onclick="blockOffAll(this.id)">Tuesday</td>
+                                    <td id="col2" onclick="blockOffAll(this.id)">Wednesday</td>
+                                    <td id="col3" onclick="blockOffAll(this.id)">Thursday</td>
+                                    <td id="col4" onclick="blockOffAll(this.id)">Friday</td>
                                 </tr>
                             </table>
                         </td>
@@ -90,91 +97,91 @@
                         <td>
                             <table id="timeColumn" border=1 style="border-color: white; border-collapse: collapse">
                                 <tr>
-                                    <td>8:00</td>
+                                    <td id="row0" onclick="blockOffAll(this.id)">8:00</td>
                                 </tr>
                                 <tr>
-                                    <td>8:30</td>
+                                    <td id="row1" onclick="blockOffAll(this.id)">8:30</td>
                                 </tr>
                                 <tr>
-                                    <td>9:00</td>
+                                    <td id="row2" onclick="blockOffAll(this.id)">9:00</td>
                                 </tr>
                                 <tr>
-                                    <td>9:30</td>
+                                    <td id="row3" onclick="blockOffAll(this.id)">9:30</td>
                                 </tr>
                                 <tr>
-                                    <td>10:00</td>
+                                    <td id="row4" onclick="blockOffAll(this.id)">10:00</td>
                                 </tr>
                                 <tr>
-                                    <td>10:30</td>
+                                    <td id="row5" onclick="blockOffAll(this.id)">10:30</td>
                                 </tr>
                                 <tr>
-                                    <td>11:00</td>
+                                    <td id="row6" onclick="blockOffAll(this.id)">11:00</td>
                                 </tr>
                                 <tr>
-                                    <td>11:30</td>
+                                    <td id="row7" onclick="blockOffAll(this.id)">11:30</td>
                                 </tr>
                                 <tr>
-                                    <td>12:00</td>
+                                    <td id="row8" onclick="blockOffAll(this.id)">12:00</td>
                                 </tr>
                                 <tr>
-                                    <td>12:30</td>
+                                    <td id="row9" onclick="blockOffAll(this.id)">12:30</td>
                                 </tr>
                                 <tr>
-                                    <td>13:00</td>
+                                    <td id="row10" onclick="blockOffAll(this.id)">13:00</td>
                                 </tr>
                                 <tr>
-                                    <td>13:30</td>
+                                    <td id="row11" onclick="blockOffAll(this.id)">13:30</td>
                                 </tr>
                                 <tr>
-                                    <td>14:00</td>
+                                    <td id="row12" onclick="blockOffAll(this.id)">14:00</td>
                                 </tr>
                                 <tr>
-                                    <td>14:30</td>
+                                    <td id="row13" onclick="blockOffAll(this.id)">14:30</td>
                                 </tr>
                                 <tr>
-                                    <td>15:00</td>
+                                    <td id="row14" onclick="blockOffAll(this.id)">15:00</td>
                                 </tr>
                                 <tr>
-                                    <td>15:30</td>
+                                    <td id="row15" onclick="blockOffAll(this.id)">15:30</td>
                                 </tr>
                                 <tr>
-                                    <td>16:00</td>
+                                    <td id="row16" onclick="blockOffAll(this.id)">16:00</td>
                                 </tr>
                                 <tr>
-                                    <td>16:30</td>
+                                    <td id="row17" onclick="blockOffAll(this.id)">16:30</td>
                                 </tr>
                                 <tr>
-                                    <td>17:00</td>
+                                    <td id="row18" onclick="blockOffAll(this.id)">17:00</td>
                                 </tr>
                                 <tr>
-                                    <td>17:30</td>
+                                    <td id="row19" onclick="blockOffAll(this.id)">17:30</td>
                                 </tr>
                                 <tr>
-                                    <td>18:00</td>
+                                    <td id="row20" onclick="blockOffAll(this.id)">18:00</td>
                                 </tr>
                                 <tr>
-                                    <td>18:30</td>
+                                    <td id="row21" onclick="blockOffAll(this.id)">18:30</td>
                                 </tr>
                                 <tr>
-                                    <td>19:00</td>
+                                    <td id="row22" onclick="blockOffAll(this.id)">19:00</td>
                                 </tr>
                                 <tr>
-                                    <td>19:30</td>
+                                    <td id="row23" onclick="blockOffAll(this.id)">19:30</td>
                                 </tr>
                                 <tr>
-                                    <td>20:00</td>
+                                    <td id="row24" onclick="blockOffAll(this.id)">20:00</td>
                                 </tr>
                                 <tr>
-                                    <td>20:30</td>
+                                    <td id="row25" onclick="blockOffAll(this.id)">20:30</td>
                                 </tr>
                                 <tr>
-                                    <td>21:00</td>
+                                    <td id="row26" onclick="blockOffAll(this.id)">21:00</td>
                                 </tr>
                                 <tr>
-                                    <td>21:30</td>
+                                    <td id="row27" onclick="blockOffAll(this.id)">21:30</td>
                                 </tr>
                                 <tr>
-                                    <td>22:00</td>
+                                    <td id="row28" onclick="blockOffAll(this.id)">22:00</td>
                                 </tr>
                             </table>
                         </td>
@@ -194,26 +201,126 @@
                 <div>
                     <span><strong>{{ list_of_names[i] }}</strong></span>
                     <br>
-                    <input type="radio" id="include" name="inex" value="include">
-                    <label for="include">Include</label><br />
-                    <input type="radio" id="exclude" name="inex" value="exclude">
-                    <label for="exclude">Exclude</label><br />
+                    <input type="radio" id="include{{ i }}" name="inex{{ i }}" value="include">
+                    <label for="include{{ i }}">Include</label><br />
+                    <input type="radio" id="exclude{{ i }}" name="inex{{ i }}" value="exclude" checked="true">
+                    <label for="exclude{{ i }}">Exclude</label><br />
                     <br>
-                    <input type="checkbox" id="first_section" name="first_section">
-                    <label for="first_section">A</label><br />
-                    <input type="checkbox" id="second_section" name="second_section">
-                    <label for="second_section">B</label><br />
+                    
+                    {% for j in range(len(names_and_sections[list_of_names[i]])) %}
+                    <input type="checkbox" id="{{ names_and_sections[list_of_names[i]][j].lower() ~ i }}" name="first_section">
+                    <label for="{{ names_and_sections[list_of_names[i]][j].lower() ~ i }}">{{ names_and_sections[list_of_names[i]][j] }}</label>
+                    {% endfor %}
+                    
                 </div>
                 {% endfor %}
             </div>
         </div>
-        <script type="text/javascript">
+        <script type="text/javascript"> 
+            let HRS_TO_MINS = 60;
+            let TIMETABLE_ST = 8 * HRS_TO_MINS;
+            let COURSE_WIDTH = 100;
+            let HEIGHT = 30;
+            let HEIGHT_REF = 30;
+            let SCALE = 1.5;
+            
+            var listOfNames = [
+                {% for i in range(len(list_of_names)) %}
+                {% if i != len(list_of_names) - 1%}
+                "{{ list_of_names[i] }}",
+                {% else %}
+                "{{ list_of_names[i] }}"
+                {% endif %}
+                {% endfor %}
+            ];
+            
             function blockOff(classId, id) {
                 if (classId == "courseBlock") document.getElementById(id).className = "courseBlock blocked";
                 else if (classId == "courseBlock blocked") document.getElementById(id).className = "courseBlock";
             }
+            
+            function blockOffAll(id) {                
+                let courseBlocks = document.getElementsByClassName("courseBlock");
+                let element = document.getElementById(id);
+                let classId = element.className;
+                
+                if (classId == "") document.getElementById(id).className = "blockedMode";
+                else if (classId == "blockedMode") document.getElementById(id).className = "";
+                
+                for (let i = 0; i < courseBlocks.length; ++i) {
+                    if (((id.slice(0, 3) == "col") && (courseBlocks[i].id[11] == id.slice(3))) || ((id.slice(0, 3) == "row") && (courseBlocks[i].id.slice(12) == id.slice(3)))) {
+                        if (classId == "") blockOff("courseBlock", courseBlocks[i].id);
+                        else if (classId == "blockedMode") blockOff("courseBlock blocked", courseBlocks[i].id);
+                    }
+                }
+            }
+            
+            function getDuration(height) {
+                return (parseFloat(height) / HEIGHT) * HEIGHT_REF * SCALE;
+            }
+            
+            function getStartTime(marginTop) {
+                return getDuration(marginTop) + TIMETABLE_ST;
+            }
+
+            function getDay(marginLeft) {
+                return (parseInt(marginLeft) / COURSE_WIDTH) + 1;
+            }
+            
+            function sendFilters() {
+                const elementList = document.getElementsByClassName("courseBlock blocked");
+                const timeSlots = [];               
+                const dayBox = [
+                    [{startTime: 0.0, endTime: 0.0, day: 1}], 
+                    [{startTime: 0.0, endTime: 0.0, day: 2}],
+                    [{startTime: 0.0, endTime: 0.0, day: 3}],
+                    [{startTime: 0.0, endTime: 0.0, day: 4}],
+                    [{startTime: 0.0, endTime: 0.0, day: 5}]
+                ];
+ 
+                for (let i = 0; i < elementList.length; ++i) {
+                    startTime = getStartTime(elementList[i].style.marginTop);
+                    endTime = startTime + getDuration(elementList[i].style.height);
+                    day = getDay(elementList[i].style.marginLeft)
+                    
+                    if (startTime == dayBox[day - 1][0].endTime) dayBox[day - 1][0].endTime = endTime;
+                    else {
+                        dayBox[day - 1][0] = {startTime: startTime, endTime: endTime, day: day};
+                        timeSlots.push(dayBox[day - 1][0]);
+                    }
+                }
+                
+                console.log(timeSlots);   
+                
+                const sent = {blockedOff: timeSlots, list_of_names: []}
+                
+                console.log(sent);
+
+                for (let i = 0; i < listOfNames.length; ++i) {
+                    sent.list_of_names.push(listOfNames[i]);
+                }
+                
+                alert(sent.list_of_names);
+                
+                sendJson = JSON.stringify(sent);
+                
+                $.ajax({
+                    url: '/handle_filters/',
+                    type: 'get',
+                    contentType: 'application/json',
+                    data: {'sent': sendJson},
+                    success: function(data) {
+                        console.log(data.url);
+                        window.location.replace(data.url);
+                    },
+                    error: function(error){
+                      console.log('Error');
+                      console.log(error);
+                    }
+                });
+            }
         </script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>

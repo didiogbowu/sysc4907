@@ -136,6 +136,22 @@
     <script>
         const program = "{{ title }}"; // USE THIS TO KNOW WHAT PROGRAM
         
+        const courseInfo = {
+            {% for i in range(len(courses)) %}
+            {% if courses[i]['course_code'] not in ["Elective", "ECOR 4995", "SYSC 4907"]%}
+            "{{ courses[i]['course_code'] }}": {
+                schedule: "{{ courses[i]['schedule'] }}", 
+                preclusions: [
+                {% for j in range(len(courses[i]['preclusions']) - 1) %}
+                    "{{ courses[i]['preclusions'][j] }}",
+                {% endfor %}
+                    "{{ courses[i]['preclusions'][len(courses[i]['preclusions']) - 1] }}"
+                ]
+            },
+            {% endif %}
+            {% endfor %}  
+        };
+        
         const BASIC_SCI = "Basic Science Elective";
         const COMPLEMENTARY = "Complementary Studies Elective";
         
@@ -214,20 +230,31 @@
                     
                     const span1 = document.createElement("span");
                     const span2 = document.createElement("span");
+                    const span3 = document.createElement("span");
                     
                     const description = document.createElement("p");
                     const schedule = document.createElement("p");
+                    const preclusions = document.createElement("p");
                     
                     const text1 = document.createTextNode(contents[1].innerHTML);
-                    const text2 = document.createTextNode(" 2 lectures per week. 1 lab biweekly.")
+                    const text2 = document.createTextNode(" " + courseInfo[contents[0].children[0].innerHTML].schedule); // Format wanted: 2 lectures per week. 1 lab biweekly.
+                    const text3 = document.createTextNode(" " + courseInfo[contents[0].children[0].innerHTML].preclusions.join(", "));
                     
-                    const bold = document.createElement("b");
-                    const bold_text = document.createTextNode("Schedule:");
-                    bold.appendChild(bold_text);
+                    const bold1 = document.createElement("b");
+                    const bold_text1 = document.createTextNode("Schedule:");
+                    bold1.appendChild(bold_text1);
+                    
+                    const bold2 = document.createElement("b");
+                    const bold_text2 = document.createTextNode("Preclusions:");
+                    bold2.appendChild(bold_text2);
                     
                     description.appendChild(text1);
-                    schedule.appendChild(bold);
+                    
+                    schedule.appendChild(bold1);
                     schedule.appendChild(text2);
+                    
+                    preclusions.appendChild(bold2);
+                    preclusions.appendChild(text3);
                     
                     span1.appendChild(description);
                     span1.className = "row p-1 ml-1";
@@ -235,8 +262,12 @@
                     span2.appendChild(schedule);
                     span2.className = "row p-1 ml-1";
                     
+                    span3.appendChild(preclusions);
+                    span3.className = "row p-1 ml-1";
+                    
                     infoBox.appendChild(span1); 
                     infoBox.appendChild(span2); 
+                    infoBox.appendChild(span3); 
                 }
             }
         }

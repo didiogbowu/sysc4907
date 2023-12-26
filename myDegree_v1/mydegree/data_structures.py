@@ -100,6 +100,18 @@ class Timetable:
             
         return add_to_list
         
+
+def get_sections(course_name: str, semester: str) -> List[str]:
+    section_letters = []
+    SECTION_LETTER = 2
+    
+    with app.app_context():
+        all_sections = CourseData.query.filter(CourseData.course_code.op('regexp')(r'' + course_name), CourseData.semester == semester).all()
+        
+    for course_data_obj in all_sections:
+        section_letters.append(course_data_obj.course_code.split()[SECTION_LETTER])
+        
+    return section_letters
         
 def db_model_to_data_struct(db_model: 'models.CourseData') -> 'data_structures.Course':
     days_list = []
@@ -162,7 +174,7 @@ def recursive_merge(num_of_crses: int, section_combos: List[List['data_structure
     else:
         return merge_crses(recursive_merge(num_of_crses - 1, section_combos), section_combos[num_of_crses - 1])
 
-def all_timetables(input_courses: List[str], semester: str) -> List['data_structures.Timetable']:    
+def all_timetables(input_courses: List[str], x_timetable: 'data_structures.Timetable', semester: str) -> List['data_structures.Timetable']:    
     NUM_OF_CRSES = len(input_courses)
     num_of_reg_crses = NUM_OF_CRSES
     
@@ -190,7 +202,7 @@ def all_timetables(input_courses: List[str], semester: str) -> List['data_struct
                     lab_sections[i].append(db_model_to_data_struct(course_data_obj))
                 else:
                     print("Something's not right")
-
+        
     for p in range(NUM_OF_CRSES): 
         lecture_section = lecture_sections[p]
         lab_section = lab_sections[p]
@@ -202,7 +214,11 @@ def all_timetables(input_courses: List[str], semester: str) -> List['data_struct
                 section_letter = lecture_section[q].code.split()[2]
                 
                 for r in range(len(lab_section)):
-                    timetable = Timetable([])
+                    if r == 0:
+                        timetable = x_timetable
+                    else:
+                        timetable = Timetable([])
+                        
                     timetable.add_course(lecture_section[q])
                 
                     if (lab_section[r].code.split()[2][0] == section_letter) and (timetable.add_course(lab_section[r])):
@@ -214,16 +230,24 @@ def all_timetables(input_courses: List[str], semester: str) -> List['data_struct
         
         else:
             lect_and_lab_sections2 = []
-
+            
             for q in range(len(lecture_section)):
                 if len(lab_section) == 0:
-                    timetable = Timetable([])
+                    if q == 0:
+                        timetable = x_timetable
+                    else:
+                        timetable = Timetable([])
+                        
                     timetable.add_course(lecture_section[q])
                     lect_and_lab_sections2.append(timetable)
 
                 else:
                     for r in range(len(lab_section)):    
-                        timetable = Timetable([])
+                        if r == 0:
+                            timetable = x_timetable
+                        else:
+                            timetable = Timetable([])
+                            
                         timetable.add_course(lecture_section[q])
 
                         if timetable.add_course(lab_section[r]):
