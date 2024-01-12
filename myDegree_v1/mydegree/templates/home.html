@@ -152,64 +152,18 @@
             {% endfor %}  
         };
         
+        const specialInfo = {
+            "basicScience": [],
+            "complemetary": [],
+            "computerScience": [],
+            "science": []
+        };
+        
+        const electiveReqs = []
+        
         const BASIC_SCI = "Basic Science Elective";
         const COMPLEMENTARY = "Complementary Studies Elective";
-        
-        const cseElectives = {
-            basicScience: [
-                {course: "BIOL 1103", semester: "Fall", added: false},
-                {course: "BIOL 2107", semester: "Winter", added: false},
-                {course: "CHEM 2207", semester: "Fall", added: false},
-                {course: "PHYS 1001", semester: "Fall", added: false},
-                {course: "PHYS 2202", semester: "Winter", added: false}
-            ],            
-            complemetary: [
-                {course: "AFRI 1002", semester: "Winter", added: false},
-                {course: "ARTH 2107", semester: "Fall", added: false},
-                {course: "CLCV 2104", semester: "Winter", added: false},
-                {course: "CLCV 2304", semester: "Winter", added: false},
-                {course: "ENGL 2012", semester: "Fall", added: false}
-            ], 
-            engineering: [
-                {course: "", semester: "", added: false}
-            ]
-        };
-        
-        const seElectives = {
-            basicScience: [
-                {course: "", semester: "", added: false}
-            ],            
-            complemetary: [
-                {course: "", semester: "", added: false}
-            ], 
-            engineering: [
-                {course: "", semester: "", added: false}
-            ]
-        };
-        
-        const beeElectives = {
-            science: [
-                {course: "", semester: "", added: false}
-            ],            
-            complemetary: [
-                {course: "", semester: "", added: false}
-            ], 
-            engineering: [
-                {course: "", semester: "", added: false}
-            ]
-        };
-        
-        const commEngElectives = {
-            basicScience: [
-                {course: "", semester: "", added: false}
-            ],            
-            complemetary: [
-                {course: "", semester: "", added: false}
-            ], 
-            engineering: [
-                {course: "", semester: "", added: false}
-            ]
-        };
+        const ENGINEERING = "Engineering Elective"
         
         var elctvBoxSelected;
         
@@ -223,8 +177,9 @@
                 let currBox = elctvBoxSelected;
                 let contents = currBox.children;
                 
-                if (contents[1].innerHTML == BASIC_SCI) updateInfoBox(cseElectives.basicScience, BASIC_SCI);
-                else if (contents[1].innerHTML == COMPLEMENTARY) updateInfoBox(cseElectives.complemetary, COMPLEMENTARY);  
+                if (contents[1].innerHTML == BASIC_SCI) updateInfoBox("basicScience", BASIC_SCI);
+                else if (contents[1].innerHTML == COMPLEMENTARY) updateInfoBox("complemetary", COMPLEMENTARY);  
+                else if (contents[1].innerHTML == ENGINEERING) specificUpdate();  
                 else {
                     infoBox.children[0].innerHTML = contents[0].innerHTML;
                     
@@ -272,16 +227,19 @@
             }
         }
         
-        function updateInfoBox(elctvObjects, electiveTitle) {
-            infoBox.children[0].innerHTML = electiveTitle;
-            
-            for (let i = 0; i < elctvObjects.length; ++i) {
-                const element = document.createElement("span");
+        function update(someObject)  {
+            for (let k = 0; k < someObject.length; ++k) {
+                const element = document.createElement("div");
                 element.className = "row p-1";
                 
                 const button = document.createElement("button");
                 
-                if (elctvBoxSelected.children[0].children[0].innerHTML == elctvObjects[i].course) { // maybe make these variables since theyre used again
+                var stringToAdd;
+                
+                if (Array.isArray(someObject)) stringToAdd = someObject[k];
+                else stringToAdd = someObject[k].course;
+                
+                if (elctvBoxSelected.children[0].children[0].innerHTML == stringToAdd) { // maybe make these variables since theyre used again
                     button.className = "selected";
                     button.innerHTML = "SELECTED";
                 }
@@ -290,35 +248,11 @@
                     button.innerHTML = "INSERT";
                 }
                 
-                button.onclick = function insertElective() {
-                    let courseCode = elctvBoxSelected.children[0].children[0].innerHTML;
-                    
-                    if (courseCode != this.parentElement.children[0].innerHTML) { // SPAN -> P (Name of elective being selected)
-                        
-                        for (let j = 0; j < infoBox.children.length; ++j) {
-                            if (infoBox.children[j].tagName != "SPAN") continue;
-                            
-                            if (courseCode == infoBox.children[j].children[0].innerHTML) { // SPAN -> P
-                                infoBox.children[j].children[1].className = "inserter"; // SPAN -> BUTTON
-                                infoBox.children[j].children[1].innerHTML = "INSERT";
-                            }
-                        }
-                        
-                        elctvBoxSelected.children[0].children[0].innerHTML = this.parentElement.children[0].innerHTML;
-                        console.log(this.parentElement.children[0].innerHTML);
-                        
-                        this.className = "selected";
-                        this.innerHTML = "SELECTED";                       
-                    }
-                    else {
-                        elctvBoxSelected.children[0].children[0].innerHTML = "Elective";   
-                        this.className = "inserter";
-                        this.innerHTML = "INSERT";      
-                    }
-                }
+                button.onclick = insertElective();
                         
                 const name_of_course = document.createElement("p");
-                const text = document.createTextNode(elctvObjects[i].course);
+                name_of_course.className = "col-3";
+                const text = document.createTextNode(stringToAdd);
                 
                 name_of_course.appendChild(text);  
                 element.appendChild(name_of_course);
@@ -327,13 +261,72 @@
             }
         }
         
+        function specificUpdate() {
+            infoBox.children[0].innerHTML = ENGINEERING;
+            
+            for (let i = 0; i < electiveReqs.length; ++i) {
+                var alreadyAdded = 0;
+                var totalNumberNeeded =  electiveReqs[i].totalNumNeeded;
+                
+                for (let j = 0; j < electiveReqs[i].reqData.length; ++j) {
+                    var code;
+                    
+                    if (electiveReqs[i].reqData[j].type == "specific") update(electiveReqs[i].reqData[j].code.split(", ")); 
+                    else if (electiveReqs[i].reqData[j].type == "list") update(specialInfo[electiveReqs[i].reqData[j].code]);
+                    else if (electiveReqs[i].reqData[j].type == "general") {
+                        const pattern = electiveReqs[i].reqData[j].code;
+                        
+                        update(pattern.exec.(Object.keys(courseInfo).join(" ")));
+                    }   
+                }
+                
+                if (i < electiveReqs.length - 1) {
+                    infoBox.appendChild(document.createElement("br"));
+                    infoBox.appendChild(document.createElement("hr"));
+                    infoBox.appendChild(document.createElement("br"));
+                }
+            }
+        }
+        
+        function updateInfoBox(elctvType, electiveTitle) {
+            infoBox.children[0].innerHTML = electiveTitle;
+            update(specialInfo[elctvType]);
+        }
+        
         function removeInfo() {
             let infoBox = document.getElementById("infoBox");
         
             infoBox.className = "closed"
                 
             for (let i = infoBox.children.length - 1; i > -1; --i) {
-                if (infoBox.children[i].tagName == 'SPAN') infoBox.removeChild(infoBox.children[i]);
+                if ((infoBox.children[i].tagName == 'DIV') || (infoBox.children[i].tagName == 'SPAN')) infoBox.removeChild(infoBox.children[i]);
+            }
+        }
+        
+        function insertElective() {
+            let courseCode = elctvBoxSelected.children[0].children[0].innerHTML;
+            
+            if (courseCode != this.parentElement.children[0].innerHTML) { // DIV -> P (Name of elective being selected)
+                
+                for (let j = 0; j < infoBox.children.length; ++j) {
+                    if (infoBox.children[j].tagName != "DIV") continue;
+                    
+                    if (courseCode == infoBox.children[j].children[0].innerHTML) { // DIV -> P
+                        infoBox.children[j].children[1].className = "inserter"; // DIV -> BUTTON
+                        infoBox.children[j].children[1].innerHTML = "INSERT";
+                    }
+                }
+                
+                elctvBoxSelected.children[0].children[0].innerHTML = this.parentElement.children[0].innerHTML;
+                console.log(this.parentElement.children[0].innerHTML);
+                
+                this.className = "selected";
+                this.innerHTML = "SELECTED";                       
+            }
+            else {
+                elctvBoxSelected.children[0].children[0].innerHTML = "Elective";   
+                this.className = "inserter";
+                this.innerHTML = "INSERT";      
             }
         }
         
