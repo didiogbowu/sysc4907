@@ -9,6 +9,14 @@ PROGRAM_CHOICES = [
     ("bee", "Biomedical & Electrical Engineering")
 ]
 
+CATALOG_YEARS = [
+    (4, "202330"),
+    (3, "202230"), 
+    (2, "202130"),
+    (1, "202030"),
+    (0, "201930")
+]
+
 class SubmitButtonForm(FlaskForm):
     submit = SubmitField('Load Timetables', validators=[DataRequired()])
         
@@ -17,5 +25,6 @@ class TextFieldForm(FlaskForm):
     submit = SubmitField('Add')
     
 class SelectProgramForm(FlaskForm):
-    name_of_course = SelectField('Select your engineering program', validators=[DataRequired()], choices=PROGRAM_CHOICES, coerce=str, option_widget=None, validate_choice=True)
+    name_of_course = SelectField('Select your engineering program and catalog year', validators=[DataRequired()], choices=PROGRAM_CHOICES, coerce=str, option_widget=None, validate_choice=True)
+    catalog_year = SelectField('', validators=[DataRequired()], choices=CATALOG_YEARS, coerce=str, option_widget=None, validate_choice=True)
     submit = SubmitField('Go')

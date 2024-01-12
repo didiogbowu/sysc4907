@@ -3,7 +3,26 @@
     <head>
         <meta charset="utf-8"/>
         <title>Select Your Program</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">       
+        <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
+        <style>
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            h1#header::before {
+                content: "";
+                background-image:url({{ url_for('static', filename='logo.png') }});
+                background-size: 100% 100%;
+                display: inline-block;
+                height: 50px;
+                width: 50px;
+                position: relative;
+                top: 10px;
+                right: 3px;
+            }
+        </style>
     </head>
     <body>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -15,13 +34,21 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
-        <form method="POST" action="">
+        <form method="POST" action="" style="margin-top: 28vh">
             {{ select_form.hidden_tag() }}
             <fieldset class="form-group">
-                <div class="row mb-4 ml-5">
-                    <div class="col-md-4 mr-0">{{ select_form.name_of_course.label(class="form-label") }}</div>
-                    <div class="col-md-4 mr-0">{{ select_form.name_of_course(class="form-control form-control-md") }}</div>
-                    <div class="col-md-2 mr-0">{{ select_form.submit(class="btn") }}</div>
+                <div class="row mb-2">
+                    <div class="col-4"></div>
+                    <div class="col-4"><h1 id="header">myEngineeringDegree</h1></div>
+                    <div class="col-4"></div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-1"></div>
+                    <div class="col-3" style="color: black">{{ select_form.name_of_course.label(class="form-label") }}</div>
+                    <div class="col-4">{{ select_form.name_of_course(class="form-control form-control-md") }}</div>
+                    <div class="col-2">{{ select_form.catalog_year(class="form-control form-control-md") }}</div>
+                    <div class="col-1">{{ select_form.submit(class="btn btn-dark") }}</div>
+                    <div class="col-1"></div>
                 </div>    
             </fieldset>
         </form>    
