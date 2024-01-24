@@ -1,0 +1,162 @@
+[
+    {
+        "course_code": "BIOL 1010", 
+        "course_title": "Biotechnology and Society", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "BIOL 1103", 
+        "course_title": "Foundations of Biology I", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "BIOL 1104", 
+        "course_title": "Foundations of Biology II", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "BIOL 1902", 
+        "course_title": "Natural History", 
+        "semester": "Both"
+    },
+    {
+        "course_code": "BIOL 1103", 
+        "course_title": "Human Biology", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "BIOL 2107", 
+        "course_title": "Fundamentals of Genetics", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "BIOL 2201", 
+        "course_title": "Cell Biology and Biochemistry", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "BIOL 2303", 
+        "course_title": "Microbiology", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "BIOL 2903", 
+        "course_title": "Natural History and Ecology of Ontario", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "CHEM 2207", 
+        "course_title": " Introduction to Organic Chemistry I", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "CHEM 2208", 
+        "course_title": " Introduction to Organic Chemistry II", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "CHEM 2302", 
+        "course_title": " Analytical Chemistry I", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "CHEM 2501", 
+        "course_title": "Introduction to Inorganic and Bioinorganic Chemistry", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "CHEM 2800", 
+        "course_title": " Foundations for Environmental Chemistry", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ENSC 2001", 
+        "course_title": "Earth Resources and Natural Hazards: Environmental Impacts", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ERTH 1010", 
+        "course_title": "Our Dynamic Planet Earth", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ERTH 1011", 
+        "course_title": "Evolution of the Earth", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ERTH 2401", 
+        "course_title": "Dinosaurs", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ERTH 2415", 
+        "course_title": "Natural Disasters", 
+        "semester": "Both"
+    },
+    {
+        "course_code": "ERTH 2419", 
+        "course_title": "On the Origin of Planets", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "GEOG 1010", 
+        "course_title": "Global Environmental Systems", 
+        "semester": "Both"
+    },
+    {
+        "course_code": "GEOG 2013", 
+        "course_title": "Weather and Water", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "GEOG 2014", 
+        "course_title": "The Earth's Surface", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "GEOG 2020", 
+        "course_title": "Ecosystems of Canada", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "NEUR 1202", 
+        "course_title": "Neuroscience of Mental Health and Psychiatric Disease", 
+        "semester": "Both"
+    },
+    {
+        "course_code": "NEUR 2201", 
+        "course_title": "Cellular and Molecular Neuroscience", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "PHYS 1001", 
+        "course_title": "Foundations of Physics I", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "PHYS 1003", 
+        "course_title": "Introductory Mechanics and Thermodynamics", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "PHYS 2004", 
+        "course_title": "Modern Physics for Engineers", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "PHYS 2202", 
+        "course_title": "Wave Motion and Optics", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "PHYS 2305", 
+        "course_title": "Electricity and Magnetism", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "PHYS 2401", 
+        "course_title": "Thermal Physics", 
+        "semester": "Fall"
+    }
+]

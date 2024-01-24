@@ -1,0 +1,122 @@
+[
+    {
+        "course_code": "AFRI 1002", 
+        "course_title": "Introduction to African Studies II", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "AFRI 2002", 
+        "course_title": "The Horn of Africa", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "AFRI 2005", 
+        "course_title": "West Africa", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ALDS 2604", 
+        "course_title": "Communication Differences and Disabilities I", 
+        "semester": "Both"
+    },
+    {
+        "course_code": "ANTH 2850", 
+        "course_title": "Anthropology of Development", 
+        "semester": "Both"
+    },
+    {
+        "course_code": "ARCY 1009", 
+        "course_title": "Introduction to Archaeology II", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ARTH 1100", 
+        "course_title": "Art and Society: Prehistory to the Renaissance", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ARTH 1101", 
+        "course_title": "Art and Society: Renaissance to the Present", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ARTH 1200", 
+        "course_title": "History & Theory of Architecture: Prehistory to 1500", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ARTH 1201", 
+        "course_title": "History & Theory of Architecture: 1500 to Present", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ARTH 2003", 
+        "course_title": "Twentieth-Century Art in Canada", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ARTH 2005", 
+        "course_title": "Arts of the First Peoples: The Woodlands, the Plains, and the Subarctic", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ARTH 2105", 
+        "course_title": "Roman Art and Archaeology", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ARTH 2310", 
+        "course_title": "Architecture of the Early Modern World", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ARTH 2601", 
+        "course_title": "History and Theory of Photography", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "CHST 2011", 
+        "course_title": "Children's Literature", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "CLCV 2008", 
+        "course_title": "Greek and Roman Epic", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "CLCV 2103", 
+        "course_title": "Greek Religion", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "CLCV 2104", 
+        "course_title": "Roman Religion", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "CLCV 2902", 
+        "course_title": "Origins of the Greeks", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "CLCV 2903", 
+        "course_title": "Democracy to Alexander", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ENGL 1300", 
+        "course_title": "Literature, Psychology, and the Mind", 
+        "semester": "Winter"
+    },
+    {
+        "course_code": "ENGL 1400", 
+        "course_title": "Literature, Art, and Culture", 
+        "semester": "Fall"
+    },
+    {
+        "course_code": "ENGL 1609", 
+        "course_title": "Introduction to Drama Studies", 
+        "semester": "Fall"
+    }
+]
