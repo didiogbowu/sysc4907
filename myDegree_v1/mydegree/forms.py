@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 PROGRAM_CHOICES = [
-    ("cse", "Systems and Computer Engineering"), 
+    ("cse", "Computer Systems Engineering"), 
     ("se", "Software Engineering"),
     ("comm_eng", "Communications Engineering"),
     ("bee", "Biomedical & Electrical Engineering")
