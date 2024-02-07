@@ -4,6 +4,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Filters</title> 
+        <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <style>        
@@ -195,10 +196,10 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-6">
+            <div class="col-6" id="sectionFilters">
                 <h4>Course Section Filter</h4>
                 {% for i in range(len(list_of_names)) %}
-                <div>
+                <div class="courseSection">
                     <span><strong>{{ list_of_names[i] }}</strong></span>
                     <br>
                     <input type="radio" id="include{{ i }}" name="inex{{ i }}" value="include">
@@ -288,19 +289,65 @@
                         dayBox[day - 1][0] = {startTime: startTime, endTime: endTime, day: day};
                         timeSlots.push(dayBox[day - 1][0]);
                     }
+                } 
+
+                const includeSections = {
+                    {% for i in range(len(list_of_names)) %}
+                    {% if i != len(list_of_names) - 1%}
+                    "{{ list_of_names[i] }}": "",
+                    {% else %}
+                    "{{ list_of_names[i] }}": ""
+                    {% endif %}
+                    {% endfor %}            
+                };
+                    
+                
+                const courseSections = document.getElementsByClassName("courseSection");
+                
+                for (let i = 0; i < courseSections.length; ++i) { 
+                    let currCourseCode = courseSections[i].children[0].children[0].innerHTML;
+                    let alphabets = "";
+                    let sectionRegex = "";
+                    let lectureCount = 0;
+                    let labCount = 0;
+                    let hitCount = 0;
+                    
+                    // console.log(courseSections[i].children.length);
+                    
+                    for (let j = 0; j < courseSections[i].children.length; ++j) {
+                        if (courseSections[i].children[j].type == "checkbox") {
+                            hitCount++;
+                            
+                            if (((document.getElementById("include" + i).checked) && (courseSections[i].children[j].checked)) 
+                                || ((document.getElementById("exclude" + i).checked) && !(courseSections[i].children[j].checked))
+                            ) {
+                                let currSection = courseSections[i].children[j].nextSibling.nextSibling.textContent;
+
+                                if (currSection.length == 1) {
+                                    lectureCount++;
+                                    alphabets += currSection;            
+                                }
+                                else if (currSection.length > 1) {
+                                    labCount++;
+                                    sectionRegex += "|" + currSection;
+                                }                      
+                            }
+                        }
+                    }
+                    
+                    if (hitCount == lectureCount + labCount) continue;
+                    
+                    if (alphabets.length > 1) sectionRegex = " ([" + alphabets + "]" + sectionRegex + ")"
+                    else sectionRegex = " (" + alphabets + sectionRegex + ")";
+                    
+                    includeSections[currCourseCode] = sectionRegex;
                 }
                 
-                console.log(timeSlots);   
-                
-                const sent = {blockedOff: timeSlots, list_of_names: []}
-                
-                console.log(sent);
+                const sent = {blockedOff: timeSlots, includeSections: includeSections, list_of_names: []}
 
                 for (let i = 0; i < listOfNames.length; ++i) {
                     sent.list_of_names.push(listOfNames[i]);
                 }
-                
-                alert(sent.list_of_names);
                 
                 sendJson = JSON.stringify(sent);
                 

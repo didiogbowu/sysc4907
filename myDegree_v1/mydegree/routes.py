@@ -8,10 +8,134 @@ from mydegree.render_timetable import course_height, course_mt, course_ml
 list_of_names = []
 semester = ""
 
+bsc_electives = []
+cmplmntry_electives = []
 courses = []
 program = ""
+elctv_data = []
 
 x_timetable = Timetable([])
+
+section_regex = dict()
+
+all_elctv_data = {
+    "cse": [
+            {
+                "total_num_needed": 3,
+                "req_data": [
+                    {
+                        "type": "specific",
+                        "code": "MECH 4503",
+                        "max_needed": 1
+                    },
+                    {
+                        "type": "general",
+                        "code": "(SYSC|ELEC) (3|4)(\\d{3})",
+                        "max_needed": 3
+                    },
+                    {
+                        "type": "general",
+                        "code": "SYSC 5(\\d{3})",
+                        "max_needed": 2
+                    }
+                ]
+            }
+        ],
+     
+    "se": [    
+            {
+                "total_num_needed": 2,
+                "req_data": [
+                    {
+                        "type": "general",
+                        "code": "(SYSC|ELEC) (3|4)(\\d{3})",
+                        "max_needed": 2
+                    }
+                ]
+            },
+            {
+                "total_num_needed": 2,
+                "req_data": [
+                    {
+                        "type": "list",
+                        "code": "computerScience",
+                        "max_needed": 2
+                    },
+                    {
+                        "type": "general",
+                        "code": "SYSC 5(\\d{3})",
+                        "max_needed": 2
+                    }
+                ]
+            },
+            {
+                "total_num_needed": 1,
+                "req_data": [
+                    {
+                        "type": "list",
+                        "code": "basicScience",
+                        "max_needed": 1
+                    },
+                    {
+                        "type": "specific",
+                        "code": "ELEC 2507, ELEC 4705",
+                        "max_needed": 1
+                    }
+                ]
+            }
+        ],
+
+    "comm_eng":  [
+            {
+                "total_num_needed": 2,
+                "req_data": [
+                    {
+                        "type": "general",
+                        "code": "((SYSC|ELEC) (3|4)(\\d{3})|SYSC 5(\\d{3}))",
+                        "max_needed": 2
+                    }
+                ]
+            }
+        ],
+
+    "bee": [
+            {
+                "total_num_needed": 1,
+                "req_data": [
+                    {
+                        "type": "specific",
+                        "code": "ELEC 3908, SYSC 2004",
+                        "max_needed": 1
+                    }
+                ]
+            },
+            {
+                "total_num_needed": 2,
+                "req_data": [
+                    {
+                        "type": "specific",
+                        "code": "ELEC 4709, SYSC 4202, SYSC 4205",
+                        "max_needed": 2
+                    },
+                    {
+                        "type": "general",
+                        "code": "BIOM 5(\\d{3})",
+                        "max_needed": 2
+                    }
+                ]
+            },
+            {
+                "total_num_needed": 1,
+                "req_data": [
+                    {
+                        "type": "general",
+                        "code": "((SYSC|ELEC) (3|4)(\\d{3})|BIOM 5(\\d{3}))",
+                        "max_needed": 1
+                    }
+                ]
+            }
+        ]
+    }
 
 @app.route("/")
 @app.route("/input_page/", methods=['GET', 'POST'])
@@ -35,11 +159,14 @@ def select_program():
     if select_form.validate_on_submit():
         global program
         global courses
+        global elctv_data
         
         program = dict(PROGRAM_CHOICES).get(select_form.name_of_course.data)
         
+        elctv_data = all_elctv_data[select_form.name_of_course.data]
+        
         with app.app_context():
-            file = os.path.join(current_app.static_folder, 'data', str(select_form.name_of_course.data) + '.json')
+            file = os.path.join(current_app.static_folder, 'data', 'mainline_courses.json')
 
             with open(file) as f:
                 courses = json.load(f)
@@ -57,7 +184,8 @@ def home():
         range = range,
         str = str,
         courses = courses, 
-        title = program
+        title = program,
+        elctv_data = elctv_data
     )
     
 @app.route("/handle_input/", methods=['POST', 'GET']) 
@@ -85,9 +213,14 @@ def handle_filters():
 
     global list_of_names
     global x_timetable
+    global section_regex
     
     for j in range(len(data['list_of_names'])):
         list_of_names.append(data['list_of_names'][j])
+
+    section_regex = data['includeSections']
+    
+    print(section_regex)
     
     for i in range(len(data['blockedOff'])):
         x_timetable.add_course(
@@ -135,21 +268,34 @@ def filters():
 @app.route("/result/")
 def result():
     global list_of_names
+    global semester
     global x_timetable
+    global section_regex
     global data
     
-    timetables = all_timetables(list_of_names, x_timetable, semester) 
+    timetables = all_timetables(list_of_names, x_timetable, section_regex, semester) 
+    
+    copy_list = ', '.join(list_of_names)
+    
     list_of_names.clear()
+    semester = ""
     x_timetable = Timetable([])
  
-    return render_template(
-        'result.html',
-        len = len,
-        range = range,
-        str = str,
-        course_height = course_height,
-        course_mt = course_mt,
-        course_ml = course_ml,
-        timetables = timetables       
-    )
+    # return section_regex
+
+    if len(timetables) == 0:
+        return f"<h1>Unable to generate time table for {copy_list} with the given filter parameters</h1>"
+    else:
+        
+    
+        return render_template(
+            'result.html',
+            len = len,
+            range = range,
+            str = str,
+            course_height = course_height,
+            course_mt = course_mt,
+            course_ml = course_ml,
+            timetables = timetables       
+        )
  
