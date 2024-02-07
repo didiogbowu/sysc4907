@@ -10,12 +10,13 @@ semester = ""
 
 bsc_electives = []
 cmplmntry_electives = []
-courses = []
+mainline = []
 program = ""
 elctv_data = []
 
 x_timetable = Timetable([])
 
+courses = dict()
 section_regex = dict()
 
 all_elctv_data = {
@@ -158,6 +159,7 @@ def select_program():
     
     if select_form.validate_on_submit():
         global program
+        global mainline
         global courses
         global elctv_data
         
@@ -166,12 +168,18 @@ def select_program():
         elctv_data = all_elctv_data[select_form.name_of_course.data]
         
         with app.app_context():
-            file = os.path.join(current_app.static_folder, 'data', 'mainline_courses.json')
+            file1 = os.path.join(current_app.static_folder, 'data', 'mainline_courses.json')
 
-            with open(file) as f:
-                courses = json.load(f)
+            with open(file1) as f1:
+                mainline = json.load(f1)
+                
+            file2 = os.path.join(current_app.static_folder, 'data', 'eng_electives.json')
+
+            with open(file2) as f2:
+                courses = json.load(f2)
+            
         
-        return redirect(url_for('home'))
+        return redirect(url_for('home')) # f"<h1>{list(courses.keys())}</h1>" 
     
     return render_template('select_program.html', select_form = select_form)
     
@@ -183,6 +191,9 @@ def home():
         len = len,
         range = range,
         str = str,
+        list = list,
+        mainline = mainline,
+        keys = list(courses.keys()),
         courses = courses, 
         title = program,
         elctv_data = elctv_data
@@ -281,8 +292,6 @@ def result():
     semester = ""
     x_timetable = Timetable([])
  
-    # return section_regex
-
     if len(timetables) == 0:
         return f"<h1>Unable to generate time table for {copy_list} with the given filter parameters</h1>"
     else:

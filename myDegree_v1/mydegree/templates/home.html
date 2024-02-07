@@ -16,11 +16,11 @@
                 <div class="col ml-0 pl-0 pr-0" id="2020F" ondrop="drop(event)" ondragover="allowDrop(event)">   
                     <button id="btn1F", style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2020F</p>
-                {% for i in range(len(courses)) %}
-                {% if (title in courses[i].programs) and (courses[i].semester == "1F") %}
-                    <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
+                {% for i in range(len(mainline)) %}
+                {% if (title in mainline[i].programs) and (mainline[i].semester == "1F") %}
+                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
@@ -28,11 +28,11 @@
                 <div class="col ml-0 pl-0 pr-0" id="2021W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn1W", style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2021W</p>  
-                {% for i in range(len(courses)) %}
-                {% if (title in courses[i].programs) and (courses[i].semester == "1W") %}
-                    <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
+                {% for i in range(len(mainline)) %}
+                {% if (title in mainline[i].programs) and (mainline[i].semester == "1W") %}
+                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
@@ -46,11 +46,11 @@
                 <div class="col ml-0 pl-0 pr-0" id="2021F" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn2F", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2021F</p>
-                {% for i in range(len(courses)) %}
-                {% if (title in courses[i].programs) and (courses[i].semester == "2F") %}
-                    <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
+                {% for i in range(len(mainline)) %}
+                {% if (title in mainline[i].programs) and (mainline[i].semester == "2F") %}
+                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
@@ -58,11 +58,11 @@
                 <div class="col ml-0 pl-0 pr-0" id="2022W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn2W", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2022W</p>                
-                {% for i in range(len(courses)) %}
-                {% if (title in courses[i].programs) and (courses[i].semester == "2W") %}
-                    <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
+                {% for i in range(len(mainline)) %}
+                {% if (title in mainline[i].programs) and (mainline[i].semester == "2W") %}
+                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
@@ -76,11 +76,11 @@
                 <div class="col ml-0 pl-0 pr-0" id="2022F" ondrop="drop(event)" ondragover="allowDrop(event)" >
                     <button id="btn3F", onclick="handleLoadRequest(this.id)">Load</button>  
                     <p class="semesterHeader">2022F</p>
-                {% for i in range(len(courses)) %}
-                {% if (title in courses[i].programs) and (courses[i].semester == "3F") %}
-                    <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
+                {% for i in range(len(mainline)) %}
+                {% if (title in mainline[i].programs) and (mainline[i].semester == "3F") %}
+                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
@@ -88,11 +88,11 @@
                 <div class="col ml-0 pl-0 pr-0" id="2023W" ondrop="drop(event)" ondragover="allowDrop(event)" style="flex-grow: 0">
                     <button id="btn3W", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2023W</p>
-                {% for i in range(len(courses)) %}
-                {% if (title in courses[i].programs) and (courses[i].semester == "3W") %}
-                    <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
+                {% for i in range(len(mainline)) %}
+                {% if (title in mainline[i].programs) and (mainline[i].semester == "3W") %}
+                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
@@ -106,11 +106,11 @@
                 <div class="col ml-0 pl-0 pr-0" id="2023F" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn4F", onclick="handleLoadRequest(this.id)">Load</button> 
                     <p class="semesterHeader">2023F</p>
-                {% for i in range(len(courses)) %}
-                {% if (title in courses[i].programs) and (courses[i].semester == "4F") %}
-                    <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
+                {% for i in range(len(mainline)) %}
+                {% if (title in mainline[i].programs) and (mainline[i].semester == "4F") %}
+                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
@@ -118,38 +118,43 @@
                 <div class="col ml-0 pl-0 pr-0" id="2024W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn4W", onclick="handleLoadRequest(this.id)">Load</button>    
                     <p class="semesterHeader">2024W</p>
-                {% for i in range(len(courses)) %}
-                {% if (title in courses[i].programs) and (courses[i].semester == "4W") %}
-                    <div class="{{ courses[i]['course_code'].split()[0].lower() }}" id="{{ courses[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ courses[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ courses[i]['course_title'] }}</p>
+                {% for i in range(len(mainline)) %}
+                {% if (title in mainline[i].programs) and (mainline[i].semester == "4W") %}
+                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
                     </div>
                 {% endif %}
                 {% endfor %}
                 </div>
             </div>
         </div>
-        <div class="closed" id="infoBox">
+        <div class="closed" id="infoBox" style="height: 100%; overflow-y: scroll; position: fixed">
             <h4></h4>
             <button class="closer" onclick="removeInfo()">X</button>
         </div>
     </body>
     <script>
         const program = "{{ title }}"; // USE THIS TO KNOW WHAT PROGRAM
+       
+        const mainline = [
+            {% for i in range(len(mainline) - 1)%}
+                "{{ mainline[i]['course_code'] }}",
+            {% endfor %}
+                "{{ mainline[-1]['course_code'] }}"
+        ];
         
         const courseInfo = {
-            {% for i in range(len(courses)) %}
-            {% if courses[i]['course_code'] not in ["Elective", "ECOR 4995", "SYSC 4907"]%}
-            "{{ courses[i]['course_code'] }}": {
-                schedule: "{{ courses[i]['schedule'] }}", 
+            {% for i in range(len(keys)) %}
+            "{{ keys[i] }}": {
+                schedule: "{{ courses[keys[i]]['schedule'] }}", 
                 preclusions: [
-                {% for j in range(len(courses[i]['preclusions']) - 1) %}
-                    "{{ courses[i]['preclusions'][j] }}",
+                {% for j in range(len(courses[keys[i]]['preclusions']) - 1) %}
+                    "{{ courses[keys[i]]['preclusions'][j] }}",
                 {% endfor %}
-                    "{{ courses[i]['preclusions'][len(courses[i]['preclusions']) - 1] }}"
+                    "{{ courses[keys[i]]['preclusions'][-1] }}"
                 ]
             },
-            {% endif %}
             {% endfor %}  
         };
         
@@ -535,8 +540,10 @@
                 
                 var stringToAdd;
                 
-                if (Array.isArray(someObject)) stringToAdd = someObject[k];
-                else stringToAdd = someObject[k].course;
+                if (someObject[k]["course_code"]) stringToAdd = someObject[k]["course_code"];
+                else stringToAdd = someObject[k];
+                
+                // console.log(stringToAdd);
                 
                 if (elctvBoxSelected.children[0].children[0].innerHTML == stringToAdd) { // maybe make these variables since theyre used again
                     button.className = "selected";
@@ -545,6 +552,12 @@
                 else {
                     button.className = "inserter";
                     button.innerHTML = "INSERT";
+                }
+                
+                button.onclick = () => {
+                    electiveReqs[i].reqData[j].count++;
+                    electiveReqs[i].totalCount++;
+                    insertElective();    
                 }
                         
                 const name_of_course = document.createElement("p");
@@ -556,7 +569,6 @@
                 element.appendChild(button);
                 infoBox.appendChild(element);
                 
-                return button;
             }
         }
         
@@ -575,31 +587,27 @@
                     if (electiveReqs[i].reqData[j].type == "specific") {
                         const obj = electiveReqs[i].reqData[j].code.split(", ");
                         
-                        update(obj).onclick = () => {
-                            electiveReqs[i].reqData[j].count++;
-                            electiveReqs[i].totalCount++;
-                            insertElective();    
-                        }; 
+                        update(obj); 
                     }
                     else if (electiveReqs[i].reqData[j].type == "list") {
                         const obj = specialInfo[electiveReqs[i].reqData[j].code];
                         
-                        update(obj).onclick = () => {
-                            electiveReqs[i].reqData[j].count++;
-                            electiveReqs[i].totalCount++;
-                            insertElective();    
-                        }; 
+                        update(obj); 
                     }
                     else if (electiveReqs[i].reqData[j].type == "general") {
                         const pattern = electiveReqs[i].reqData[j].code; 
+                        console.log(pattern);
+                        // const obj = pattern.exec(Object.keys(courseInfo).join(" "));
+                        const obj = [];
+                        const currArray = Object.keys(courseInfo);
                         
-                        const obj = pattern.exec(Object.keys(courseInfo).join(" "));
+                        for (code of currArray) {
+                            if (pattern.test(code) && !(mainline.includes(code))) obj.push(code);
+                        }
                         
-                        update(obj).onclick = () => {
-                            electiveReqs[i].reqData[j].count++;
-                            electiveReqs[i].totalCount++;
-                            insertElective();    
-                        }; 
+                        console.log(obj);
+                        
+                        update(obj); 
                     }   
 
                 }
@@ -630,7 +638,7 @@
         function insertElective() {
             let courseCode = elctvBoxSelected.children[0].children[0].innerHTML;
             
-            if (courseCode != this.parentElement.children[0].innerHTML) { // DIV -> P (Name of elective being selected)
+            if (courseCode != this.previousSibling.innerHTML) { // DIV -> P (Name of elective being selected)
                 
                 for (let j = 0; j < infoBox.children.length; ++j) {
                     if (infoBox.children[j].tagName != "DIV") continue;
@@ -641,8 +649,8 @@
                     }
                 }
                 
-                elctvBoxSelected.children[0].children[0].innerHTML = this.parentElement.children[0].innerHTML;
-                console.log(this.parentElement.children[0].innerHTML);
+                elctvBoxSelected.children[0].children[0].innerHTML = this.previousSibling.innerHTML;
+                console.log(this.previousSibling.innerHTML);
                 
                 this.className = "selected";
                 this.innerHTML = "SELECTED";                       
