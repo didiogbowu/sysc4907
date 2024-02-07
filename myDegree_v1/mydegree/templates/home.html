@@ -176,11 +176,6 @@
                     "semester": "Both"
                 },
                 {
-                    "course_code": "BIOL 1103", 
-                    "course_title": "Human Biology", 
-                    "semester": "Fall"
-                },
-                {
                     "course_code": "BIOL 2107", 
                     "course_title": "Fundamentals of Genetics", 
                     "semester": "Winter"
@@ -495,7 +490,7 @@
                     const schedule = document.createElement("p");
                     const preclusions = document.createElement("p");
                     
-                    const text1 = document.createTextNode(contents[1].innerHTML);
+                    const text1 = document.createTextNode(contents[1].textContent);
                     const text2 = document.createTextNode(" " + courseInfo[contents[0].children[0].innerHTML].schedule); // Format wanted: 2 lectures per week. 1 lab biweekly.
                     const text3 = document.createTextNode(" " + courseInfo[contents[0].children[0].innerHTML].preclusions.join(", "));
                     
