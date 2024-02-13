@@ -531,7 +531,7 @@
             }
         }
         
-        function update(someObject)  {
+        function update(someObject, i, j)  {
             for (let k = 0; k < someObject.length; ++k) {
                 const element = document.createElement("div");
                 element.className = "row p-1";
@@ -555,9 +555,11 @@
                 }
                 
                 button.onclick = () => {
-                    electiveReqs[i].reqData[j].count++;
-                    electiveReqs[i].totalCount++;
-                    insertElective();    
+                    if ((i != null) && (j != null)) {
+                        electiveReqs[i].reqData[j].count++;
+                        electiveReqs[i].totalCount++;
+                    }
+                    insertElective(element);    
                 }
                         
                 const name_of_course = document.createElement("p");
@@ -587,12 +589,12 @@
                     if (electiveReqs[i].reqData[j].type == "specific") {
                         const obj = electiveReqs[i].reqData[j].code.split(", ");
                         
-                        update(obj); 
+                        update(obj, i, j); 
                     }
                     else if (electiveReqs[i].reqData[j].type == "list") {
                         const obj = specialInfo[electiveReqs[i].reqData[j].code];
                         
-                        update(obj); 
+                        update(obj, i, j); 
                     }
                     else if (electiveReqs[i].reqData[j].type == "general") {
                         const pattern = electiveReqs[i].reqData[j].code; 
@@ -607,7 +609,7 @@
                         
                         console.log(obj);
                         
-                        update(obj); 
+                        update(obj, i, j); 
                     }   
 
                 }
@@ -622,7 +624,7 @@
         
         function updateInfoBox(elctvType, electiveTitle) {
             infoBox.children[0].innerHTML = electiveTitle;
-            update(specialInfo[elctvType]).onclick = insertElective();
+            update(specialInfo[elctvType]);
         }
         
         function removeInfo() {
@@ -635,10 +637,10 @@
             }
         }
         
-        function insertElective() {
+        function insertElective(element) {
             let courseCode = elctvBoxSelected.children[0].children[0].innerHTML;
             
-            if (courseCode != this.previousSibling.innerHTML) { // DIV -> P (Name of elective being selected)
+            if (courseCode != element.firstChild.innerHTML) { // DIV -> P (Name of elective being selected)
                 
                 for (let j = 0; j < infoBox.children.length; ++j) {
                     if (infoBox.children[j].tagName != "DIV") continue;
@@ -649,16 +651,16 @@
                     }
                 }
                 
-                elctvBoxSelected.children[0].children[0].innerHTML = this.previousSibling.innerHTML;
-                console.log(this.previousSibling.innerHTML);
+                elctvBoxSelected.children[0].children[0].innerHTML = element.firstChild.innerHTML;
+                console.log(element.firstChild.innerHTML);
                 
-                this.className = "selected";
-                this.innerHTML = "SELECTED";                       
+                element.children[1].className = "selected";
+                element.children[1].innerHTML = "SELECTED";                       
             }
             else {
                 elctvBoxSelected.children[0].children[0].innerHTML = "Elective";   
-                this.className = "inserter";
-                this.innerHTML = "INSERT";      
+                element.children[1].className = "inserter";
+                element.children[1].innerHTML = "INSERT";      
             }
         }
         
@@ -666,7 +668,6 @@
             console.log(id.split("Header")[0]);
             let currentElement = document.getElementById(id);
             let column = document.getElementById(id.split("Header")[0]);
-            // let column = currentElement.nextSibling;
             
             if (column.children.length > 2) {
                 alert("Cannot hide non-empty column");
@@ -749,7 +750,7 @@
                 data: {'term_data': termJson},
                 success: function(data) {
                     console.log(data.url);
-                    window.location.replace(data.url);
+                    window.open(data.url);
                 },
                 error: function(error){
                   console.log('Error');
