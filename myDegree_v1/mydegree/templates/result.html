@@ -4,6 +4,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Result</title> 
+        <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <style>
@@ -238,6 +239,8 @@
             </tr>
         </table> 
         <script type="text/javascript">
+            document.body.style.zoom = "67%"; 
+            
             var currTimetable = 0;
             const NUM_OF_TIMETABLES = {{ len(timetables) }};
             const timetables = [];            
