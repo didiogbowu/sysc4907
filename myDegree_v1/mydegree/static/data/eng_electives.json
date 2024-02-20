@@ -1223,7 +1223,7 @@
     },
     "SYSC 2510": {
         "course_title": "Probability, Statistics and Random Processes for Engineers",
-        "schedule": "",
+        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
         "preclusions": []
     },
     "SYSC 3006": {
@@ -1564,5 +1564,121 @@
         "course_title": "Undergraduate Directed Study",
         "schedule": "",
         "preclusions": []
+    },
+    "MATH 1104": {
+        "course_title": "Linear Algebra for Eng. Students",
+        "schedule": "Lectures three hours a week and tutorial one hour a week.",
+        "preclusions": [
+            "BIT 1001",
+            "BIT 1101",
+            "BIT 1201",
+            "MATH 1107",
+            "MATH 1119",
+            "MATH 1401",
+            "ECON 1401",
+            "MATH 1402",
+            "ECON 1402",
+            "MATH 1152"
+        ]
+    },
+    "MATH 1004": {
+        "course_title": "Calculus for Eng. Students",
+        "schedule": "Lectures three hours a week, tutorial one hour a week.",
+        "preclusions": [
+            "BIT 1000",
+            "BIT 1100",
+            "BIT 1200",
+            "MATH 1007",
+            "MATH 1052"
+        ]
+    },
+    "PHYS 1004": {
+        "course_title": "Introductory Electromagnetism & Wave Motion",
+        "schedule": "Lectures three hours a week, laboratory or tutorial three hours a week.",
+        "preclusions": [
+            "BIT 1007",
+            "BIT 1204",
+            "PHYS 1002",
+            "PHYS 1008"
+        ]
+    },
+    "CHEM 1101": {
+        "course_title": "Chemistry for Eng. Students",
+        "schedule": "Lectures three hours a week, laboratory three hours every other week.",
+        "preclusions": [
+            "CHEM 1001",
+            "CHEM 1005"
+        ]
+    },
+    "CCDP 2100": {
+        "course_title": "Communication Skills for Eng. Students",
+        "schedule": "",
+        "preclusions": []
+    },
+    "MATH 1005": {
+        "course_title": "Differential Equations & Infinite Series for Eng. Students",
+        "schedule": "Lectures three hours a week, tutorial one hour a week.",
+        "preclusions": [
+            "MATH 2007",
+            "MATH 2052",
+            "MATH 2404"
+        ]
+    },
+    "MATH 2004": {
+        "course_title": "Multivariable Calculus for Eng. Students",
+        "schedule": "Lectures three hours a week, tutorial one hour a week.",
+        "preclusions": [
+            "MATH 2000",
+            "MATH 2008"
+        ]
+    },
+    "COMP 1805": {
+        "course_title": "Discrete Structures I",
+        "schedule": "Lectures three hours a week, tutorial one hour a week.",
+        "preclusions": [
+            "MATH 1800"
+        ]
+    },
+    "COMP 2804": {
+        "course_title": "Discrete Structures II",
+        "schedule": "",
+        "preclusions": []
+    },
+    "COMP 3005": {
+        "course_title": "Database Management Systems",
+        "schedule": "Lectures three hours a week.",
+        "preclusions": [
+            "BUSI 3400"
+        ]
+    },
+    "CHEM 1001": {
+        "course_title": "General Chemistry I",
+        "schedule": "Lectures and tutorial four hours a week, laboratory three hours every other week.",
+        "preclusions": [
+            "CHEM 1005",
+            "CHEM 1101"
+        ]
+    },
+    "CHEM 1002": {
+        "course_title": "General Chemistry II",
+        "schedule": "Lectures and tutorial four hours a week, laboratory three hours every other week.",
+        "preclusions": [
+            "CHEM 1006"
+        ]
+    },
+    "BIOL 1103": {
+        "course_title": "Foundations of Biology I",
+        "schedule": "Lectures three hours a week, laboratory or tutorial three hours a week.",
+        "preclusions": []
+    },
+    "PHYS 1003": {
+        "course_title": "Introductory Mechanics and Thermodynamics",
+        "schedule": "Lectures three hours a week, laboratory or tutorial three hours a week.",
+        "preclusions": ["BIT 1002", "BIT 1203", "PHYS 1001", "PHYS 1007"]
+    },
+    "MATH 3705": {
+        "course_title": "Mathematical Methods I",
+        "schedule":"Lectures three hours a week and one hour tutorial.",
+        "preclusions": ["PHYS 3808"]
     }
 }

@@ -19,8 +19,18 @@ x_timetable = Timetable([])
 courses = dict()
 section_regex = dict()
 
-all_elctv_data = {
-    "cse": [
+programs = ["Computer Systems Engineering", "Software Engineering", "Communications Engineering", "Biomedical & Electrical Engineering"]
+
+elctv_titles = {
+    "BASICSCI": "Basic Science Elective",
+    "COMPLSTD": "Complementary Studies Elective",
+    "SCIELCTV": "Science Elective",
+    "BIOELCTV": "Biomedical Engineering Elective",
+    "ENGELCTV": "Engineering Elective"
+}
+
+all_elctv_data = [
+        [
             {
                 "total_num_needed": 3,
                 "req_data": [
@@ -42,8 +52,7 @@ all_elctv_data = {
                 ]
             }
         ],
-     
-    "se": [    
+        [    
             {
                 "total_num_needed": 2,
                 "req_data": [
@@ -54,6 +63,8 @@ all_elctv_data = {
                     }
                 ]
             },
+        ],
+        [
             {
                 "total_num_needed": 2,
                 "req_data": [
@@ -83,10 +94,7 @@ all_elctv_data = {
                         "max_needed": 1
                     }
                 ]
-            }
-        ],
-
-    "comm_eng":  [
+            },
             {
                 "total_num_needed": 2,
                 "req_data": [
@@ -98,8 +106,7 @@ all_elctv_data = {
                 ]
             }
         ],
-
-    "bee": [
+        [
             {
                 "total_num_needed": 1,
                 "req_data": [
@@ -136,7 +143,14 @@ all_elctv_data = {
                 ]
             }
         ]
-    }
+    ]
+
+def resolution(course_code):
+    if len(course_code.split(" ")) == 1:
+        return ["Elective", elctv_titles[course_code]]
+    else:
+        return [course_code, courses[course_code]["course_title"]]
+
 
 @app.route("/")
 @app.route("/input_page/", methods=['GET', 'POST'])
@@ -162,16 +176,17 @@ def select_program():
         global mainline
         global courses
         global elctv_data
+        global programs
         
-        program = dict(PROGRAM_CHOICES).get(select_form.name_of_course.data)
+        program = programs[int(select_form.name_of_course.data)]
         
-        elctv_data = all_elctv_data[select_form.name_of_course.data]
+        elctv_data = all_elctv_data[int(select_form.name_of_course.data)]
         
         with app.app_context():
             file1 = os.path.join(current_app.static_folder, 'data', 'mainline_courses.json')
 
             with open(file1) as f1:
-                mainline = json.load(f1)
+                mainline = json.load(f1)[int(select_form.catalog_year.data)][int(select_form.name_of_course.data)]
                 
             file2 = os.path.join(current_app.static_folder, 'data', 'eng_electives.json')
 
@@ -196,7 +211,9 @@ def home():
         keys = list(courses.keys()),
         courses = courses, 
         title = program,
-        elctv_data = elctv_data
+        elctv_titles = elctv_titles,
+        elctv_data = elctv_data,
+        resolution = resolution
     )
     
 @app.route("/handle_input/", methods=['POST', 'GET']) 

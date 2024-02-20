@@ -1,1181 +1,129 @@
 [
-    {
-        "course_code": "MATH 1004",
-        "course_title": "Calculus for Eng. Students",
-        "semester": "1F",
-        "schedule": "Lectures three hours a week, tutorial one hour a week.",
-        "preclusions": [
-            "BIT 1000",
-            "BIT 1100",
-            "BIT 1200",
-            "MATH 1007",
-            "MATH 1052"
+    [
+        [
+            ["MATH 1104", "MATH 1004", "PHYS 1003", "SYSC 1005", "ECOR 1010"], 
+            ["MATH 1005", "ECOR 1101", "PHYS 1004", "SYSC 2006", "CHEM 1101"],
+            ["MATH 2004", "ELEC 2501", "SYSC 2310", "SYSC 2004", "CCDP 2100", "COMPLSTD"],
+            ["MATH 3705", "ELEC 2507", "SYSC 2320", "SYSC 2100", "ECOR 2606"],
+            ["ECOR 3800", "SYSC 3600", "SYSC 3310", "SYSC 3020", "SYSC 3010"],
+            ["ECOR 2050", "SYSC 3501", "SYSC 3320", "SYSC 3303", "SYSC 4001"],
+            ["SYSC 4602", "SYSC 4310", "SYSC 4907", "ELEC 4705", "SYSC 4810", "ENGELCTV"],
+            ["SYSC 4805", "ECOR 4995", "SYSC 4907", "ENGELCTV", "ENGELCTV", "COMPLSTD"]
         ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "CHEM 1101",
-        "course_title": "Chemistry for Eng. Students",
-        "semester": "1F",
-        "schedule": "Lectures three hours a week, laboratory three hours every other week.",
-        "preclusions": [
-            "CHEM 1001",
-            "CHEM 1005"
+        [
+            ["MATH 1104", "MATH 1004", "PHYS 1003", "SYSC 1005", "ECOR 1010"], 
+            ["MATH 1005", "ECOR 1101", "PHYS 1004", "SYSC 2006", "CHEM 1101"],
+            ["MATH 2004", "ELEC 2501", "SYSC 2310", "SYSC 2004", "CCDP 2100", "COMPLSTD"],
+            ["COMP 1805", "SYSC 3101", "SYSC 2320", "SYSC 2100", "COMPLSTD"],
+            ["ECOR 2050", "COMP 3005", "SYSC 3310", "SYSC 3110", "ENGELCTV"],
+            ["ECOR 3800", "SYSC 4001", "SYSC 3303", "SYSC 3120", "SYSC 4106"],
+            ["ELEC 4705", "SYSC 4120", "SYSC 4907", "SYSC 4101", "SYSC 4810", "ENGELCTV"],
+            ["SYSC 4005", "SYSC 4806", "ECOR 4995", "SYSC 4907", "ENGELCTV", "ENGELCTV"]
         ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Basic Science Elective",
-        "semester": "1F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1041",
-        "course_title": "Computation & Prog.",
-        "semester": "1F",
-        "schedule": "Lectures three hours per week, laboratories three hours per week.",
-        "preclusions": [
-            "COMP 1005",
-            "COMP 1405",
-            "ECOR 1051",
-            "ECOR 1606",
-            "SYSC 1005"
+        [
+            ["MATH 1104", "MATH 1004", "CHEM 1101", "SYSC 1005", "ECOR 1010"], 
+            ["MATH 1005", "ECOR 1101", "PHYS 1004", "SYSC 2006", "COMPLSTD"],
+            ["MATH 2004", "ELEC 2501", "SYSC 2310", "CCDP 2100", "ECOR 2606", "BASICSCI"],
+            ["MATH 3705", "ELEC 2507", "SYSC 2320", "SYSC 2100", "SYSC 2004"],
+            ["SYSC 3310", "SYSC 3500", "SYSC 4602", "ELEC 3509", "ECOR 2050"],
+            ["ECOR 3800", "SYSC 3503", "SYSC 4502", "COMPLSTD", "ELEC 3909"],
+            ["SYSC 4405", "SYSC 4604", "SYSC 4504", "SYSC 4907", "SYSC 4810", "ENGELCTV"],
+            ["SYSC 4700", "ECOR 4995", "SYSC 4701", "SYSC 4907", "ENGELCTV", "ENGELCTV"]
         ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
+        [
+            ["MATH 1104", "MATH 1004", "ECOR 1010", "BIOL 1103", "CHEM 1001"], 
+            ["MATH 1005", "ECOR 1101", "PHYS 1004", "ECOR 1606", "CHEM 1002"],
+            ["MATH 2004", "SYSC 2006", "ECOR 2606", "ELEC 2501", "SCIELCTV"],
+            ["MATH 3705", "ELEC 2507", "ELEC 2607", "ELEC 3105", "CCDP 2100"],
+            ["SYSC 3006", "SYSC 3203", "SYSC 3610", "SCIELCTV", "ENGELCTV"],
+            ["ECOR 2050", "SYSC 3500", "ELEC 3909", "SYSC 3501", "SYSC 4201"],
+            ["SYSC 4907", "ELEC 4601", "SYSC 4203", "SYSC 4405", "ECOR 3800", "COMPLSTD"],
+            ["SYSC 4907", "ECOR 4995", "BIOELCTV", "BIOELCTV", "ENGELCTV", "COMPLSTD"]
         ]
-    },
-    {
-        "course_code": "ECOR 1043",
-        "course_title": "Circuits",
-        "semester": "1F",
-        "schedule": "Lectures three hours per week, laboratories three hours per week.",
-        "preclusions": [
-            "ECOR 1052"
+    ],
+    [
+        [
+            ["ECOR 1053", "ECOR 1054", "ECOR 1055", "MATH 1004", "CHEM 1101", "BASICSCI"],
+            ["ECOR 1051", "ECOR 1052", "ECOR 1056", "MATH 1104", "PHYS 1004", "COMPLSTD"],
+            ["MATH 1005", "SYSC 2006", "SYSC 2310", "ELEC 2501", "CCDP 2100"],
+            ["MATH 2004", "SYSC 2004", "SYSC 2100", "SYSC 2320", "SYSC 2510"],
+            ["SYSC 3600", "SYSC 3310", "SYSC 3020", "SYSC 4001", "ECOR 2050"],
+            ["SYSC 3010", "SYSC 3501", "SYSC 3320", "SYSC 3303", "ELEC 2507", "ECOR 3800"],
+            ["SYSC 4907", "SYSC 4602", "SYSC 4310", "SYSC 4805", "SYSC 4810"],
+            ["SYSC 4907", "ECOR 4995", "ENGELCTV", "ENGELCTV", "ENGELCTV", "COMPLSTD"]
+
+        ], 
+        [
+            ["ECOR 1053", "ECOR 1054", "ECOR 1055", "MATH 1004", "CHEM 1101", "BASICSCI"],
+            ["ECOR 1051", "ECOR 1052", "ECOR 1056", "MATH 1104", "PHYS 1004", "COMPLSTD"],
+            ["MATH 1005", "SYSC 2006", "SYSC 2310", "ELEC 2501", "COMP 1805"],
+            ["SYSC 2004", "SYSC 2100", "SYSC 2320", "COMP 2804", "CCDP 2100"],
+            ["ECOR 2050", "SYSC 3120", "SYSC 3310", "SYSC 3110", "SYSC 4001", "ENGELCTV"],
+            ["SYSC 4120", "SYSC 3303", "SYSC 3101", "SYSC 4106", "COMP 3005"],
+            ["SYSC 4907", "SYSC 4806", "SYSC 4101", "SYSC 4810", "ENGELCTV"],
+            ["SYSC 4907", "ECOR 4995", "ENGELCTV", "ENGELCTV", "ENGELCTV", "COMPLSTD"]
         ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1045",
-        "course_title": "Statics",
-        "semester": "1F",
-        "schedule": "Lectures three hours per week, laboratories three hours per week.",
-        "preclusions": [
-            "ECOR 1053",
-            "ECOR 1101"
+        [
+            ["ECOR 1053", "ECOR 1054", "ECOR 1055", "MATH 1004", "CHEM 1101", "BASICSCI"],
+            ["ECOR 1051", "ECOR 1052", "ECOR 1056", "MATH 1104", "PHYS 1004", "COMPLSTD"],
+            ["MATH 1005", "SYSC 2006", "SYSC 2310", "ELEC 2501", "CCDP 2100"],
+            ["MATH 2004", "SYSC 2004", "ELEC 2507", "SYSC 2320", "SYSC 2510"],
+            ["SYSC 3310", "SYSC 3500", "SYSC 4602", "ELEC 3509", "ECOR 2050"],
+            ["ECOR 3800", "SYSC 3503", "SYSC 4502", "SYSC 4504", "ELEC 3909"],
+            ["SYSC 4907", "SYSC 4405", "SYSC 4604", "SYSC 4701", "SYSC 4810", "ENGELCTV"],
+            ["SYSC 4907", "ECOR 4995", "SYSC 4607", "SYSC 4700", "ENGELCTV", "COMPLSTD"]
         ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
+        [
+            ["ECOR 1053", "ECOR 1054", "ECOR 1055", "MATH 1004", "CHEM 1101", "BASICSCI"],
+            ["ECOR 1051", "ECOR 1052", "ECOR 1056", "MATH 1104", "PHYS 1004", "COMPLSTD"],
+            ["MATH 1005", "SYSC 2006", "ECOR 2050", "ELEC 2501", "BIOL 1103"],
+            ["MATH 2004", "ELEC 2507", "ELEC 2607", "SYSC 2510", "CCDP 2100"],
+            ["ELEC 3105", "SYSC 3006", "SYSC 3203", "SYSC 3610", "SCIELCTV"],
+            ["SYSC 3500", "ELEC 3909", "SYSC 3501", "SYSC 4201", "ECOR 3800", "ENGELCTV"],
+            ["SYSC 4907", "ELEC 4601", "SYSC 4203", "SYSC 4405", "SCIELCTV"],
+            ["SYSC 4907", "ECOR 4995", "BIOELCTV", "BIOELCTV", "ENGELCTV", "COMPLSTD"]
         ]
-    },
-    {
-        "course_code": "ECOR 1047",
-        "course_title": "Visual Communications",
-        "semester": "1F",
-        "schedule": "Lectures three hours per week, laboratories three hours per week.",
-        "preclusions": [
-            "ECOR 1054",
-            "ECOR 1010"
+    ],
+    [
+        [
+            ["MATH 1004", "CHEM 1101", "BASICSCI", "ECOR 1041", "ECOR 1043", "ECOR 1045", "ECOR 1047", "ECOR 1055", "ECOR 1057"],
+            ["MATH 1104", "PHYS 1004", "COMPLSTD", "ECOR 1042", "ECOR 1044", "ECOR 1046", "ECOR 1048", "ECOR 1056"],
+            ["MATH 1005", "SYSC 2006", "SYSC 2310", "ELEC 2501", "CCDP 2100"],
+            ["MATH 2004", "SYSC 2004", "SYSC 2100", "SYSC 2320", "SYSC 2510"],
+            ["SYSC 3600", "SYSC 3310", "SYSC 3020", "SYSC 4001", "ECOR 2050"],
+            ["SYSC 3010", "SYSC 3501", "SYSC 3320", "SYSC 3303", "ELEC 2507", "ECOR 3800"],
+            ["SYSC 4907", "SYSC 4602", "SYSC 4310", "SYSC 4805", "SYSC 4810"],
+            ["SYSC 4907", "ECOR 4995", "ENGELCTV", "ENGELCTV", "ENGELCTV", "COMPLSTD"]
         ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1055",
-        "course_title": "Intro. to Engineering Disciplines I",
-        "semester": "1F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1057",
-        "course_title": "Engineering Disciplines",
-        "semester": "1F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "MATH 1104",
-        "course_title": "Linear Algebra for Eng. Students",
-        "semester": "1W",
-        "schedule": "Lectures three hours a week and tutorial one hour a week.",
-        "preclusions": [
-            "BIT 1001",
-            "BIT 1101",
-            "BIT 1201",
-            "MATH 1107",
-            "MATH 1119",
-            "MATH 1401",
-            "ECON 1401",
-            "MATH 1402",
-            "ECON 1402",
-            "MATH 1152"
+        [
+            ["MATH 1004", "CHEM 1101", "BASICSCI", "ECOR 1041", "ECOR 1043", "ECOR 1045", "ECOR 1047", "ECOR 1055", "ECOR 1057"],
+            ["MATH 1104", "PHYS 1004", "COMPLSTD", "ECOR 1042", "ECOR 1044", "ECOR 1046", "ECOR 1048", "ECOR 1056"],
+            ["MATH 1005", "SYSC 2006", "SYSC 2310", "ELEC 2501", "COMP 1805"],
+            ["SYSC 2004", "SYSC 2100", "SYSC 2320", "COMP 2804", "CCDP 2100"],
+            ["ECOR 2050", "SYSC 3120", "SYSC 3310", "SYSC 3110", "SYSC 4001", "ENGELCTV"],
+            ["SYSC 4120", "SYSC 3303", "SYSC 3101", "SYSC 4106", "COMP 3005"],
+            ["SYSC 4907", "SYSC 4806", "SYSC 4101", "SYSC 4810", "ENGELCTV"],
+            ["SYSC 4907", "ECOR 4995", "ENGELCTV", "ENGELCTV", "ENGELCTV", "COMPLSTD"]
         ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "PHYS 1004",
-        "course_title": "Introductory Electromagnetism & Wave Motion",
-        "semester": "1W",
-        "schedule": "Lectures three hours a week, laboratory or tutorial three hours a week.",
-        "preclusions": [
-            "BIT 1007",
-            "BIT 1204",
-            "PHYS 1002",
-            "PHYS 1008"
+        [
+            ["MATH 1004", "CHEM 1101", "BASICSCI", "ECOR 1041", "ECOR 1043", "ECOR 1045", "ECOR 1047", "ECOR 1055", "ECOR 1057"],
+            ["MATH 1104", "PHYS 1004", "COMPLSTD", "ECOR 1042", "ECOR 1044", "ECOR 1046", "ECOR 1048", "ECOR 1056"],
+            ["MATH 1005", "SYSC 2006", "SYSC 2310", "ELEC 2501", "CCDP 2100"],
+            ["MATH 2004", "SYSC 2004", "ELEC 2507", "SYSC 2320", "SYSC 2510"],
+            ["SYSC 3310", "SYSC 3500", "SYSC 4602", "ELEC 3509", "ECOR 2050"],
+            ["ECOR 3800", "SYSC 3503", "SYSC 4502", "SYSC 4504", "ELEC 3909"],
+            ["SYSC 4907", "SYSC 4405", "SYSC 4604", "SYSC 4701", "SYSC 4810", "ENGELCTV"],
+            ["SYSC 4907", "ECOR 4995", "SYSC 4607", "SYSC 4700", "ENGELCTV", "COMPLSTD"]
         ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Complementary Studies Elective",
-        "semester": "1F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Complementary Studies Elective",
-        "semester": "1W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1042",
-        "course_title": "Data Management",
-        "semester": "1W",
-        "schedule": "Lectures three hours per week, laboratories three hours per week.",
-        "preclusions": [
-            "COMP 1005",
-            "COMP 1405",
-            "ECOR 1051",
-            "ECOR 1606",
-            "SYSC 1005"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1044",
-        "course_title": "Mechatronics",
-        "semester": "1W",
-        "schedule": "Lectures three hours per week, laboratories three hours per week.",
-        "preclusions": [
-            "ECOR 1052"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1046",
-        "course_title": "Mechanics",
-        "semester": "1W",
-        "schedule": "Lectures three hours per week, laboratories three hours per week.",
-        "preclusions": [
-            "ECOR 1053"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1048",
-        "course_title": "Dynamics",
-        "semester": "1W",
-        "schedule": "Lectures three hours per week, laboratories three hours per week.",
-        "preclusions": [
-            "ECOR 1054",
-            "ECOR 1101"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 1056",
-        "course_title": "Intro. to Engineering Disciplines II",
-        "semester": "1W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "MATH 1005",
-        "course_title": "Differential Equations & Infinite Series for Eng. Students",
-        "semester": "2F",
-        "schedule": "Lectures three hours a week, tutorial one hour a week.",
-        "preclusions": [
-            "MATH 2007",
-            "MATH 2052",
-            "MATH 2404"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 2006",
-        "course_title": "Foundation of Imperative Programming",
-        "semester": "2F",
-        "schedule": "Lectures three hours a week, laboratory two hours a week.",
-        "preclusions": [
-            "COMP 2401",
-            "SYSC 4006"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 2310",
-        "course_title": "Intro. to Digital Systems",
-        "semester": "2F",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "ELEC 2607"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 2501",
-        "course_title": "Circuits & Signals",
-        "semester": "2F",
-        "schedule": "Lectures three hours a week, laboratory and problem analysis three hours a week.",
-        "preclusions": [
-            "ELEC 3605"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "CCDP 2100",
-        "course_title": "Communication Skills for Eng. Students",
-        "semester": "2F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "CCDP 2100",
-        "course_title": "Communication Skills for Eng. Students",
-        "semester": "2w",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Software Engineering",
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "MATH 2004",
-        "course_title": "Multivariable Calculus for Eng. Students",
-        "semester": "2W",
-        "schedule": "Lectures three hours a week, tutorial one hour a week.",
-        "preclusions": [
-            "MATH 2000",
-            "MATH 2008"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 2004",
-        "course_title": "O.O. Software Development",
-        "semester": "2W",
-        "schedule": "Lectures three hours a week, laboratory two hours a week.",
-        "preclusions": [
-            "COMP 1006",
-            "COMP 1406"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 2100",
-        "course_title": "Algorithms & Data Structures",
-        "semester": "2W",
-        "schedule": "Lectures three hours a week, laboratory two hours a week.",
-        "preclusions": [
-            "COMP 2402"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 2320",
-        "course_title": "Computer Organization & Architecture",
-        "semester": "2W",
-        "schedule": "Lectures three hours a week, laboratory three hours a week.",
-        "preclusions": [
-            "SYSC 2001",
-            "SYSC 3006"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 2510",
-        "course_title": "Probability, Statistics & Random Processes",
-        "semester": "2W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3020",
-        "course_title": "Intro. for Software Engineering",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 3120",
-            "COMP 3004"
-        ],
-        "programs": [
-            "Computer Systems Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3310",
-        "course_title": "Intro. to Real-Time Systems",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory two hours a week.",
-        "preclusions": [
-            "SYSC 2003"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3600",
-        "course_title": "Systems & Simulation",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory three hours a week.",
-        "preclusions": [
-            "SYSC 3500",
-            "SYSC 3610"
-        ],
-        "programs": [
-            "Computer Systems Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4001",
-        "course_title": "Operating Systems",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory three hours a week.",
-        "preclusions": [
-            "COMP 3000"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 2050",
-        "course_title": "Design & Analysis of Engineering Experiments",
-        "semester": "2F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 2050",
-        "course_title": "Design & Analysis of Engineering Experiments",
-        "semester": "3F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3010",
-        "course_title": "Computer Systems Development Project",
-        "semester": "3W",
-        "schedule": "Lectures two hours a week, laboratory three hours a week.",
-        "preclusions": [
-            "COMP 2404",
-            "SYSC 2010",
-            "SYSC 3110"
-        ],
-        "programs": [
-            "Computer Systems Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3303",
-        "course_title": "Real-Time Concurrent Systems",
-        "semester": "3W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3320",
-        "course_title": "Computer Systems Design",
-        "semester": "3W",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 3601",
-            "ELEC 4601"
-        ],
-        "programs": [
-            "Computer Systems Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3501",
-        "course_title": "Communication Theory",
-        "semester": "3W",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 3503"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 2507",
-        "course_title": "Electronics I",
-        "semester": "2W",
-        "schedule": "Lectures three hours a week, laboratory and problem analysis three hours a week.",
-        "preclusions": [
-            "OSS 2006"
-        ],
-        "programs": [
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 2507",
-        "course_title": "Electronics I",
-        "semester": "3W",
-        "schedule": "Lectures three hours a week, laboratory and problem analysis three hours a week.",
-        "preclusions": [
-            "OSS 2006"
-        ],
-        "programs": [
-            "Computer Systems Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 3800",
-        "course_title": "Engineering Economics",
-        "semester": "3W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4907",
-        "course_title": "Engineering Project (Fall)",
-        "semester": "4F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4310",
-        "course_title": "Computer Systems Architecture",
-        "semester": "4F",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 4507"
-        ],
-        "programs": [
-            "Computer Systems Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4602",
-        "course_title": "Computer Communications",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "COMP 3203"
-        ],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4602",
-        "course_title": "Computer Communications",
-        "semester": "4F",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "COMP 3203"
-        ],
-        "programs": [
-            "Computer Systems Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4805",
-        "course_title": "Computer Systems Design Lab",
-        "semester": "4F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4810",
-        "course_title": "Intro. to Network & Software Security",
-        "semester": "4F",
-        "schedule": "Lectures three hours a week, problem analysis one and a half hours a week.",
-        "preclusions": [
-            "COMP 4108"
-        ],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4907",
-        "course_title": "Engineering Project (Winter)",
-        "semester": "4W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ECOR 4995",
-        "course_title": "Professional Practice",
-        "semester": "4W",
-        "schedule": "Lectures three hours a week.",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Science Elective",
-        "semester": "3F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Science Elective",
-        "semester": "4F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Engineering Elective",
-        "semester": "3F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Engineering Elective",
-        "semester": "3W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Engineering Elective",
-        "semester": "4F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Communications Engineering",
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Engineering Elective",
-        "semester": "4W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Engineering Elective",
-        "semester": "4W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Engineering Elective",
-        "semester": "4W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "Elective",
-        "course_title": "Complementary Studies Elective",
-        "semester": "4W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Computer Systems Engineering",
-            "Software Engineering",
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "COMP 1805",
-        "course_title": "Discrete Structures I",
-        "semester": "2F",
-        "schedule": "Lectures three hours a week, tutorial one hour a week.",
-        "preclusions": [
-            "MATH 1800"
-        ],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "COMP 2804",
-        "course_title": "Discrete Structures II",
-        "semester": "2W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3110",
-        "course_title": "Software Design Project",
-        "semester": "3F",
-        "schedule": "Lectures two hours a week, laboratory three hours a week.",
-        "preclusions": [
-            "COMP 2404",
-            "SYSC 2010",
-            "SYSC 3010"
-        ],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3120",
-        "course_title": "Software Requirements Engineering",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 3020",
-            "COMP 3004"
-        ],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3101",
-        "course_title": "Programming Languages",
-        "semester": "3W",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "COMP 3007"
-        ],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4106",
-        "course_title": "The Software Economy and Project Management",
-        "semester": "3W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4120",
-        "course_title": "Software Architecture & Design",
-        "semester": "3W",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "COMP 3004",
-            "SYSC 3020"
-        ],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "COMP 3005",
-        "course_title": "Database Management Systems",
-        "semester": "3W",
-        "schedule": "Lectures three hours a week.",
-        "preclusions": [
-            "BUSI 3400"
-        ],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4101",
-        "course_title": "Software Validation",
-        "semester": "4F",
-        "schedule": "Lectures three hours a week, laboratory/problem analysis three hours a week.",
-        "preclusions": [
-            "COMP 4004"
-        ],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4806",
-        "course_title": "Software Engineering Lab",
-        "semester": "4F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Software Engineering"
-        ]
-    },
-    {
-        "course_code": "CHEM 1001",
-        "course_title": "General Chemistry I",
-        "semester": "1F",
-        "schedule": "Lectures and tutorial four hours a week, laboratory three hours every other week.",
-        "preclusions": [
-            "CHEM 1005",
-            "CHEM 1101"
-        ],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "CHEM 1002",
-        "course_title": "General Chemistry II",
-        "semester": "1W",
-        "schedule": "Lectures and tutorial four hours a week, laboratory three hours every other week.",
-        "preclusions": [
-            "CHEM 1006"
-        ],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "BIOL 1103",
-        "course_title": "Foundations of Biology I",
-        "semester": "2F",
-        "schedule": "Lectures three hours a week, laboratory or tutorial three hours a week.",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 2607",
-        "course_title": "Switching Circuits",
-        "semester": "2W",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 2310"
-        ],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 3105",
-        "course_title": "Basic EM & Power Engineering",
-        "semester": "3F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3006",
-        "course_title": "Computer Organization",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory two hours a week.",
-        "preclusions": [
-            "SYSC 2001",
-            "SYSC 2003",
-            "SYSC 2320"
-        ],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3203",
-        "course_title": "Bioelectrical Systems",
-        "semester": "3F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3610",
-        "course_title": "Biomedical Systems, Modeling & Control",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory three hours a week.",
-        "preclusions": [
-            "SYSC 3500",
-            "SYSC 3600"
-        ],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 3500",
-        "course_title": "Digital Electronics",
-        "semester": "3W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 3909",
-        "course_title": "Electromagnetic Waves",
-        "semester": "3W",
-        "schedule": "Lectures three hours a week, problem analysis three hours alternate weeks.",
-        "preclusions": [
-            "PHYS 3308"
-        ],
-        "programs": [
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4201",
-        "course_title": "Ethics, Research Methods & Standards for BME",
-        "semester": "3W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 4601",
-        "course_title": "Microprocessor Systems",
-        "semester": "4F",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 3320",
-            "SYSC 3601"
-        ],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4203",
-        "course_title": "Bioinstrumentation & Signals",
-        "semester": "4F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4405",
-        "course_title": "Digital Signal Processing",
-        "semester": "4F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Biomedical and Electrical Engineering",
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 2010",
-        "course_title": "Programming Project",
-        "semester": "2W",
-        "schedule": "Lectures three hours a week, laboratory three hours a week.",
-        "preclusions": [
-            "SYSC 3010",
-            "SYSC 3110"
-        ],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3500",
-        "course_title": "Signals & Systems",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, problem analysis three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 3600",
-            "SYSC 3610"
-        ],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "ELEC 3509",
-        "course_title": "Electronics II",
-        "semester": "3F",
-        "schedule": "Lectures three hours a week, laboratory three hours a week.",
-        "preclusions": [
-            "ELEC 3509"
-        ],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 3503",
-        "course_title": "Communication Theory II",
-        "semester": "3W",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 3501",
-            "SYSC 4600"
-        ],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4502",
-        "course_title": "Communication Software",
-        "semester": "3W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4604",
-        "course_title": "Digital Communication Theory",
-        "semester": "4F",
-        "schedule": "Lectures three hours a week, laboratory three hours alternate weeks.",
-        "preclusions": [
-            "SYSC 4600"
-        ],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4701",
-        "course_title": "Communications Systems Laboratory",
-        "semester": "4F",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4607",
-        "course_title": "Wireless Communication",
-        "semester": "4W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Communications Engineering"
-        ]
-    },
-    {
-        "course_code": "SYSC 4700",
-        "course_title": "Telecomm. Engineering",
-        "semester": "4W",
-        "schedule": "",
-        "preclusions": [],
-        "programs": [
-            "Communications Engineering"
-        ]
-    }
+        [
+            ["MATH 1004", "CHEM 1001", "COMPLSTD", "ECOR 1041", "ECOR 1043", "ECOR 1045", "ECOR 1047", "ECOR 1055", "ECOR 1057"],
+            ["MATH 1104", "PHYS 1004", "CHEM 1002", "ECOR 1042", "ECOR 1044", "ECOR 1046", "ECOR 1048", "ECOR 1056"],
+            ["MATH 1005", "SYSC 2006", "ECOR 2050", "ELEC 2501", "BIOL 1103"],
+            ["MATH 2004", "ELEC 2507", "ELEC 2607", "SYSC 2510", "CCDP 2100"],
+            ["ELEC 3105", "SYSC 3006", "SYSC 3203", "SYSC 3610", "SCIELCTV"],
+            ["SYSC 3500", "ELEC 3909", "SYSC 3501", "SYSC 4201", "ECOR 3800", "ENGELCTV"],
+            ["SYSC 4907", "ELEC 4601", "SYSC 4203", "SYSC 4405", "SCIELCTV"],
+            ["SYSC 4907", "ECOR 4995", "ENGELCTV", "ENGELCTV", "ENGELCTV", "COMPLSTD"]
+        ]
+    ]
 ]

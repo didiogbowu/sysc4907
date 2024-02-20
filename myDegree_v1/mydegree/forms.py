@@ -3,18 +3,19 @@ from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 PROGRAM_CHOICES = [
-    ("cse", "Computer Systems Engineering"), 
-    ("se", "Software Engineering"),
-    ("comm_eng", "Communications Engineering"),
-    ("bee", "Biomedical & Electrical Engineering")
+    (0, "Computer Systems Engineering"), 
+    (1, "Software Engineering"),
+    (2, "Communications Engineering"),
+    (3, "Biomedical & Electrical Engineering")
 ]
 
 CATALOG_YEARS = [
-    (4, "202330"),
-    (3, "202230"), 
+    (2, "202330"),
+    (2, "202230"), 
     (2, "202130"),
-    (1, "202030"),
-    (0, "201930")
+    (2, "202030"),
+    (1, "201930"),
+    (0, "201830")
 ]
 
 class SubmitButtonForm(FlaskForm):

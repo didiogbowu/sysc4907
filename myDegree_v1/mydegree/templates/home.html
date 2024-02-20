@@ -16,29 +16,25 @@
                 <div class="col ml-0 pl-0 pr-0" id="2020F" ondrop="drop(event)" ondragover="allowDrop(event)">   
                     <button id="btn1F", style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2020F</p>
-                {% for i in range(len(mainline)) %}
-                {% if (title in mainline[i].programs) and (mainline[i].semester == "1F") %}
-                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
+                {% for i in range(len(mainline[0])) %}
+                    <div class="{{ resolution(mainline[0][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[0][i])[0].split()[0].lower() ~ '0' ~str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ resolution(mainline[0][i])[0] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ resolution(mainline[0][i])[1] }}</p>
                     </div>
-                {% endif %}
                 {% endfor %}
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="2021W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn1W", style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2021W</p>  
-                {% for i in range(len(mainline)) %}
-                {% if (title in mainline[i].programs) and (mainline[i].semester == "1W") %}
-                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
+                {% for i in range(len(mainline[1])) %}
+                    <div class="{{ resolution(mainline[1][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[1][i])[0].split()[0].lower() ~ '1' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ resolution(mainline[1][i])[0] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ resolution(mainline[1][i])[1] }}</p>
                     </div>
-                {% endif %}
                 {% endfor %}
                 </div>           
                 <div class="col ml-0 hidden" id="2021S" style="flex-grow: 0">
-                    <button id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn1S", onclick="handleLoadRequest(this.id)">Load</button>
                     <div class="semesterHeader hiddable" id="2021SHeader" onclick="hide(this.id)">
                         <span>2021S</span>
                     </div>            
@@ -46,29 +42,25 @@
                 <div class="col ml-0 pl-0 pr-0" id="2021F" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn2F", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2021F</p>
-                {% for i in range(len(mainline)) %}
-                {% if (title in mainline[i].programs) and (mainline[i].semester == "2F") %}
-                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
+                {% for i in range(len(mainline[2])) %}
+                    <div class="{{ resolution(mainline[2][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[2][i])[0].split()[0].lower() ~ '2' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ resolution(mainline[2][i])[0] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ resolution(mainline[2][i])[1] }}</p>
                     </div>
-                {% endif %}
                 {% endfor %}
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="2022W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn2W", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2022W</p>                
-                {% for i in range(len(mainline)) %}
-                {% if (title in mainline[i].programs) and (mainline[i].semester == "2W") %}
-                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
+                {% for i in range(len(mainline[3])) %}
+                    <div class="{{ resolution(mainline[3][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[3][i])[0].split()[0].lower() ~ '3' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ resolution(mainline[3][i])[0] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ resolution(mainline[3][i])[1] }}</p>
                     </div>
-                {% endif %}
                 {% endfor %}
                 </div>
                 <div class="col ml-0 hidden" id="2022S" style="flex-grow: 0">
-                    <button id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn2S", onclick="handleLoadRequest(this.id)">Load</button>
                     <div class="semesterHeader hiddable" id="2022SHeader" onclick="hide(this.id)">
                         <span>2022S</span>
                     </div>
@@ -76,29 +68,25 @@
                 <div class="col ml-0 pl-0 pr-0" id="2022F" ondrop="drop(event)" ondragover="allowDrop(event)" >
                     <button id="btn3F", onclick="handleLoadRequest(this.id)">Load</button>  
                     <p class="semesterHeader">2022F</p>
-                {% for i in range(len(mainline)) %}
-                {% if (title in mainline[i].programs) and (mainline[i].semester == "3F") %}
-                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
+                {% for i in range(len(mainline[4])) %}
+                    <div class="{{ resolution(mainline[4][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[4][i])[0].split()[0].lower() ~ '4' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ resolution(mainline[4][i])[0] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ resolution(mainline[4][i])[1] }}</p>
                     </div>
-                {% endif %}
                 {% endfor %}
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="2023W" ondrop="drop(event)" ondragover="allowDrop(event)" style="flex-grow: 0">
                     <button id="btn3W", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2023W</p>
-                {% for i in range(len(mainline)) %}
-                {% if (title in mainline[i].programs) and (mainline[i].semester == "3W") %}
-                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
+                {% for i in range(len(mainline[5])) %}
+                    <div class="{{ resolution(mainline[5][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[5][i])[0].split()[0].lower() ~ '5' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ resolution(mainline[5][i])[0] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ resolution(mainline[5][i])[1] }}</p>
                     </div>
-                {% endif %}
                 {% endfor %}
                 </div>
                 <div class="col ml-0 hidden" id="2023S" style="flex-grow: 0">
-                    <button id="btn1F", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn3S", onclick="handleLoadRequest(this.id)">Load</button>
                     <div class="semesterHeader hiddable" id="2023SHeader" onclick="hide(this.id)">
                         <span>2023S</span>
                     </div>
@@ -106,25 +94,21 @@
                 <div class="col ml-0 pl-0 pr-0" id="2023F" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn4F", onclick="handleLoadRequest(this.id)">Load</button> 
                     <p class="semesterHeader">2023F</p>
-                {% for i in range(len(mainline)) %}
-                {% if (title in mainline[i].programs) and (mainline[i].semester == "4F") %}
-                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
+                {% for i in range(len(mainline[6])) %}
+                    <div class="{{ resolution(mainline[6][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[6][i])[0].split()[0].lower() ~ '6' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ resolution(mainline[6][i])[0] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ resolution(mainline[6][i])[1] }}</p>
                     </div>
-                {% endif %}
                 {% endfor %}
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="2024W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn4W", onclick="handleLoadRequest(this.id)">Load</button>    
                     <p class="semesterHeader">2024W</p>
-                {% for i in range(len(mainline)) %}
-                {% if (title in mainline[i].programs) and (mainline[i].semester == "4W") %}
-                    <div class="{{ mainline[i]['course_code'].split()[0].lower() }}" id="{{ mainline[i]['course_code'].split()[0].lower() ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
-                        <p><strong>{{ mainline[i]['course_code'] }}</strong></p>
-                        <p style="font-size: 6.5pt">{{ mainline[i]['course_title'] }}</p>
+                {% for i in range(len(mainline[7])) %}
+                    <div class="{{ resolution(mainline[7][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[7][i])[0].split()[0].lower() ~ '7' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
+                        <p><strong>{{ resolution(mainline[7][i])[0] }}</strong></p>
+                        <p style="font-size: 6.5pt">{{ resolution(mainline[7][i])[1] }}</p>
                     </div>
-                {% endif %}
                 {% endfor %}
                 </div>
             </div>
@@ -138,10 +122,11 @@
         const program = "{{ title }}"; // USE THIS TO KNOW WHAT PROGRAM
        
         const mainline = [
-            {% for i in range(len(mainline) - 1)%}
-                "{{ mainline[i]['course_code'] }}",
+            {% for i in range(len(mainline))%}
+            {% for j in range(len(mainline) - 1)%}
+                "{{ mainline[i][j] }}",
             {% endfor %}
-                "{{ mainline[-1]['course_code'] }}"
+            {% endfor %}
         ];
         
         const courseInfo = {
@@ -465,6 +450,9 @@
             {% endfor %}
         ]
         
+        // window.localStorage.setItem("myNum", "1");
+        // console.log(window.localStorage.getItem("myNum"));
+        
         const BASIC_SCI = "Basic Science Elective";
         const COMPLEMENTARY = "Complementary Studies Elective";
         const ENGINEERING = "Engineering Elective"
@@ -476,6 +464,8 @@
             
             if (infoBox.className == "closed") {
                 infoBox.className = "col-4 border border-success rounded-left";  
+                
+                console.log(id)
                 
                 elctvBoxSelected = document.getElementById(id);
                 let currBox = elctvBoxSelected;
@@ -495,10 +485,12 @@
                     const schedule = document.createElement("p");
                     const preclusions = document.createElement("p");
                     
-                    const text1 = document.createTextNode(contents[1].textContent);
-                    const text2 = document.createTextNode(" " + courseInfo[contents[0].children[0].innerHTML].schedule); // Format wanted: 2 lectures per week. 1 lab biweekly.
-                    const text3 = document.createTextNode(" " + courseInfo[contents[0].children[0].innerHTML].preclusions.join(", "));
+                    // console.log(contents[0].textContent);
                     
+                    const text1 = document.createTextNode(contents[1].textContent);
+                    const text2 = document.createTextNode(" " + courseInfo[contents[0].textContent].schedule); // Format wanted: 2 lectures per week. 1 lab biweekly.
+                    const text3 = document.createTextNode(" " + courseInfo[contents[0].textContent].preclusions.join(", "));
+
                     const bold1 = document.createElement("b");
                     const bold_text1 = document.createTextNode("Schedule:");
                     bold1.appendChild(bold_text1);
@@ -534,7 +526,7 @@
         function update(someObject, i, j)  {
             for (let k = 0; k < someObject.length; ++k) {
                 const element = document.createElement("div");
-                element.className = "row p-1";
+                element.className = "row h-5";
                 
                 const button = document.createElement("button");
                 
@@ -564,6 +556,7 @@
                         
                 const name_of_course = document.createElement("p");
                 name_of_course.className = "col-3";
+                name_of_course.style.fontSize = "10pt";
                 const text = document.createTextNode(stringToAdd);
                 
                 name_of_course.appendChild(text);  

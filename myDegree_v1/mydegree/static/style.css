@@ -6,6 +6,7 @@ html, body {
 div.math, div.chem, div.elective, div.ecor, div.phys, div.biol, div.sysc, div.elec, div.ccdp, div.comp {
 	width: 85px;
 	height: 90px;
+	background-color: white;
 	font-size: 7.5pt;
 	text-align: center;
 	border-width: 3px;
