@@ -7,9 +7,11 @@ from mydegree.render_timetable import course_height, course_mt, course_ml
 
 list_of_names = []
 semester = ""
+in_order_load = False
 
 bsc_electives = []
 cmplmntry_electives = []
+start_year = ""
 mainline = []
 program = ""
 elctv_data = []
@@ -20,6 +22,7 @@ courses = dict()
 section_regex = dict()
 
 programs = ["Computer Systems Engineering", "Software Engineering", "Communications Engineering", "Biomedical & Electrical Engineering"]
+years = ["2018", "2019", "2020"]
 
 elctv_titles = {
     "BASICSCI": "Basic Science Elective",
@@ -174,26 +177,24 @@ def select_program():
     if select_form.validate_on_submit():
         global program
         global mainline
-        global courses
         global elctv_data
         global programs
+        global start_year
+        global in_order_load
+        
+        in_order_load = True
         
         program = programs[int(select_form.name_of_course.data)]
         
         elctv_data = all_elctv_data[int(select_form.name_of_course.data)]
+        start_year = years[int(select_form.catalog_year.data)]
         
         with app.app_context():
-            file1 = os.path.join(current_app.static_folder, 'data', 'mainline_courses.json')
+            file = os.path.join(current_app.static_folder, 'data', 'mainline_courses.json')
 
-            with open(file1) as f1:
-                mainline = json.load(f1)[int(select_form.catalog_year.data)][int(select_form.name_of_course.data)]
-                
-            file2 = os.path.join(current_app.static_folder, 'data', 'eng_electives.json')
+            with open(file) as f:
+                mainline = json.load(f)[int(select_form.catalog_year.data)][int(select_form.name_of_course.data)]
 
-            with open(file2) as f2:
-                courses = json.load(f2)
-            
-        
         return redirect(url_for('home')) # f"<h1>{list(courses.keys())}</h1>" 
     
     return render_template('select_program.html', select_form = select_form)
@@ -201,12 +202,22 @@ def select_program():
     
 @app.route("/home/")
 def home():
+    global courses
+    
+    with app.app_context():
+        file = os.path.join(current_app.static_folder, 'data', 'eng_electives.json')
+
+        with open(file) as f:
+            courses = json.load(f)
+    
     return render_template(
         'home.html', 
         len = len,
         range = range,
         str = str,
         list = list,
+        in_order_load = in_order_load,
+        start_year = start_year,
         mainline = mainline,
         keys = list(courses.keys()),
         courses = courses, 

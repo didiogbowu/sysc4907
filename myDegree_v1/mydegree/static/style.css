@@ -6,6 +6,7 @@ html, body {
 div.math, div.chem, div.elective, div.ecor, div.phys, div.biol, div.sysc, div.elec, div.ccdp, div.comp {
 	width: 85px;
 	height: 90px;
+	cursor: move;
 	background-color: white;
 	font-size: 7.5pt;
 	text-align: center;
@@ -49,16 +50,22 @@ div[class~="col"] {
 }
 
 .semesterHeader {
-	margin-left: 29px; 
+	margin-left: 22px; 
 	font-weight: bold;
 }
 
 .hiddable {
 	margin-bottom: 15px;
+	cursor: pointer;
+
 }
 
 .hiddable:hover {
 	color: red;
+}
+
+.hiddable span {
+	cursor: pointer;
 }
 
 .col.ml-0.hidden {
@@ -86,6 +93,7 @@ div.hidden .semesterHeader {
 div.hidden .hiddable::before {
 	content: "\25BC";
 	width: 30px;
+	cursor: pointer;
 	position: relative;
 	right: 7.5px;
 	top: 30px;
@@ -93,6 +101,7 @@ div.hidden .hiddable::before {
 
 button {
 	width: 100px;
+	cursor: pointer;
 	font-size: 4pt;
 	text-wrap: wrap;
 }
@@ -137,3 +146,15 @@ button.closer {
 	z-index: 1;
 }
 
+div.controls, div.controls pre {
+	color: #007bff;
+}
+
+div.controls a, div.controls p {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+div.controls a:hover, div.controls p:hover {
+	text-decoration: none;
+}
