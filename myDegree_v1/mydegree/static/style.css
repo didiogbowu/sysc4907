@@ -158,3 +158,10 @@ div.controls a, div.controls p {
 div.controls a:hover, div.controls p:hover {
 	text-decoration: none;
 }
+
+select#startYearSelect {
+	margin-top: 0;
+  margin-bottom: 1rem;
+	margin-left: 15px; 
+	font-weight: bold;
+}

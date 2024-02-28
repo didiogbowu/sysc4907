@@ -35,7 +35,14 @@
             <div class="row" style="margin-left: 1vw; margin-right: 1vw;">
                 <div class="col ml-0 pl-0 pr-0" id="2020F" ondrop="drop(event)" ondragover="allowDrop(event)">   
                     <button id="btn1F", style="visibility: hidden;">Load</button>
-                    <p class="semesterHeader">2020F</p>
+                    <select id="startYearSelect" onchange="reloadStartYear()">
+                        <option value="2018">2018F</option>
+                        <option value="2019">2019F</option>
+                        <option value="2020">2020F</option>
+                        <option value="2021">2021F</option>
+                        <option value="2022">2022F</option>
+                        <option value="2023">2023F</option>
+                    </select>
                 {% for i in range(len(mainline[0])) %}
                     <div class="{{ resolution(mainline[0][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[0][i])[0].split()[0].lower() ~ '0' ~str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
                         <p><strong>{{ resolution(mainline[0][i])[0] }}</strong></p>
@@ -790,13 +797,19 @@
         
         function loadStartYear(startYear) {
             const headers = document.getElementsByClassName("semesterHeader");
-            let nextString =  startYear + "F";
-                        
+            let nextString =  (Number(startYear) + 1) + "W";
+            
+            document.querySelector("option[value='" + startYear +"']").selected = true;
+            
             for (let i = 0; headers.length; ++i) {
                 headers[i].textContent = nextString;
                 
                 nextString =  getNextString(nextString);
             }
+        }
+        
+        function reloadStartYear() {
+            loadStartYear(Number(document.getElementById("startYearSelect").value));
         }
         
         function loadSavedTree(savedTree) {
