@@ -22,7 +22,14 @@
         <div class="col-12" id="mainContent">
             <div class="row">
                 <div class="col-4"><h4>{{ title }}</h4></div>
-                <div class="col-7"></div>
+                <div class="col-3"></div>
+                <div class="col-1">
+                    <div class="row">
+                        <div class="circle" style="background-color: red" onclick="deleteColumn()">-</div>
+                        <div class="circle" style="background-color: green" onclick="addColumn()">+</div>
+                    </div>                   
+                </div>
+                <div class="col-3"></div>
                 <div class="col-1">
                     <div class="row controls">
                         <a href="../select_program">Reset</a>
@@ -33,7 +40,7 @@
             </div>
             <br>    
             <div class="row" style="margin-left: 1vw; margin-right: 1vw;">
-                <div class="col ml-0 pl-0 pr-0" id="2020F" ondrop="drop(event)" ondragover="allowDrop(event)">   
+                <div class="col ml-0 pl-0 pr-0" id="1F" ondrop="drop(event)" ondragover="allowDrop(event)">   
                     <button id="btn1F", style="visibility: hidden;">Load</button>
                     <select id="startYearSelect" onchange="reloadStartYear()">
                         <option value="2018">2018F</option>
@@ -50,7 +57,7 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div class="col ml-0 pl-0 pr-0" id="2021W" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="col ml-0 pl-0 pr-0" id="1W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn1W", style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2021W</p>  
                 {% for i in range(len(mainline[1])) %}
@@ -60,13 +67,13 @@
                     </div>
                 {% endfor %}
                 </div>           
-                <div class="col ml-0 hidden" id="2021S" style="flex-grow: 0">
+                <div class="col ml-0 hidden" id="1S" style="flex-grow: 0">
                     <button id="btn1S", onclick="handleLoadRequest(this.id)">Load</button>
-                    <div class="semesterHeader hiddable" id="2021SHeader" onclick="hide(this.id)">
+                    <div class="semesterHeader hiddable" id="1SHeader" onclick="hide(this.id)">
                         <span>2021S</span>
                     </div>            
                 </div>
-                <div class="col ml-0 pl-0 pr-0" id="2021F" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="col ml-0 pl-0 pr-0" id="2F" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn2F", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2021F</p>
                 {% for i in range(len(mainline[2])) %}
@@ -76,7 +83,7 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div class="col ml-0 pl-0 pr-0" id="2022W" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="col ml-0 pl-0 pr-0" id="2W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn2W", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2022W</p>                
                 {% for i in range(len(mainline[3])) %}
@@ -86,13 +93,13 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div class="col ml-0 hidden" id="2022S" style="flex-grow: 0">
+                <div class="col ml-0 hidden" id="2S" style="flex-grow: 0">
                     <button id="btn2S", onclick="handleLoadRequest(this.id)">Load</button>
-                    <div class="semesterHeader hiddable" id="2022SHeader" onclick="hide(this.id)">
+                    <div class="semesterHeader hiddable" id="2SHeader" onclick="hide(this.id)">
                         <span>2022S</span>
                     </div>
                 </div>
-                <div class="col ml-0 pl-0 pr-0" id="2022F" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                <div class="col ml-0 pl-0 pr-0" id="3F" ondrop="drop(event)" ondragover="allowDrop(event)" >
                     <button id="btn3F", onclick="handleLoadRequest(this.id)">Load</button>  
                     <p class="semesterHeader">2022F</p>
                 {% for i in range(len(mainline[4])) %}
@@ -102,7 +109,7 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div class="col ml-0 pl-0 pr-0" id="2023W" ondrop="drop(event)" ondragover="allowDrop(event)" style="flex-grow: 0">
+                <div class="col ml-0 pl-0 pr-0" id="3W" ondrop="drop(event)" ondragover="allowDrop(event)" style="flex-grow: 0">
                     <button id="btn3W", onclick="handleLoadRequest(this.id)">Load</button>
                     <p class="semesterHeader">2023W</p>
                 {% for i in range(len(mainline[5])) %}
@@ -112,13 +119,13 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div class="col ml-0 hidden" id="2023S" style="flex-grow: 0">
+                <div class="col ml-0 hidden" id="3S" style="flex-grow: 0">
                     <button id="btn3S", onclick="handleLoadRequest(this.id)">Load</button>
-                    <div class="semesterHeader hiddable" id="2023SHeader" onclick="hide(this.id)">
+                    <div class="semesterHeader hiddable" id="3SHeader" onclick="hide(this.id)">
                         <span>2023S</span>
                     </div>
                 </div>
-                <div class="col ml-0 pl-0 pr-0" id="2023F" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="col ml-0 pl-0 pr-0" id="4F" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn4F", onclick="handleLoadRequest(this.id)">Load</button> 
                     <p class="semesterHeader">2023F</p>
                 {% for i in range(len(mainline[6])) %}
@@ -128,7 +135,7 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div class="col ml-0 pl-0 pr-0" id="2024W" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="col ml-0 pl-0 pr-0" id="4W" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <button id="btn4W", onclick="handleLoadRequest(this.id)">Load</button>    
                     <p class="semesterHeader">2024W</p>
                 {% for i in range(len(mainline[7])) %}
@@ -502,6 +509,8 @@
         const ENGINEERING = "Engineering Elective"
         
         var elctvBoxSelected;
+        var endYear;
+        var numOfAddedColumns = 0;
         
     {% if not in_order_load %}
         document.getElementById("mainContent").children[0].children[0].textContent = program;
@@ -706,6 +715,36 @@
                 elctvBoxSelected.children[0].children[0].innerHTML = "Elective";   
                 element.children[1].className = "inserter";
                 element.children[1].innerHTML = "INSERT";      
+            }
+        }
+        
+        function addColumn() {
+            const rowOfSemesters = document.getElementById("mainContent").children[2]; 
+            const emptyColumn = document.getElementById("3S");
+            const newEmptyColumn = emptyColumn.cloneNode(true);
+            let button = newEmptyColumn.children[0];
+            let header = newEmptyColumn.children[1];
+            
+            console.log(rowOfSemesters.lastElementChild);
+            
+            endYear = getNextString(rowOfSemesters.lastElementChild.children[1].textContent);
+            
+            newEmptyColumn.id = endYear;
+            button.id = "btn" + endYear;
+            header.id = endYear + "Header";
+            header.innerHTML = "<span>" + endYear + "</span>";
+            
+            rowOfSemesters.appendChild(newEmptyColumn);
+            
+            numOfAddedColumns++;
+        }
+        
+        function deleteColumn() {
+            if (numOfAddedColumns > 0) {
+                const rowOfSemesters = document.getElementById("mainContent").children[2];
+                rowOfSemesters.removeChild(rowOfSemesters.lastElementChild);
+                endYear = rowOfSemesters.lastElementChild.children[1].textContent;
+                numOfAddedColumns--;
             }
         }
         
