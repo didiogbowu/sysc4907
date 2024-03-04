@@ -168,6 +168,8 @@
         const program = window.localStorage.getItem("program"); 
         const startYear = window.localStorage.getItem("startYear");
         const mainline = window.localStorage.getItem("savedTree");
+        
+        console.log(mainline.length);
     {% endif %}
         
         const courseInfo = {
@@ -524,12 +526,12 @@
             
             if (infoBox.className == "closed") {
                 infoBox.className = "col-4 border border-success rounded-left";  
-                
-                // console.log(id)
-                
+                                
                 elctvBoxSelected = document.getElementById(id);
                 let currBox = elctvBoxSelected;
                 let contents = currBox.children;
+                
+                console.log(contents[1].innerHTML);
                 
                 if (contents[1].innerHTML == BASIC_SCI) updateInfoBox("basicScience", BASIC_SCI);
                 else if (contents[1].innerHTML == COMPLEMENTARY) updateInfoBox("complemetary", COMPLEMENTARY);  
@@ -544,9 +546,7 @@
                     const description = document.createElement("p");
                     const schedule = document.createElement("p");
                     const preclusions = document.createElement("p");
-                    
-                    // console.log(contents[0].textContent);
-                    
+                                        
                     const text1 = document.createTextNode(contents[1].textContent);
                     const text2 = document.createTextNode(" " + courseInfo[contents[0].textContent].schedule); // Format wanted: 2 lectures per week. 1 lab biweekly.
                     const text3 = document.createTextNode(" " + courseInfo[contents[0].textContent].preclusions.join(", "));
@@ -584,46 +584,87 @@
         }
         
         function update(someObject, i, j)  {
-            for (let k = 0; k < someObject.length; ++k) {
-                const element = document.createElement("div");
-                element.className = "row h-5";
+            for (let k = 0; k < someObject.length - 3; k = k + 2) {
+                const twoColumns = document.createElement("div");
+                twoColumns.className = "col-12";
                 
-                const button = document.createElement("button");
+                const element1 = document.createElement("div");
+                element1.className = "row";
                 
-                var stringToAdd;
+                const button1 = document.createElement("button");
                 
-                if (someObject[k]["course_code"]) stringToAdd = someObject[k]["course_code"];
-                else stringToAdd = someObject[k];
+                let stringToAdd1;
                 
-                // console.log(stringToAdd);
-                
-                if (elctvBoxSelected.children[0].children[0].innerHTML == stringToAdd) { // maybe make these variables since theyre used again
-                    button.className = "selected";
-                    button.innerHTML = "SELECTED";
+                if (someObject[k]["course_code"]) stringToAdd1 = someObject[k]["course_code"];
+                else stringToAdd1 = someObject[k];
+                                
+                if (elctvBoxSelected.children[0].children[0].innerHTML == stringToAdd1) { // maybe make these variables since theyre used again
+                    button1.className = "selected";
+                    button1.innerHTML = "SELECTED";
                 }
                 else {
-                    button.className = "inserter";
-                    button.innerHTML = "INSERT";
+                    button1.className = "inserter";
+                    button1.innerHTML = "INSERT";
                 }
                 
-                button.onclick = () => {
+                button1.onclick = () => {
                     if ((i != null) && (j != null)) {
                         electiveReqs[i].reqData[j].count++;
                         electiveReqs[i].totalCount++;
                     }
-                    insertElective(element);    
+                    insertElective(element1);    
+                }
+
+                const element2 = document.createElement("div");
+                element2.className = "row";
+                
+                const button2 = document.createElement("button");
+                // element2.className = "col-6 h-5";
+
+                let stringToAdd2;
+                
+                if (someObject[k + 1]["course_code"]) stringToAdd2 = someObject[k + 1]["course_code"];
+                else stringToAdd2 = someObject[k + 1];
+                                
+                if (elctvBoxSelected.children[0].children[0].innerHTML == stringToAdd2) { // maybe make these variables since theyre used again
+                    button2.className = "selected";
+                    button2.innerHTML = "SELECTED";
+                }
+                else {
+                    button2.className = "inserter";
+                    button2.innerHTML = "INSERT";
+                }
+                
+                button2.onclick = () => {
+                    if ((i != null) && (j != null)) {
+                        electiveReqs[i].reqData[j].count++;
+                        electiveReqs[i].totalCount++;
+                    }
+                    insertElective(element2);    
                 }
                         
-                const name_of_course = document.createElement("p");
-                name_of_course.className = "col-3";
-                name_of_course.style.fontSize = "10pt";
-                const text = document.createTextNode(stringToAdd);
+                const nameOfCourse1 = document.createElement("p");
+                nameOfCourse1.className = "col-3";
+                nameOfCourse1.style.fontSize = "10pt";
+                const text1 = document.createTextNode(stringToAdd1);
                 
-                name_of_course.appendChild(text);  
-                element.appendChild(name_of_course);
-                element.appendChild(button);
-                infoBox.appendChild(element);
+                const nameOfCourse2 = document.createElement("p");
+                nameOfCourse2.className = "col-3";
+                nameOfCourse2.style.fontSize = "10pt";
+                const text2 = document.createTextNode(stringToAdd2);
                 
+                nameOfCourse1.appendChild(text1);  
+                element1.appendChild(nameOfCourse1);
+                element1.appendChild(button1);
+                
+                nameOfCourse2.appendChild(text2);  
+                element1.appendChild(nameOfCourse2);
+                element1.appendChild(button2);
+                
+                // twoColumns.appendChild(element1);
+                // twoColumns.appendChild(element2);
+                
+                infoBox.appendChild(element1);
             }
         }
         
@@ -651,17 +692,13 @@
                     }
                     else if (electiveReqs[i].reqData[j].type == "general") {
                         const pattern = electiveReqs[i].reqData[j].code; 
-                        // console.log(pattern);
-                        // const obj = pattern.exec(Object.keys(courseInfo).join(" "));
                         const obj = [];
                         const currArray = Object.keys(courseInfo);
                         
                         for (code of currArray) {
                             if (pattern.test(code) && !(mainline.includes(code))) obj.push(code);
                         }
-                        
-                        // console.log(obj);
-                        
+                                                
                         update(obj, i, j); 
                     }   
 
@@ -742,6 +779,9 @@
         function deleteColumn() {
             if (numOfAddedColumns > 0) {
                 const rowOfSemesters = document.getElementById("mainContent").children[2];
+                
+                if (rowOfSemesters.lastElementChild.children.length > 0) return;
+                
                 rowOfSemesters.removeChild(rowOfSemesters.lastElementChild);
                 endYear = rowOfSemesters.lastElementChild.children[1].textContent;
                 numOfAddedColumns--;
@@ -926,6 +966,8 @@
                     );
                 }
             }
+            
+            console.log(newTree);
             
             window.localStorage.setItem("savedTree", newTree);
         }

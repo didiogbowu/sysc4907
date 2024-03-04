@@ -71,6 +71,7 @@ div[class~="col"] {
 .col.ml-0.hidden {
 	width: 2px;
 	margin: 0px;
+	flex-grow: 0;
 }
 
 div.closed {
