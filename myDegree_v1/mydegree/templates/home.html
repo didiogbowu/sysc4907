@@ -757,30 +757,42 @@
         
         function addColumn() {
             const rowOfSemesters = document.getElementById("mainContent").children[2]; 
-            const emptyColumn = document.getElementById("3S");
-            const newEmptyColumn = emptyColumn.cloneNode(true);
-            let button = newEmptyColumn.children[0];
-            let header = newEmptyColumn.children[1];
-            
+            const newEmptyColumn = document.createElement("div");
+            const button = document.createElement("button");
+            const header = document.createElement("div");
+
             console.log(rowOfSemesters.lastElementChild);
             
             endYear = getNextString(rowOfSemesters.lastElementChild.children[1].textContent);
             
             newEmptyColumn.id = endYear;
-            button.id = "btn" + endYear;
-            header.id = endYear + "Header";
-            header.innerHTML = "<span>" + endYear + "</span>";
+            newEmptyColumn.className = "col ml-0 hidden";
             
+            button.id = "btn" + endYear;
+            button.textContent = "Load";
+            header.id = endYear + "Header";
+            header.className = "semesterHeader hiddable";
+            header.innerHTML = "<span>" + endYear + "</span>";
+
+            newEmptyColumn.appendChild(button);
+            newEmptyColumn.appendChild(header);
             rowOfSemesters.appendChild(newEmptyColumn);
+            
+            button.onclick = () => {
+                handleLoadRequest(button.id);
+            }
+            header.onclick = () => {
+                hide(header.id);
+            }
             
             numOfAddedColumns++;
         }
         
-        function deleteColumn() {
+        function deleteColumn() {            
             if (numOfAddedColumns > 0) {
                 const rowOfSemesters = document.getElementById("mainContent").children[2];
-                
-                if (rowOfSemesters.lastElementChild.children.length > 0) return;
+                                
+                if (rowOfSemesters.lastElementChild.children.length > 2) return;
                 
                 rowOfSemesters.removeChild(rowOfSemesters.lastElementChild);
                 endYear = rowOfSemesters.lastElementChild.children[1].textContent;
@@ -789,7 +801,6 @@
         }
         
         function hide(id) {
-            // console.log(id.split("Header")[0]);
             let currentElement = document.getElementById(id);
             let column = document.getElementById(id.split("Header")[0]);
             
@@ -967,14 +978,15 @@
                 }
             }
             
-            console.log(newTree);
+            // console.log(JSON.stringify(newTree));
             
             window.localStorage.setItem("savedTree", newTree);
         }
         
         function handleLoadRequest(id) {
             let currentElement = document.getElementById(id);
-            let parentColumn = currentElement.parentElement;
+            let parentColumn = document.getElementById(id.split("btn")[1])
+            console.log(id.split("btn")[1]);
             let siblings = parentColumn.children;
             const courseCodes = [];
             const termData = {course_codes: []};
