@@ -152,8 +152,7 @@
             <button class="closer" onclick="removeInfo()">X</button>
         </div>
     </body>
-    <script>
-        
+    <script>        
     {% if in_order_load %}
         const program = "{{ title }}"; 
         const startYear = "{{ start_year }}";
@@ -167,7 +166,8 @@
     {% else %} 
         const program = window.localStorage.getItem("program"); 
         const startYear = window.localStorage.getItem("startYear");
-        const mainline = window.localStorage.getItem("savedTree");
+
+        const mainline = JSON.parse(window.localStorage.getItem("savedTree"));
         
         console.log(mainline.length);
     {% endif %}
@@ -515,10 +515,11 @@
         var numOfAddedColumns = 0;
         
     {% if not in_order_load %}
-        document.getElementById("mainContent").children[0].children[0].textContent = program;
-        loadSavedTree(window.localStorage.getItem("savedTree"));
+        document.getElementById("mainContent").children[0].children[0].innerHTML = "<h4>" + program + "</h4>";
+        loadSavedTree(JSON.parse(window.localStorage.getItem("savedTree")));
     {% endif %}
-    
+        console.log(JSON.parse(window.localStorage.getItem("savedTree")));
+        console.log(startYear);
         loadStartYear(startYear);
 
         function displayInfo(id) {
@@ -529,10 +530,11 @@
                                 
                 elctvBoxSelected = document.getElementById(id);
                 let currBox = elctvBoxSelected;
+                
+                console.log(id);
+                
                 let contents = currBox.children;
-                
-                console.log(contents[1].innerHTML);
-                
+                                
                 if (contents[1].innerHTML == BASIC_SCI) updateInfoBox("basicScience", BASIC_SCI);
                 else if (contents[1].innerHTML == COMPLEMENTARY) updateInfoBox("complemetary", COMPLEMENTARY);  
                 else if (contents[1].innerHTML == ENGINEERING) specificUpdate();  
@@ -904,8 +906,16 @@
         
         function loadSavedTree(savedTree) {
             const rowOfSemesters = document.getElementById("mainContent").children[2];
-        
+            // TAKE INTO ACCOUNT WHEN savedTree.length > 11
             for (let i = 0; i < savedTree.length; ++i) {
+                if (((i + 1) % 3 == 0) && savedTree[i].length > 0) document.getElementById(((i + 1) / 3) + "S").className = "col ml-0";
+                
+                if (i > 10) {
+                    addColumn();
+                    
+                    if (savedTree[i].length > 0) document.getElementById(endYear).className = "col ml-0";
+                }
+                
                 for (let j = 0; j < savedTree[i].length; ++j) {
                     let currCode = savedTree[i][j];
                     let currCodeLower = currCode.toLowerCase();
@@ -915,31 +925,40 @@
                     const courseTitle = document.createElement("p");
                     let text1;
                     let text2;
+                                        
+                    courseTitle.style.fontSize = "6.5pt";
                     
-                    if (currCode.length == 2) {
-                        text1 = document.createTextNode(currCode);
+                    if (currCode.split(" ").length == 2) {
+                        courseCode.innerHTML = "<strong>" + currCode + "</strong>";
                         text2 = document.createTextNode(courseInfo[currCode].title);
+                        
+                        div1.className = currCodeLower.split(" ")[0];
+                        div1.id = currCodeLower.split(" ")[0] + i + j;
                     }
                     else {
-                        if (currCode.split("_").length == 3) text1 = document.createTextNode(currCode.split("_")[1] + " " + currCode.split("_")[2]);
-                        else text1 = document.createTextNode("Elective");
+                        if (currCode.split("_").length == 3) courseCode.innerHTML = "<strong>" + currCode.split("_")[1] + " " + currCode.split("_")[2] + "</strong>";
+                        else courseCode.innerHTML = "<strong>Elective</strong>";
 
                         text2 = document.createTextNode(elctvTitles[currCode.split("_")[0]]);
+                        
+                        div1.className = "elective";
+                        div1.id = "elective" + i + j;
                     }
 
-                    div1.className = currCodeLower;
-                    div1.id = currCodeLower + i + j;
                     div1.draggable =  true;
-                    div1.ondragstart = drag(event);
-                    div1.onclick = displayInfo(currCodeLower + i + j);
+                    div1.addEventListener('dragstart', e => {
+                        drag(e);
+                    });
+                    div1.onclick = () => {
+                        displayInfo(currCodeLower + i + j);
+                    }
                     
-                    courseCode.appendChild(text1);
+                    // courseCode.appendChild(text1);
                     courseTitle.appendChild(text2);
                     div1.appendChild(courseCode);
                     div1.appendChild(courseTitle);
                     rowOfSemesters.children[i].appendChild(div1);
                 }   
-            
             }
         }
         
@@ -977,10 +996,8 @@
                     );
                 }
             }
-            
-            // console.log(JSON.stringify(newTree));
-            
-            window.localStorage.setItem("savedTree", newTree);
+                        
+            window.localStorage.setItem("savedTree", JSON.stringify(newTree));
         }
         
         function handleLoadRequest(id) {
