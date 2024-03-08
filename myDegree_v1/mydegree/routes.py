@@ -234,12 +234,14 @@ def handle_input():
 
     global list_of_names
     global semester
-
+    global section_regex
+    
     course_codes = data['course_codes']
     semester = data['semester']
     
     for i in range(len(course_codes)):
         list_of_names.append(course_codes[i])
+        section_regex[course_codes[i]] = ""
 
     url = url_for('filters')
     return jsonify(dict(url = url))
@@ -248,7 +250,7 @@ def handle_input():
 def handle_filters():
     received = request.args.get('sent')
     data = json.loads(received)
-    url = url_for('result')
+    url = url_for('filters')
 
     global list_of_names
     global x_timetable
@@ -281,6 +283,9 @@ def handle_filters():
 def filters():
     global list_of_names
     global semester
+    global x_timetable
+    global section_regex
+    global data
     
     names_and_sections = dict()
     copy_list = []
@@ -290,19 +295,28 @@ def filters():
         course_name = list_of_names[i]
         names_and_sections[course_name] = get_sections(course_name, semester)
     
-    list_of_names.clear()
+    x_timetable = Timetable([])
     
-    return render_template(
-        'filters.html',
-        len = len,
-        range = range,
-        str = str,
-        course_height = course_height,
-        course_mt = course_mt,
-        course_ml = course_ml,
-        list_of_names = copy_list,
-        names_and_sections = names_and_sections
-    )
+    timetables = all_timetables(list_of_names, x_timetable, section_regex, semester) 
+
+    list_of_names.clear()
+    semester = ""
+ 
+    if len(timetables) == 0:
+        return f"<h1>Unable to generate time table for {copy_list} with the given filter parameters</h1>"
+    else:    
+        return render_template(
+            'result_filters.html',
+            len = len,
+            range = range,
+            str = str,
+            course_height = course_height,
+            course_mt = course_mt,
+            course_ml = course_ml,
+            list_of_names = copy_list,
+            names_and_sections = names_and_sections,
+            timetables = timetables       
+        )
 
 @app.route("/result/")
 def result():
@@ -310,7 +324,6 @@ def result():
     global semester
     global x_timetable
     global section_regex
-    global data
     
     timetables = all_timetables(list_of_names, x_timetable, section_regex, semester) 
     

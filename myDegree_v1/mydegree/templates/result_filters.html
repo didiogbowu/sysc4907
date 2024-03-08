@@ -8,6 +8,24 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <style>        
+        #navigation {
+            margin-bottom: 10px;
+            margin-left: 47%;
+        }
+        
+        span > div {
+            display: inline-block;
+            margin-bottom: 0px;
+        }
+        
+        #currTimetableNum, #allTimetablesNum {
+            width: 4vw;
+            text-align: center;
+            border: 0.5px solid gray;
+            padding: 1px;
+            border-radius: 2px;
+        }
+        
         table {
             margin-right: auto;
             padding: 2px;
@@ -56,7 +74,26 @@
 
         }
         
+        .courseBlock, .courseBlockable {
+            width: 100px;        
+        }
+        
         .courseBlock {
+            padding: 2px;
+            font-size: 8.5pt;
+            font-family: sans-serif;
+            text-align: center;
+            font-weight: bold;
+            vertical-align: middle;
+            background-color: #CCCCCC;
+            color: red;
+            border: 1px solid black;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+        }
+
+        .courseBlockable {
             width: 100px;
             background-color: white;
             border: 1px solid black;
@@ -65,12 +102,13 @@
             top: 0;
         }
         
-        .courseBlock.blocked {
+        .courseBlockable.blocked {
             background-color: #1F51FF;
             border-color: #1F51FF;
         }
     </style>
     <body>
+        <script type="text/javascript"> document.body.style.zoom = "90%"; </script>
         <header class="row m-0">
             <div class="col-5"></div>
             <button class="col-2 mt-1" onclick="sendFilters()">Apply</button>
@@ -79,6 +117,24 @@
         <div class="row m-0">
             <div class="col-6">
                 <h4>Class Time Filter</h4>
+                <div class="row">
+                    <div id="col" style="margin-left: 31%">
+                        <button onclick="prevTimetable()">Previous</button>
+                        <button onclick="nextTimetable()">Next</button>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div id="col" style="margin-left: 30.5%">
+                        <input type="number" id="currTimetableNum" name="currTimetableNum" style="display: inline; margin-top: 2px" onchange="editCurrTimetable()" min="1" max={{ len(timetables) }}>
+                        <p style="display: inline; margin-top: 2px">/</p>
+                        <input type="number" id="allTimetablesNum" name="currTimetableNum" style="display: inline; margin-top: 2px" value="{{ len(timetables) }}" readonly>
+                    </div>
+                    <div class="col"></div> 
+                </div>
+                <div>
+                    <p style="margin-left: 13.5%; margin-right: auto; margin-bottom: 0"><i>Click boxes to copy course registration numbers (CRNs)</i></p>
+                </div>
                 <table style="border: 1px solid black; border-collapse: separate">
                     <tr>
                         <td style="background-color: #CCCCCC"></td>
@@ -189,8 +245,16 @@
                         <td class="timetable">
                             {% for i in range(5) %}
                             {% for j in range(29) %}
-                                <div onclick="blockOff(this.className, this.id)" class="courseBlock" id={{ "courseBlock" ~ str(i) ~ str(j)}} style="height: {{ str(course_height(30, 0) / 1.5) ~ 'px' }}; margin-top: {{ str(course_mt((8 + (j / 2)) * 60) / 1.5) ~ 'px' }}; margin-left: {{ str(course_ml(i + 1)) ~ 'px' }}"></div>
+                                <div onclick="blockOff(this.className, this.id)" class="courseBlockable" id={{ "courseBlock" ~ str(i) ~ str(j)}} style="height: {{ str(course_height(30, 0) / 1.5) ~ 'px' }}; margin-top: {{ str(course_mt((8 + (j / 2)) * 60) / 1.5) ~ 'px' }}; margin-left: {{ str(course_ml(i + 1)) ~ 'px' }}"></div>
                             {% endfor %}
+                            {% endfor %}
+                            {% for j in range(len(timetables[0].courses)) %}
+                            {% if len(timetables[0].courses[j].days) == 1 %}
+                                <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock", id={{ "courseBlock" ~ str(j) }}></div>
+                            {% elif len(timetables[0].courses[j].days) == 2 %}
+                                <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock",  id={{ "courseBlock" ~ str(j) ~ "_1"}}></div>
+                                <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock",  id={{ "courseBlock" ~ str(j) ~ "_2"}}></div>
+                            {% endif %}
                             {% endfor %}
                         </td>
                     </tr>
@@ -234,14 +298,141 @@
                 {% endif %}
                 {% endfor %}
             ];
+            var currTimetable = 0;
+            const NUM_OF_TIMETABLES = {{ len(timetables) }};
+            const timetables = [];            
             
+        {% for i in range(len(timetables)) %}
+            const {{ "courseBlocks" ~ str(i) }} = [];
+        {% for j in range(len(timetables[i].courses)) %}
+        {% if len(timetables[i].courses[j].days) == 1 %}
+            const {{ "courseBlock" ~ str(i) ~ "_" ~ str(j) }} = {
+                id : "{{ "courseBlock" ~ str(j) }}", 
+                code: "{{ timetables[i].courses[j].code }}",
+                crn: "{{ timetables[i].courses[j].crn }}",
+                height : "{{ str(course_height(timetables[i].courses[j].end_time, timetables[i].courses[j].start_time) / 1.5) ~ 'px' }}", 
+                marginTop : "{{ str(course_mt(timetables[i].courses[j].start_time) / 1.5) ~ 'px' }}", 
+                marginLeft : "{{ str(course_ml(timetables[i].courses[j].days[0])) ~ 'px' }}",
+            };
+            
+            {{ "courseBlocks" ~ str(i) }}.push({{ "courseBlock" ~ str(i) ~ "_" ~ str(j) }});
+        {% elif len(timetables[i].courses[j].days) == 2 %}
+            const {{ "courseBlock" ~ str(i) ~ "_" ~ str(j) ~ "_1" }} = {
+                id : "{{ "courseBlock" ~ str(j) ~ "_1" }}", 
+                code: "{{ timetables[i].courses[j].code }}",
+                crn: "{{ timetables[i].courses[j].crn }}",
+                height : "{{ str(course_height(timetables[i].courses[j].end_time, timetables[i].courses[j].start_time) / 1.5) ~ 'px' }}", 
+                marginTop : "{{ str(course_mt(timetables[i].courses[j].start_time) / 1.5) ~ 'px' }}", 
+                marginLeft : "{{ str(course_ml(timetables[i].courses[j].days[0])) ~ 'px' }}",
+            };
+            
+            {{ "courseBlocks" ~ str(i) }}.push({{ "courseBlock" ~ str(i) ~ "_" ~ str(j) ~ "_1" }});
+            
+            const {{ "courseBlock" ~ str(i) ~ "_" ~ str(j) ~ "_2"}} = {
+                id : "{{ "courseBlock" ~ str(j) ~ "_2" }}",
+                code: "{{ timetables[i].courses[j].code }}",
+                crn: "{{ timetables[i].courses[j].crn }}",
+                height : "{{ str(course_height(timetables[i].courses[j].end_time, timetables[i].courses[j].start_time) / 1.5) ~ 'px' }}", 
+                marginTop : "{{ str(course_mt(timetables[i].courses[j].start_time) / 1.5) ~ 'px' }}", 
+                marginLeft : "{{ str(course_ml(timetables[i].courses[j].days[1])) ~ 'px' }}",
+            };
+            
+            {{ "courseBlocks" ~ str(i) }}.push({{ "courseBlock" ~ str(i) ~ "_" ~ str(j) ~ "_2" }});
+        {% endif %}    
+        {% endfor %}
+            timetables.push({{ "courseBlocks" ~ str(i) }});
+        {% endfor %}
+            function unsecuredCopyToClipboard(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.focus({preventScroll: true});
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                } 
+                catch (err) {
+                    console.error('Unable to copy to clipboard', err);
+                }
+                
+                document.body.removeChild(textArea);
+            }
+            
+            function setTimetable(i) {
+                for (let j = 0; j < timetables[i].length; j++) {
+                    document.getElementById(timetables[i][j].id).innerHTML = timetables[i][j].code;
+                    document.getElementById(timetables[i][j].id).style.height = timetables[i][j].height
+                    document.getElementById(timetables[i][j].id).style.marginTop = timetables[i][j].marginTop;
+                    document.getElementById(timetables[i][j].id).style.marginLeft = timetables[i][j].marginLeft;
+                }
+                
+                document.getElementById("currTimetableNum").value = i + 1;
+            }
+        
+            function prevTimetable() {
+                if (currTimetable == 0) {
+                    return;
+                }
+                
+                else {
+                    --currTimetable;
+                }
+                
+                setTimetable(currTimetable);  
+            }
+            
+            function nextTimetable() {
+                if (currTimetable == (NUM_OF_TIMETABLES - 1)) {
+                    return;
+                }
+                
+                else {
+                    ++currTimetable;
+                }
+                
+                setTimetable(currTimetable);  
+            }
+            
+            function editCurrTimetable() {
+                currTimetable = document.getElementById("currTimetableNum").value - 1;
+                
+                for (let j = 0; j < timetables[currTimetable].length; j++) {
+                    document.getElementById(timetables[currTimetable][j].id).innerHTML = timetables[currTimetable][j].code;
+                    document.getElementById(timetables[currTimetable][j].id).style.height = timetables[currTimetable][j].height;
+                    document.getElementById(timetables[currTimetable][j].id).style.marginTop = timetables[currTimetable][j].marginTop;
+                    document.getElementById(timetables[currTimetable][j].id).style.marginLeft = timetables[currTimetable][j].marginLeft;
+                }
+            }
+            
+            function copyRegstNum(targerCrseCode) {
+                for (let i = 0; i < NUM_OF_TIMETABLES; i++) {
+                    for (let j = 0; j < timetables[i].length; j++) {
+                        if (timetables[i][j].code == targerCrseCode) {
+                            if (window.isSecureContext && navigator.clipboard) {
+                                navigator.clipboard.writeText(timetables[i][j].crn);
+                            } 
+                            else {
+                                unsecuredCopyToClipboard(timetables[i][j].crn);
+                            }
+                            
+                            alert("CRN for " + targerCrseCode + " copied");
+                            return;
+                        }
+                    }
+                }
+            }
+            
+            setTimetable(currTimetable);
+            document.getElementById("allTimetablesNum").innerHTML = NUM_OF_TIMETABLES;
+
             function blockOff(classId, id) {
-                if (classId == "courseBlock") document.getElementById(id).className = "courseBlock blocked";
-                else if (classId == "courseBlock blocked") document.getElementById(id).className = "courseBlock";
+                if (classId == "courseBlockable") document.getElementById(id).className = "courseBlockable blocked";
+                else if (classId == "courseBlockable blocked") document.getElementById(id).className = "courseBlockable";
             }
             
             function blockOffAll(id) {                
-                let courseBlocks = document.getElementsByClassName("courseBlock");
+                let courseBlocks = document.getElementsByClassName("courseBlockable");
                 let element = document.getElementById(id);
                 let classId = element.className;
                 
@@ -250,8 +441,8 @@
                 
                 for (let i = 0; i < courseBlocks.length; ++i) {
                     if (((id.slice(0, 3) == "col") && (courseBlocks[i].id[11] == id.slice(3))) || ((id.slice(0, 3) == "row") && (courseBlocks[i].id.slice(12) == id.slice(3)))) {
-                        if (classId == "") blockOff("courseBlock", courseBlocks[i].id);
-                        else if (classId == "blockedMode") blockOff("courseBlock blocked", courseBlocks[i].id);
+                        if (classId == "") blockOff("courseBlockable", courseBlocks[i].id);
+                        else if (classId == "blockedMode") blockOff("courseBlockable blocked", courseBlocks[i].id);
                     }
                 }
             }
@@ -311,9 +502,7 @@
                     let lectureCount = 0;
                     let labCount = 0;
                     let hitCount = 0;
-                    
-                    // console.log(courseSections[i].children.length);
-                    
+                                        
                     for (let j = 0; j < courseSections[i].children.length; ++j) {
                         if (courseSections[i].children[j].type == "checkbox") {
                             hitCount++;
@@ -358,7 +547,7 @@
                     data: {'sent': sendJson},
                     success: function(data) {
                         console.log(data.url);
-                        window.open(data.url); // location.replace
+                        window.location.replace(data.url); 
                     },
                     error: function(error){
                       console.log('Error');
