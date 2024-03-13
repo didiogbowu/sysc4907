@@ -8,11 +8,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <style>        
-        #navigation {
-            margin-bottom: 10px;
-            margin-left: 47%;
-        }
-        
         span > div {
             display: inline-block;
             margin-bottom: 0px;
@@ -74,11 +69,12 @@
 
         }
         
-        .courseBlock, .courseBlockable {
+        .courseBlockable {
             width: 100px;        
         }
         
         .courseBlock {
+            width: 100px; 
             padding: 2px;
             font-size: 8.5pt;
             font-family: sans-serif;
@@ -88,13 +84,17 @@
             background-color: #CCCCCC;
             color: red;
             border: 1px solid black;
+            cursor: pointer;
             box-sizing: border-box;
             position: absolute;
             top: 0;
         }
 
+        .courseBlock:active {
+            background-color: #666666;
+        }
+        
         .courseBlockable {
-            width: 100px;
             background-color: white;
             border: 1px solid black;
             box-sizing: border-box;
@@ -118,9 +118,9 @@
             <div class="col-6">
                 <h4>Class Time Filter</h4>
                 <div class="row">
-                    <div id="col" style="margin-left: 31%">
-                        <button onclick="prevTimetable()">Previous</button>
-                        <button onclick="nextTimetable()">Next</button>
+                    <div id="col" style="margin-left: 31%;">
+                        <button onclick="prevTimetable()" style="cursor: pointer;">Previous</button>
+                        <button onclick="nextTimetable()" style="cursor: pointer;">Next</button>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -360,7 +360,61 @@
             }
             
             function setTimetable(i) {
+                let oObject;
+                let eObject;
+                
                 for (let j = 0; j < timetables[i].length; j++) {
+                    let currString = timetables[i][j].code;
+                    
+                    if (currString.split(" ")[2].length != 3) continue;
+                    
+                    if (currString[currString.length - 1] == 'O') {
+                        oObject = timetables[i][j];
+                    }
+                    else if (currString[currString.length - 1] == 'E') {
+                        eObject = timetables[i][j];
+                    }
+                }
+                
+                if ((oObject != null) && (eObject != null)) 
+                {
+                    if ((oObject.marginLeft == eObject.marginLeft) && (oObject.marginTop == eObject.marginTop)) {
+                        document.getElementById(oObject.id).innerHTML = oObject.code;
+                        document.getElementById(oObject.id).style.height = oObject.height;
+                        document.getElementById(oObject.id).style.marginTop = oObject.marginTop;
+                        document.getElementById(oObject.id).style.marginLeft = oObject.marginLeft;
+                        document.getElementById(oObject.id).style.padding = "1px";
+                        document.getElementById(oObject.id).style.width = "50px";
+                        
+                        document.getElementById(eObject.id).innerHTML = eObject.code;
+                        document.getElementById(eObject.id).style.height = eObject.height;
+                        document.getElementById(eObject.id).style.marginTop = eObject.marginTop;
+                        document.getElementById(eObject.id).style.marginLeft = Number(eObject.marginLeft.slice(0, eObject.marginLeft.length - 2)) + 50 + "px";
+                        document.getElementById(eObject.id).style.padding = "1px";
+                        document.getElementById(eObject.id).style.width = "50px";
+                    }
+                    else {
+                        document.getElementById(oObject.id).innerHTML = oObject.code;
+                        document.getElementById(oObject.id).style.height = oObject.height;
+                        document.getElementById(oObject.id).style.marginTop = oObject.marginTop;
+                        document.getElementById(oObject.id).style.marginLeft = oObject.marginLeft;
+                        document.getElementById(oObject.id).style.width = "100px";
+                        
+                        document.getElementById(eObject.id).innerHTML = eObject.code;
+                        document.getElementById(eObject.id).style.height = eObject.height;
+                        document.getElementById(eObject.id).style.marginTop = eObject.marginTop;
+                        document.getElementById(eObject.id).style.marginLeft = eObject.marginLeft;
+                        document.getElementById(eObject.id).style.width = "100px";
+                    }
+                    
+                    
+                }
+                
+                for (let j = 0; j < timetables[i].length; j++) {
+                    if ((oObject != null) && (eObject != null)) {
+                        if ((timetables[i][j].code == oObject.code) || (timetables[i][j].code == eObject.code)) continue;
+                    }
+                    
                     document.getElementById(timetables[i][j].id).innerHTML = timetables[i][j].code;
                     document.getElementById(timetables[i][j].id).style.height = timetables[i][j].height
                     document.getElementById(timetables[i][j].id).style.marginTop = timetables[i][j].marginTop;
