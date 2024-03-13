@@ -267,11 +267,10 @@
                     <span><strong>{{ list_of_names[i] }}</strong></span>
                     <br>
                     <input type="radio" id="include{{ i }}" name="inex{{ i }}" value="include">
-                    <label for="include{{ i }}">Include</label><br />
+                    <label for="include{{ i }}">Include</label>
                     <input type="radio" id="exclude{{ i }}" name="inex{{ i }}" value="exclude" checked="true">
-                    <label for="exclude{{ i }}">Exclude</label><br />
+                    <label for="exclude{{ i }}">Exclude</label>
                     <br>
-                    
                     {% for j in range(len(names_and_sections[list_of_names[i]])) %}
                     <input type="checkbox" id="{{ names_and_sections[list_of_names[i]][j].lower() ~ i }}" name="first_section">
                     <label for="{{ names_and_sections[list_of_names[i]][j].lower() ~ i }}">{{ names_and_sections[list_of_names[i]][j] }}</label>
