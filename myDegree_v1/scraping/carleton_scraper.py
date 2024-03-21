@@ -1,4 +1,5 @@
 import http.client
+import json
 import os
 import time
 from datetime import datetime
@@ -119,6 +120,19 @@ if __name__ == "__main__":
     scrape_program_trees()
     scrape_dept_courses()
     directory = DEPT_HTML_DIR
-    for dept_file in [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]:
-        with open(f"{directory}/{dept_file}", "r", encoding="utf-8") as source:
-            print(course_info.scrape_courses(source.read()))
+    with open("../mydegree/static/data/eng_electives.json", "r+") as crsfile:
+        courses = json.loads(crsfile.read())
+        course_codes = courses.keys()
+        for dept_file in [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]:
+            with open(f"{directory}/{dept_file}", "r", encoding="utf-8") as source:
+                scraped_courses = course_info.scrape_courses(source.read())
+                for new_course in scraped_courses:
+                    if new_course["code"] in course_codes:
+                        code = new_course["code"]
+                        if new_course["precludes"]:
+                            courses[code]["preclusions"] = new_course["precludes"]
+                        if new_course["prerequisites"]:
+                            courses[code]["prerequisites"] = new_course["prerequisites"]
+        crsfile.seek(0)
+        crsfile.write(json.dumps(courses, indent=2))
+        crsfile.truncate()

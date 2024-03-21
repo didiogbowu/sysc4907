@@ -89,7 +89,7 @@ def parse_prerequisites(req_text: str) -> (str, list):
     # Regex pattern to match : brief description of condition
     special_requirements = {
         r"year [(status)(standing)]": "year standing",
-        r"[(Engineering)(program)(enrol)]": "program restriction",
+        r"Engineering|program|enrol": "program restriction",
         "permission": "department permission",
         "grade": "minimum grade",
         "recommended background": "recommended background",
