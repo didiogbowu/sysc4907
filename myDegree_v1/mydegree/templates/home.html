@@ -862,6 +862,76 @@
                 document.getElementById(swapSpot).insertAdjacentElement("afterend", ev.target);
                 
             }
+
+            scan_reqs();
+        }
+
+        function scan_reqs() {
+            let container = document.querySelectorAll("#mainContent > div.row")[1];
+            let years = [];
+            for (const yearRow of container.querySelectorAll("div.col:not(.hidden)")) {
+                let yearCourses = [];
+                for (const course of yearRow.querySelectorAll(":scope > div[draggable='true']")) {
+                    let code = course.querySelector("strong").textContent;
+                    console.log(courseInfo[code]);
+                }
+            }
+        }
+
+        function check_reqs(prerequisites, passed, concurrent) {
+            if (prerequisites && passed && concurrent) {
+
+                function course_taken(crs) {
+                    if (crs && crs[0] == "c") {
+                        crs = crs.substring(1);
+                        if (passed.includes(crs) || concurrent.includes(crs)) {
+                            return true;
+                        }
+                    } else {
+                        if (passed.includes(crs)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+                function evaluate(root) {
+                    let missing = [];
+                    if (root.data == "&") {
+                        for (const child of root.children) {
+                            missing = missing.concat(evaluate(child));
+                        }
+                    } else if (root.data == "|") {
+                        let possibly_missing = [];
+                        for (const child of root.children) {
+                            recurse = evaluate(child);
+                            if (recurse.length == 0) {
+                                possibly_missing = [];
+                                break;
+                            } else {
+                                possibly_missing = possibly_missing.concat(evaluate(child));
+                            }
+                        }
+                        if (possibly_missing.length == 1) {
+                            missing = missing.concat(possibly_missing);
+                        } else if (possibly_missing.length > 1) {
+                            missing.push(possibly_missing);
+                        }
+                    } else {
+                        if (root.data && !course_taken(root.data)) {
+                            let code = root.data;
+                            if (code[0] == "c") {
+                                code = code.substring(1);
+                            }
+                            missing.push(code);
+                        }
+                    }
+                    return missing;
+                }
+
+                return evaluate(prerequisites);
+            }
+            return [];
         }
         
         function getNextString(nextString) {
