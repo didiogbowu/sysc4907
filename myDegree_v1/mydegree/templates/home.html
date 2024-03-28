@@ -182,7 +182,12 @@
                     "{{ courses[keys[i]]['preclusions'][j] }}",
                 {% endfor %}
                     "{{ courses[keys[i]]['preclusions'][-1] }}"
-                ]
+                ],
+                {% if courses[keys[i]]['prerequisites'] %}
+                prerequisites: {{ courses[keys[i]]['prerequisites']|tojson }},
+                {% else %}
+                prerequisites: null
+                {% endif %}
             },
             {% endfor %}  
         };
@@ -863,25 +868,52 @@
                 
             }
 
-            scan_reqs();
+            scanReqs();
         }
 
-        function scan_reqs() {
+        function scanReqs() {
             let container = document.querySelectorAll("#mainContent > div.row")[1];
-            let years = [];
-            for (const yearRow of container.querySelectorAll("div.col:not(.hidden)")) {
-                let yearCourses = [];
-                for (const course of yearRow.querySelectorAll(":scope > div[draggable='true']")) {
+            let semesters = [];
+            for (const semesterCol of container.querySelectorAll("div.col:not(.hidden)")) {
+                let semesterCourses = [];
+                for (const course of semesterCol.querySelectorAll(":scope > div[draggable='true']")) {
                     let code = course.querySelector("strong").textContent;
-                    console.log(courseInfo[code]);
+                    let info = courseInfo[code];
+                    if (info && info.prerequisites) {
+                        semesterCourses.push(code);
+                    }
+                }
+                if (semesterCourses.length > 0) {
+                    semesters.push(semesterCourses);
+                }
+            }
+
+            let warnings = [];
+            for (let semesterIndex = 0; semesterIndex < semesters.length; semesterIndex++) {
+                let semester = semesters[semesterIndex];
+                for (const course of semester) {
+                    let passedCourses = semesterIndex > 0 ? [].concat(...semesters.slice(0, semesterIndex)) : [];
+                    let missing = checkReqs(courseInfo[course].prerequisites, passedCourses, semester);
+                    if (missing.length > 0) {
+                        console.log(course, missing);
+                        warnings.push(course);
+                        for (const courseElem of document.querySelectorAll("div[draggable='true']")) {
+                            let code = courseElem.querySelector("strong").textContent;
+                            if (code == course) {
+                                courseElem.classList.add("course-warning");
+                            } else if (!warnings.includes(code)) {
+                                courseElem.classList.remove("course-warning");
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        function check_reqs(prerequisites, passed, concurrent) {
+        function checkReqs(prerequisites, passed, concurrent) {
             if (prerequisites && passed && concurrent) {
 
-                function course_taken(crs) {
+                function courseTaken(crs) {
                     if (crs && crs[0] == "c") {
                         crs = crs.substring(1);
                         if (passed.includes(crs) || concurrent.includes(crs)) {
@@ -918,7 +950,7 @@
                             missing.push(possibly_missing);
                         }
                     } else {
-                        if (root.data && !course_taken(root.data)) {
+                        if (root.data && !courseTaken(root.data)) {
                             let code = root.data;
                             if (code[0] == "c") {
                                 code = code.substring(1);
