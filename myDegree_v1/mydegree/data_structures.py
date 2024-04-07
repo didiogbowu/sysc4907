@@ -5,48 +5,29 @@ from mydegree.models import CourseData
 
 class Course:
     def __init__(self, crn, code, title, days, week, start_time, end_time):
-        if type(crn) is int: 
-            self.crn = crn # course registration number (int)
-        else:
-            raise TypeError("The CRN 'crn' must be an integer")
-            
-        if type(code) is str: # might make this a reg ex match check
-            self.code = code # course code (str)
-        else:
-            raise TypeError("The course code 'code' must be a string")
-
-        if type(title) is str: 
-            self.title = title # course title (str)
-        else:
-            raise TypeError("The course title 'title' must be a string")        
-        
-        if ((len(days) == 1) and (1 <= days[0] <= 5)) or ((len(days) == 2) and (1 <= days[0] <= 5) and (1 <= days[1] <= 5)):
-            self.days = days # list of one or two integers
-        else:
-            raise ValueError("Class days in 'day' must be between 1 and 5 inclusive (Monday to Friday), and there can only be one or two class days in a week")
-
-        if (week == 0) or (week == 1) or (week == 2):
-            self.week = week # integer 0, 1, or 2 for weekly, odd biweekly, even biweekly
-        else:
-            raise ValueError("The value of 'week' must be 0, 1, or 2")
-
-        if (end_time - start_time) > 0.0004:
-            self.start_time = start_time # float representing a time in 24h format with minutes converted to decimal (0-0.99)
-            self.end_time = end_time # float representing a time in 24h format with minutes converted to decimal (0-0.99)
-        else:
-            raise ValueError("The end time of a class 'end_time' can be before or at the same time as the start time 'start_time'")
+        self.crn = crn
+        self.code = code
+        self.title = title  
+        self.days = days
+        self.week = week
+        self.start_time = start_time 
+        self.end_time = end_time
 
     def __repr__(self):
         return self.code
 
     def same_day(self, other):
+        if (self.days[0] is None) or (other.days[0] is None):
+            return False
         for day in self.days:
             for other_day in other.days:
-                if day == other_day:
+                if (day == other_day) or (day is None) or (other_day is None):
                     return True
         return False
                 
     def seperate_class_times(self, other):
+        if (self.start_time is None) or (other.start_time is None):
+            return True
         return ((other.start_time < self.start_time) and (other.end_time < self.start_time)) or ((other.start_time > self.end_time) and (other.end_time > self.end_time))
 
     def biweekly_seperate(self, other):
@@ -54,10 +35,7 @@ class Course:
     
 class Timetable:
     def __init__(self, courses):
-        if type(courses) is list:
-            self.courses = courses # list of Course objects
-        else:
-            raise TypeError("The time table's courses 'courses' must be a list")
+        self.courses = courses
 
     def __repr__(self):
         return str(self.courses)
