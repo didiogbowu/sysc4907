@@ -15,8 +15,8 @@ class Node:
     produce a dictionary representation of itself.
     """
     def __init__(self, data):
-        self.data = data
-        self.children = []
+        self._data = data
+        self._children = []
 
     def add_child(self, node: "Node") -> None:
         """
@@ -24,14 +24,14 @@ class Node:
         :param node: Node to add
         :return: None
         """
-        self.children.append(node)
+        self._children.append(node)
 
     def as_dict(self) -> dict:
         """
         Return a dictionary representation of the Node and its children.
         :return: dictionary of self and children
         """
-        return {"data": self.data, "children": [child.as_dict() for child in self.children]}
+        return {"data": self._data, "children": [child.as_dict() for child in self._children]}
 
 
 class CourseInfoParser(Parser):
