@@ -301,6 +301,7 @@ def filters():
     # select_form = SelectProgramForm()
     
     names_and_sections = dict()
+    none_list = dict()
     copy_list = []
     
     for i in range(len(list_of_names)):
@@ -310,6 +311,12 @@ def filters():
 
     list_of_names.clear()
     # semester = ""
+    
+    for i in range(len(timetables[0].courses)):
+        if timetables[0].courses[i].days[0] is None:
+            curr_string = timetables[0].courses[i].code.split()
+            none_list[curr_string[0] + " " + curr_string[1]] = timetables[0].courses[i].crn
+        
     
     # if select_form.validate_on_submit():
     
@@ -326,6 +333,7 @@ def filters():
             course_ml = course_ml,
             list_of_names = copy_list,
             names_and_sections = names_and_sections,
+            none_list = none_list,
             timetables = timetables       
         )
 

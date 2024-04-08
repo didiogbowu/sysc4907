@@ -69,18 +69,21 @@
 
         }
         
-        .courseBlockable {
+        .courseBlock, .courseBlockable {
             width: 100px;        
         }
         
-        .courseBlock {
-            width: 100px; 
+        .courseBlock, .noneBlock {
             padding: 2px;
-            font-size: 8.5pt;
             font-family: sans-serif;
             text-align: center;
             font-weight: bold;
             vertical-align: middle;
+            
+        }
+        
+        .courseBlock {
+            font-size: 8.5pt;        
             background-color: #CCCCCC;
             color: red;
             border: 1px solid black;
@@ -88,10 +91,26 @@
             box-sizing: border-box;
             position: absolute;
             top: 0;
+
+        }
+        .noneBlock {
+            font-size: 12pt;        
+            width: 150px; 
+            height: 60px;
+            margin-left: 4px;
+            background-color: #FF00FF;
+            color: #000000;
+            border: 2px solid #000000;
+            cursor: pointer;
+            box-sizing: border-box;
         }
 
         .courseBlock:active {
             background-color: #666666;
+        }
+        
+        .noneBlock:active {
+            background-color: #FF99CC;
         }
         
         .courseBlockable {
@@ -249,11 +268,13 @@
                             {% endfor %}
                             {% endfor %}
                             {% for j in range(len(timetables[0].courses)) %}
+                            {% if timetables[0].courses[j].days[0] is not none %}
                             {% if len(timetables[0].courses[j].days) == 1 %}
                                 <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock", id={{ "courseBlock" ~ str(j) }}></div>
                             {% elif len(timetables[0].courses[j].days) == 2 %}
                                 <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock",  id={{ "courseBlock" ~ str(j) ~ "_1"}}></div>
                                 <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock",  id={{ "courseBlock" ~ str(j) ~ "_2"}}></div>
+                            {% endif %}
                             {% endif %}
                             {% endfor %}
                         </td>
@@ -263,6 +284,7 @@
             <div class="col-6" id="sectionFilters">
                 <h4>Course Section Filter</h4>
                 {% for i in range(len(list_of_names)) %}
+                {% if list_of_names[i] not in none_list.keys() %}
                 <div class="courseSection">
                     <span><strong>{{ list_of_names[i] }}</strong></span>
                     <br>
@@ -274,10 +296,20 @@
                     {% for j in range(len(names_and_sections[list_of_names[i]])) %}
                     <input type="checkbox" id="{{ names_and_sections[list_of_names[i]][j].lower() ~ i }}" name="first_section">
                     <label for="{{ names_and_sections[list_of_names[i]][j].lower() ~ i }}">{{ names_and_sections[list_of_names[i]][j] }}</label>
-                    {% endfor %}
-                    
+                    {% endfor %}    
                 </div>
+                {% endif %}
                 {% endfor %}
+                <br><br>
+                <div>
+                    <h4>Unscheduled Courses</h4>
+                    <p style="margin-right: auto; margin-bottom: 0"><i>Click boxes to copy course registration numbers (CRNs)</i></p>
+                    <div class="row" style="margin-left: 0">
+                        {% for i in none_list %}
+                        <div onclick="copyNoneRegstNum(this.innerHTML)" class="noneBlock">{{ i }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
         <script type="text/javascript"> 
@@ -290,7 +322,7 @@
             
             var listOfNames = [
                 {% for i in range(len(list_of_names)) %}
-                {% if i != len(list_of_names) - 1%}
+                {% if i != len(list_of_names) - 1 %}
                 "{{ list_of_names[i] }}",
                 {% else %}
                 "{{ list_of_names[i] }}"
@@ -301,9 +333,16 @@
             const NUM_OF_TIMETABLES = {{ len(timetables) }};
             const timetables = [];            
             
+            const noneList = {
+                {% for i in none_list %}
+                "{{ i }}": "{{ none_list[i] }}",
+                {% endfor %}
+            }
+            
         {% for i in range(len(timetables)) %}
             const {{ "courseBlocks" ~ str(i) }} = [];
         {% for j in range(len(timetables[i].courses)) %}
+        {% if timetables[i].courses[j].days[0] is not none %}
         {% if len(timetables[i].courses[j].days) == 1 %}
             const {{ "courseBlock" ~ str(i) ~ "_" ~ str(j) }} = {
                 id : "{{ "courseBlock" ~ str(j) }}", 
@@ -337,6 +376,7 @@
             };
             
             {{ "courseBlocks" ~ str(i) }}.push({{ "courseBlock" ~ str(i) ~ "_" ~ str(j) ~ "_2" }});
+        {% endif %}    
         {% endif %}    
         {% endfor %}
             timetables.push({{ "courseBlocks" ~ str(i) }});
@@ -475,6 +515,17 @@
                     }
                 }
             }
+
+            function copyNoneRegstNum(targerCrseCode) {
+                if (window.isSecureContext && navigator.clipboard) {
+                    navigator.clipboard.writeText(noneList[targerCrseCode]);
+                } 
+                else {
+                    unsecuredCopyToClipboard(noneList[targerCrseCode]);
+                }
+                
+                alert("CRN for " + targerCrseCode + " copied");
+            }
             
             setTimetable(currTimetable);
             document.getElementById("allTimetablesNum").innerHTML = NUM_OF_TIMETABLES;
@@ -593,6 +644,7 @@
                 
                 console.log(sent);
                 sendJson = JSON.stringify(sent);
+                
                 
                 $.ajax({
                     url: '/handle_filters/',
