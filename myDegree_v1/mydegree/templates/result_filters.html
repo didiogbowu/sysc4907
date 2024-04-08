@@ -513,7 +513,7 @@
             }
             
             function sendFilters() {
-                const elementList = document.getElementsByClassName("courseBlock blocked");
+                const elementList = document.getElementsByClassName("courseBlockable blocked");
                 const timeSlots = [];               
                 const dayBox = [
                     [{startTime: 0.0, endTime: 0.0, day: 1}], 
@@ -591,6 +591,7 @@
                     sent.list_of_names.push(listOfNames[i]);
                 }
                 
+                console.log(sent);
                 sendJson = JSON.stringify(sent);
                 
                 $.ajax({

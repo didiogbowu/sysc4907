@@ -1,7 +1,7 @@
 import os
 from flask import render_template, json, jsonify, redirect, url_for, request, flash, current_app
 from mydegree import app
-from mydegree.forms import SubmitButtonForm, TextFieldForm, SelectProgramForm, PROGRAM_CHOICES
+from mydegree.forms import *
 from mydegree.data_structures import Course, Timetable, get_sections, all_timetables
 from mydegree.render_timetable import course_height, course_mt, course_ml
 
@@ -22,7 +22,7 @@ courses = dict()
 section_regex = dict()
 
 programs = ["Computer Systems Engineering", "Software Engineering", "Communications Engineering", "Biomedical & Electrical Engineering"]
-years = ["2018", "2019", "2020"]
+years = ["2018", "2019", "2020", "2021"]
 
 elctv_titles = {
     "BASICSCI": "Basic Science Elective",
@@ -195,7 +195,7 @@ def select_program():
             with open(file) as f:
                 mainline = json.load(f)[int(select_form.catalog_year.data)][int(select_form.name_of_course.data)]
 
-        return redirect(url_for('home')) # f"<h1>{list(courses.keys())}</h1>" 
+        return redirect(url_for('home')) 
     
     return render_template('select_program.html', select_form = select_form)
     
@@ -234,7 +234,9 @@ def handle_input():
 
     global list_of_names
     global semester
+    global x_timetable
     global section_regex
+    global timetables
     
     course_codes = data['course_codes']
     semester = data['semester']
@@ -243,6 +245,8 @@ def handle_input():
         list_of_names.append(course_codes[i])
         section_regex[course_codes[i]] = ""
 
+    timetables = all_timetables(list_of_names, x_timetable, section_regex, semester) 
+    
     url = url_for('filters')
     return jsonify(dict(url = url))
 
@@ -253,8 +257,12 @@ def handle_filters():
     url = url_for('filters')
 
     global list_of_names
+    global semester
     global x_timetable
     global section_regex
+    global timetables
+    
+    x_timetable = Timetable([])
     
     for j in range(len(data['list_of_names'])):
         list_of_names.append(data['list_of_names'][j])
@@ -275,8 +283,12 @@ def handle_filters():
                 end_time=data['blockedOff'][i]['endTime']
             )
         )
-
+        
+    timetables = all_timetables(list_of_names, x_timetable, section_regex, semester) 
+    
     return jsonify(dict(url = url))
+    # return f"<h1>{section_regex}</h1>"
+    # return url_for('filters')
 
 
 @app.route("/filters/")
@@ -285,7 +297,8 @@ def filters():
     global semester
     global x_timetable
     global section_regex
-    global data
+    global timetables
+    # select_form = SelectProgramForm()
     
     names_and_sections = dict()
     copy_list = []
@@ -294,14 +307,12 @@ def filters():
         copy_list.append(list_of_names[i])
         course_name = list_of_names[i]
         names_and_sections[course_name] = get_sections(course_name, semester)
-    
-    x_timetable = Timetable([])
-    
-    timetables = all_timetables(list_of_names, x_timetable, section_regex, semester) 
 
     list_of_names.clear()
-    semester = ""
- 
+    # semester = ""
+    
+    # if select_form.validate_on_submit():
+    
     if len(timetables) == 0:
         return f"<h1>Unable to generate time table for {copy_list} with the given filter parameters</h1>"
     else:    
