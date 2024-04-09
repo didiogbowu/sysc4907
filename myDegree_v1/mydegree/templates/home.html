@@ -895,19 +895,37 @@
                     let passedCourses = semesterIndex > 0 ? [].concat(...semesters.slice(0, semesterIndex)) : [];
                     let missing = checkReqs(courseInfo[course].prerequisites, passedCourses, semester);
                     if (missing.length > 0) {
-                        console.log(course, missing);
-                        warnings.push(course);
+                        warnings[course] = missing;
                         for (const courseElem of document.querySelectorAll("div[draggable='true']")) {
                             let code = courseElem.querySelector("strong").textContent;
                             if (code == course) {
                                 courseElem.classList.add("course-warning");
-                            } else if (!warnings.includes(code)) {
+                            } else if (!Object.keys(warnings).includes(code)) {
                                 courseElem.classList.remove("course-warning");
                             }
                         }
                     }
                 }
             }
+
+            let warn = document.getElementById("prereq-warning");
+            if (warn == undefined) {
+                warn = document.createElement("p");
+                warn.id = "prereq-warning";
+                warn.setAttribute("style", "margin: 10px 50px; color: 'red'; white-space: pre;");
+                document.body.append(warn);
+            }
+            let warntext = "";
+            Object.keys(warnings).forEach(function(key) {
+                let missing = warnings[key];
+                for (let i = 0; i <= missing.length; i++) {
+                    if (typeof(missing[i]) == "object") {
+                        missing[i] = "(" + missing[i].join(" or ") + ")";
+                    }
+               }
+               warntext += key + " missing prerequisites: " + warnings[key].join(" and ") + "\r\n";
+            });
+            warn.textContent = warntext;
         }
 
         function checkReqs(prerequisites, passed, concurrent) {
