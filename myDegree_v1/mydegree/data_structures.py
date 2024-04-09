@@ -34,13 +34,13 @@ class Course:
         return (self.week != 0) and (other.week != 0) and (self.week != other.week)
     
 class Timetable:
-    def __init__(self, courses):
+    def __init__(self, courses: List['data_structures.Course']):
         self.courses = courses
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self.courses)
 
-    def __add__(self, other_timetable):
+    def __add__(self, other_timetable: 'data_structures.Timetable') -> 'data_structures.Timetable':
         sum_timetable = Timetable([])
         
         for course in self.courses:
@@ -51,7 +51,7 @@ class Timetable:
     
         return sum_timetable
         
-    def add_course(self, new_course):
+    def add_course(self, new_course: 'data_structures.Course') -> bool:
         if len(self.courses) == 0:
             self.courses.append(new_course)
             return True
@@ -78,7 +78,7 @@ class Timetable:
             
         return add_to_list
         
-    def x_add_course(self, new_course, x_timetable):
+    def x_add_course(self, new_course: 'data_structures.Course', x_timetable: 'data_structures.Timetable') -> bool:
         if len(self.courses) == 0:
             self.courses.append(new_course)
             return True
@@ -117,6 +117,20 @@ class Timetable:
         
 
 def get_sections(course_name: str, semester: str) -> List[str]:
+    """ This method returns a list of course sections for a course in a given semester.
+    
+        Parameters
+        ----------
+        course_name : str
+            The department code and the course number
+        semester : str
+            The semester
+            
+        Returns
+        -------
+        List[str]
+            The course sections found
+    """
     section_letters = []
     SECTION_LETTER = 2
     
@@ -129,6 +143,20 @@ def get_sections(course_name: str, semester: str) -> List[str]:
     return section_letters
         
 def db_model_to_data_struct(db_model: 'models.CourseData') -> 'data_structures.Course':
+    """ This method converts a CourseData object to a Course object. In data_structures.all_timetables,
+        the records in the database are retrieved as CourseData objects. These have to be turned into
+        Course objects using this method.
+    
+        Parameters
+        ----------
+        db_model : models.CourseData
+            A CourseData object
+            
+        Returns
+        -------
+        data_structures.Course
+            A Course object
+    """
     days_list = []
     first_day = db_model.first_day
     second_day = db_model.second_day

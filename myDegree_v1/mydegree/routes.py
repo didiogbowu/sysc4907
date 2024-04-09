@@ -355,8 +355,6 @@ def result():
     if len(timetables) == 0:
         return f"<h1>Unable to generate time table for {copy_list} with the given filter parameters</h1>"
     else:
-        
-    
         return render_template(
             'result.html',
             len = len,

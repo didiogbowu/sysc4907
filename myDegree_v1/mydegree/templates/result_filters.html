@@ -300,6 +300,7 @@
                 </div>
                 {% endif %}
                 {% endfor %}
+                {% if len(none_list) > 0 %}
                 <br><br>
                 <div>
                     <h4>Unscheduled Courses</h4>
@@ -310,6 +311,7 @@
                         {% endfor %}
                     </div>
                 </div>
+                {% endif %}                
             </div>
         </div>
         <script type="text/javascript"> 

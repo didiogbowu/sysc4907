@@ -10,9 +10,9 @@ PROGRAM_CHOICES = [
 ]
 
 CATALOG_YEARS = [
-    (2, "202330"),
-    (2, "202230"), 
-    (2, "202130"),
+    (3, "202330"),
+    (3, "202230"), 
+    (3, "202130"),
     (2, "202030"),
     (1, "201930"),
     (0, "201830")
@@ -29,3 +29,4 @@ class SelectProgramForm(FlaskForm):
     name_of_course = SelectField('Select your engineering program and catalog year', validators=[DataRequired()], choices=PROGRAM_CHOICES, coerce=str, option_widget=None, validate_choice=True)
     catalog_year = SelectField('', validators=[DataRequired()], choices=CATALOG_YEARS, coerce=str, option_widget=None, validate_choice=True)
     submit = SubmitField('Go')
+    
