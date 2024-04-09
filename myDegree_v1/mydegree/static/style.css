@@ -177,3 +177,6 @@ select#startYearSelect {
 	cursor: pointer;
 }
 
+div.course-warning {
+	background-color: red;
+}
