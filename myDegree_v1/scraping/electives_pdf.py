@@ -4,6 +4,9 @@ from parser_interface import Parser, COURSE_REGEX_SPACELESS
 
 
 class ElectiveParser(Parser):
+    """
+    Parser implementation which parses electives lists from scraped PDFs.
+    """
     def parse(self, pdf_text: str):
         """
         Parse the provided text, which should be extracted from the elective list PDF,

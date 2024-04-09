@@ -205,7 +205,18 @@ class CourseInfoParser(Parser):
 
         return reqstring, conditions
 
-    def build_tree(self, stack: list, elements: list):
+    def build_tree(self, elements: list, stack: list = None):
+        """
+        Build a tree of Nodes from the given list of elements.
+        Returns the root Node element.
+        An initial stack may be provided for the algorithm to use,
+        though this defaults to an empty list.
+        :param elements:
+        :param stack: An initial stack to use (default to empty list)
+        :return: The root Node in a tree of Nodes
+        """
+        if stack is None:
+            stack = []
         if elements:
             for i in range(len(elements)):
                 if elements[i] == "&" or elements[i] == "|":
@@ -230,6 +241,15 @@ class CourseInfoParser(Parser):
         return Node(None)
 
     def prerequisite_tree(self, req_text: str) -> dict:
+        """
+        Generate a prerequisite tree for the provided text description.
+        The tree is returned in dictionary form so it can be turned into JSON.
+        If additional conditions are found in the description, it will also
+        contain the keys "conditions" and "text", which contain: a list of
+        conditions such as "min grade"; and the original text respectively.
+        :param req_text: The plain text prerequisites
+        :return: A prerequisite tree as a dictionary
+        """
         reqstring, conditions = self.parse_prerequisites(req_text)
 
         word = Regex(COURSE_REGEX)

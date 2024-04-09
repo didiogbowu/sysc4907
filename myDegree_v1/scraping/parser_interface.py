@@ -18,4 +18,8 @@ class Parser:
     parsing specific to the strategy and returns a list of items parsed from the string.
     """
     def parse(self, txt: str) -> list:
+        """
+        Abstract method to parse a string output and return a list of elements,
+        depending on the implementation.
+        """
         raise NotImplementedError("Attempt to call abstract parse()")
