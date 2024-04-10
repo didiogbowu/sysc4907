@@ -532,6 +532,13 @@
         console.log(startYear);
         loadStartYear(startYear);
 
+        /**
+         * When a course box is clicked this function is called. The information sidebar is opened
+         * and rendered.
+         * 
+         * @param {String} id The id of the course box DOM element
+         * 
+        */
         function displayInfo(id) {
             let infoBox = document.getElementById("infoBox");
             
@@ -595,6 +602,123 @@
             }
         }
         
+        
+        /**
+         * This function fills up the information sidebar with Engineering electives and adjacent insert buttons.
+         * It calls update().
+         * 
+        */
+        function specificUpdate() {
+            infoBox.children[0].innerHTML = ENGINEERING;
+            
+            if (!(elctvBoxSelected.children[0].children[0].innerHTML == "Elective")) { 
+                const element = document.createElement("div");
+                element.className = "row";
+                
+                const button = document.createElement("button");
+                        
+                button.className = "selected";
+                button.innerHTML = "SELECTED";
+                
+                button.onclick = () => {
+                    insertElective(button);    
+                }
+                
+                const nameOfCourse = document.createElement("p");
+                nameOfCourse.className = "col-3";
+                nameOfCourse.style.fontSize = "10pt";
+                const text = document.createTextNode(elctvBoxSelected.children[0].children[0].innerHTML);
+                
+                nameOfCourse.appendChild(text);  
+                element.appendChild(nameOfCourse);
+                element.appendChild(button);
+                
+                infoBox.appendChild(element);
+            } 
+            
+            for (let i = 0; i < electiveReqs.length; ++i) {
+                var totalNumberNeeded =  electiveReqs[i].totalNumNeeded;
+                let button;
+                                
+                for (let j = 0; j < electiveReqs[i].reqData.length; ++j) {                    
+                    if (electiveReqs[i].reqData[j].type == "specific") {
+                        const obj = electiveReqs[i].reqData[j].code.split(", ");
+                        
+                        update(obj, i, j); 
+                    }
+                    else if (electiveReqs[i].reqData[j].type == "list") {
+                        const obj = specialInfo[electiveReqs[i].reqData[j].code];
+                        
+                        update(obj, i, j); 
+                    }
+                    else if (electiveReqs[i].reqData[j].type == "general") {
+                        const pattern = electiveReqs[i].reqData[j].code; 
+                        const obj = [];
+                        const currArray = Object.keys(courseInfo);
+                        
+                        for (code of currArray) {
+                            if (pattern.test(code) && !(mainline.includes(code))) obj.push(code);
+                        }
+                                                
+                        update(obj, i, j); 
+                    }   
+
+                }
+                
+                if (i < electiveReqs.length - 1) {
+                    infoBox.appendChild(document.createElement("br"));
+                    infoBox.appendChild(document.createElement("hr"));
+                    infoBox.appendChild(document.createElement("br"));
+                }
+            }
+        }
+        
+        /**
+         * This function fills up the information sidebar with non-Engineering electives and adjacent
+         * insert buttons. It calls update().
+         * 
+         * @param {String} elctvType The key with which to get data from the electives JSON object
+         * @param {String} electiveTitle The title of the elective type
+         * 
+        */
+        function updateInfoBox(elctvType, electiveTitle) {
+            if (!(elctvBoxSelected.children[0].children[0].innerHTML == "Elective")) { 
+                const element = document.createElement("div");
+                element.className = "row";
+                
+                const button = document.createElement("button");
+                        
+                button.className = "selected";
+                button.innerHTML = "SELECTED";
+                
+                button.onclick = () => {
+                    insertElective(button);    
+                }
+                
+                const nameOfCourse = document.createElement("p");
+                nameOfCourse.className = "col-3";
+                nameOfCourse.style.fontSize = "10pt";
+                const text = document.createTextNode(elctvBoxSelected.children[0].children[0].innerHTML);
+                
+                nameOfCourse.appendChild(text);  
+                element.appendChild(nameOfCourse);
+                element.appendChild(button);
+                
+                infoBox.appendChild(element);
+            } 
+            
+            infoBox.children[0].innerHTML = electiveTitle;
+            update(specialInfo[elctvType]);
+        }
+        
+        /**
+         * This function fills up the information sidebar with electives and adjacent insert buttons.
+         * 
+         * @param {Node} someObject The JSON object elective data is drawn from
+         * @param {Number} i First level of Engineering elective requirements
+         * @param {Number} j Second level of Engineering elective requirements
+         * 
+        */
         function update(someObject, i, j)  {
             console.log(elctvs_added);
 
@@ -633,11 +757,6 @@
                     element1.appendChild(nameOfCourse1);
                     element1.appendChild(button1);
                 }
-                
-                // const element2 = document.createElement("div");
-                // element2.className = "row";
-                
-                // element2.className = "col-6 h-5";
 
                 let stringToAdd2;
                 
@@ -670,112 +789,14 @@
                     element1.appendChild(button2);
                 }
                 
-                // twoColumns.appendChild(element1);
-                // twoColumns.appendChild(element2);
-                
                 infoBox.appendChild(element1);
             }
         }
         
-        function specificUpdate() {
-            infoBox.children[0].innerHTML = ENGINEERING;
-            
-            if (!(elctvBoxSelected.children[0].children[0].innerHTML == "Elective")) { 
-                const element = document.createElement("div");
-                element.className = "row";
-                
-                const button = document.createElement("button");
-                        
-                button.className = "selected";
-                button.innerHTML = "SELECTED";
-                
-                button.onclick = () => {
-                    insertElective(button);    
-                }
-                
-                const nameOfCourse = document.createElement("p");
-                nameOfCourse.className = "col-3";
-                nameOfCourse.style.fontSize = "10pt";
-                const text = document.createTextNode(elctvBoxSelected.children[0].children[0].innerHTML);
-                
-                nameOfCourse.appendChild(text);  
-                element.appendChild(nameOfCourse);
-                element.appendChild(button);
-                
-                infoBox.appendChild(element);
-            } 
-            
-            for (let i = 0; i < electiveReqs.length; ++i) {
-                var totalNumberNeeded =  electiveReqs[i].totalNumNeeded;
-                let button;
-                
-                // if (electiveReqs[i].totalCount == electiveReqs[i].totalNumNeeded) continue;
-                
-                for (let j = 0; j < electiveReqs[i].reqData.length; ++j) {
-                    // if (electiveReqs[i].reqData[j].count == electiveReqs[i].reqData[j].maxNeeded) continue;
-                    
-                    if (electiveReqs[i].reqData[j].type == "specific") {
-                        const obj = electiveReqs[i].reqData[j].code.split(", ");
-                        
-                        update(obj, i, j); 
-                    }
-                    else if (electiveReqs[i].reqData[j].type == "list") {
-                        const obj = specialInfo[electiveReqs[i].reqData[j].code];
-                        
-                        update(obj, i, j); 
-                    }
-                    else if (electiveReqs[i].reqData[j].type == "general") {
-                        const pattern = electiveReqs[i].reqData[j].code; 
-                        const obj = [];
-                        const currArray = Object.keys(courseInfo);
-                        
-                        for (code of currArray) {
-                            if (pattern.test(code) && !(mainline.includes(code))) obj.push(code);
-                        }
-                                                
-                        update(obj, i, j); 
-                    }   
-
-                }
-                
-                if (i < electiveReqs.length - 1) {
-                    infoBox.appendChild(document.createElement("br"));
-                    infoBox.appendChild(document.createElement("hr"));
-                    infoBox.appendChild(document.createElement("br"));
-                }
-            }
-        }
-        
-        function updateInfoBox(elctvType, electiveTitle) {
-            if (!(elctvBoxSelected.children[0].children[0].innerHTML == "Elective")) { 
-                const element = document.createElement("div");
-                element.className = "row";
-                
-                const button = document.createElement("button");
-                        
-                button.className = "selected";
-                button.innerHTML = "SELECTED";
-                
-                button.onclick = () => {
-                    insertElective(button);    
-                }
-                
-                const nameOfCourse = document.createElement("p");
-                nameOfCourse.className = "col-3";
-                nameOfCourse.style.fontSize = "10pt";
-                const text = document.createTextNode(elctvBoxSelected.children[0].children[0].innerHTML);
-                
-                nameOfCourse.appendChild(text);  
-                element.appendChild(nameOfCourse);
-                element.appendChild(button);
-                
-                infoBox.appendChild(element);
-            } 
-            
-            infoBox.children[0].innerHTML = electiveTitle;
-            update(specialInfo[elctvType]);
-        }
-        
+        /**
+         * This function is called when the 'x' is pressed on the information sidebar. It closes the sidebar.
+         * 
+        */
         function removeInfo() {
             let infoBox = document.getElementById("infoBox");
         
@@ -787,6 +808,13 @@
             }
         }
         
+        /**
+         * This function is called when the adjacent insert buttons in the information sidebar are clicked.
+         * It places the elective course name into the corresponding course box.
+         * 
+         * @param {Node} button The adjacent insert button
+         * 
+        */
         function insertElective(button) {
             let courseCode = elctvBoxSelected.children[0].children[0].innerHTML;
             
@@ -826,6 +854,11 @@
             }
         }
         
+        /**
+         * This function is called when the '+' is at the top of the page is pressed. 
+         * It adds the a new semester column.
+         * 
+        */
         function addColumn() {
             const rowOfSemesters = document.getElementById("mainContent").children[2]; 
             const newEmptyColumn = document.createElement("div");
@@ -859,6 +892,11 @@
             numOfAddedColumns++;
         }
         
+        /**
+         * This function is called when the '-' is at the top of the page is pressed. 
+         * It removes one extra semester column.
+         * 
+        */
         function deleteColumn() {            
             if (numOfAddedColumns > 0) {
                 const rowOfSemesters = document.getElementById("mainContent").children[2];
@@ -900,23 +938,37 @@
                 }
             }
         }
-        
-        function modifyBox(id) {  
-            let currBox = document.getElementById(id);
-            
-            if (currBox.style.opacity == 1) currBox.style.opacity = 0.2;
-            else currBox.style.opacity = 1;
-        }
-        
+
+        /**
+         * This function is called when the adjacent insert buttons in the information sidebar are clicked.
+         * It places the elective course name into the corresponding course box.
+         * 
+         * @param {Event} ev 
+         * 
+        */
         function allowDrop(ev) {
             ev.preventDefault();
         }
 
+        /**
+         * This function is called when the adjacent insert buttons in the information sidebar are clicked.
+         * It places the elective course name into the corresponding course box.
+         * 
+         * @param {Event} ev 
+         * 
+        */
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
             ev.dataTransfer.setData("swap", ev.target.previousElementSibling.id);
         }
 
+        /**
+         * This function is called when the adjacent insert buttons in the information sidebar are clicked.
+         * It places the elective course name into the corresponding course box.
+         * 
+         * @param {Event} ev 
+         * 
+        */
         function drop(ev) {
             ev.preventDefault();
             var dragged = ev.dataTransfer.getData("text");
@@ -1066,12 +1118,28 @@
             return [];
         }
  
+        /**
+         * This function returns the current semester based on the current month. It is a helper function for loadStartYear().
+         *
+         * @param {Number} m The month (1-12)
+         *
+         * @return {String} The semester
+         * 
+        */
         function getSemesterString(m) {
             if ((m >= 1) && (m <= 4)) return 'W';
             else if (m < 9) return 'S';
             else return 'F';
         }
         
+        /**
+         * This function returns the year and semester that succeed the given one. It is a helper function for loadStartYear().  
+         *
+         * @param {String} nextString The current year and semester
+         *
+         * @return {String} The next year and semester
+         * 
+        */
         function getNextString(nextString) {
             let nextYear;
             let nextSemester;
@@ -1095,6 +1163,12 @@
             return nextYear + nextSemester;
         }
         
+        /**
+         * This function makes the semester column headers have the correct years and semesters.
+         *
+         * @param {String} startYear The start year
+         * 
+        */
         function loadStartYear(startYear) {
             const headers = document.getElementsByClassName("semesterHeader");
                         
@@ -1126,10 +1200,21 @@
             }
         }
         
+        /**
+         * This function is called when the start year (at the top of the first semester column) is changed.
+         * 
+        */
         function reloadStartYear() {
             loadStartYear(Number(document.getElementById("startYearSelect").value));
         }
         
+        /**
+         * This function renders the home page using the data saved in the browser. This called in the case of an out of 
+         * order load.
+         * 
+         * @param {Array} savedTree JSON object representing the saved state of the page
+         * 
+        */
         function loadSavedTree(savedTree) {
             const rowOfSemesters = document.getElementById("mainContent").children[2];
             for (let i = 0; i < savedTree.length; ++i) {
@@ -1189,6 +1274,16 @@
             }
         }
         
+        /**
+         * This is helper function for handleSaveRequest(). It is for cases where an elective box has a course inserted into it.
+         * 
+         * 
+         * @param {String} courseCode The course code on the course box
+         * @param {String} courseTitle The course title on the course box
+         * 
+         * @return {String} The same as course code unless elective. In which case, there will be some extra data attached.
+         * 
+        */
         function resolution(courseCode, courseTitle) {           
             let courseTitleWords = courseTitle.split(" ");
             
@@ -1205,6 +1300,11 @@
             }
         }
         
+        /**
+         * This function saves the current state of the home page. It uses HTML Web Storage to store the 
+         * data in the user's browser.
+         * 
+        */
         function handleSaveRequest() {
             window.localStorage.setItem("program", program);
             window.localStorage.setItem("startYear", startYear);
@@ -1227,6 +1327,12 @@
             window.localStorage.setItem("savedTree", JSON.stringify(newTree));
         }
         
+        /**
+         * This function triggers timetable generation and redirects to the result and filters page
+         * 
+         * @param {String} id The id of the button clicked 
+         * 
+        */
         function handleLoadRequest(id) {
             let currentElement = document.getElementById(id);
             let parentColumn = document.getElementById(id.split("btn")[1]);
@@ -1242,12 +1348,12 @@
                 
                 if (sibling.tagName != 'DIV') {
                     if (sibling.tagName == 'P') {
-                        if (sibling.innerHTML[4] == 'W') termData.semester = "Winter";
-                        else if (sibling.innerHTML[4] == 'F') termData.semester = "Fall";
+                        if (sibling.textContent[4] == 'W') termData.semester = "Winter";
+                        else if (sibling.textContent[4] == 'F') termData.semester = "Fall";
                     }
                     continue;
                 }
-                courseCodes.push(sibling.children[0].children[0].innerHTML);
+                courseCodes.push(sibling.children[0].children[0].textContent);
             }
             
             termData.course_codes = courseCodes;
