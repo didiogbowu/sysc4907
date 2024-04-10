@@ -57,7 +57,6 @@ div[class~="col"] {
 .hiddable {
 	margin-bottom: 15px;
 	cursor: pointer;
-
 }
 
 .hiddable:hover {
@@ -78,8 +77,9 @@ div.closed {
 	display: none;
 }
 
+
 div.hidden .hiddable span {
-	display: none;
+	visibility: hidden;
 }
 
 div.hidden button {
@@ -90,6 +90,7 @@ div.hidden .semesterHeader {
 	margin: 0;
 	width: 0px;
 }
+
 
 div.hidden .hiddable::before {
 	content: "\25BC";

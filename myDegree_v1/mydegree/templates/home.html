@@ -41,7 +41,7 @@
             <br>    
             <div class="row" style="margin-left: 1vw; margin-right: 1vw;">
                 <div class="col ml-0 pl-0 pr-0" id="1F" ondrop="drop(event)" ondragover="allowDrop(event)">   
-                    <button id="btn1F", style="visibility: hidden;">Load</button>
+                    <button id="btn1F" style="visibility: hidden;">Load</button>
                     <select id="startYearSelect" onchange="reloadStartYear()">
                         <option value="2018">2018F</option>
                         <option value="2019">2019F</option>
@@ -58,7 +58,7 @@
                 {% endfor %}
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="1W" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <button id="btn1W", style="visibility: hidden;">Load</button>
+                    <button id="btn1W" style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2021W</p>  
                 {% for i in range(len(mainline[1])) %}
                     <div class="{{ resolution(mainline[1][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[1][i])[0].split()[0].lower() ~ '1' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
@@ -68,13 +68,13 @@
                 {% endfor %}
                 </div>           
                 <div class="col ml-0 hidden" id="1S" style="flex-grow: 0">
-                    <button id="btn1S", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn1S" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button>
                     <div class="semesterHeader hiddable" id="1SHeader" onclick="hide(this.id)">
                         <span>2021S</span>
                     </div>            
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="2F" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <button id="btn2F", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn2F" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2021F</p>
                 {% for i in range(len(mainline[2])) %}
                     <div class="{{ resolution(mainline[2][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[2][i])[0].split()[0].lower() ~ '2' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
@@ -84,7 +84,7 @@
                 {% endfor %}
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="2W" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <button id="btn2W", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn2W" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2022W</p>                
                 {% for i in range(len(mainline[3])) %}
                     <div class="{{ resolution(mainline[3][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[3][i])[0].split()[0].lower() ~ '3' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
@@ -94,13 +94,13 @@
                 {% endfor %}
                 </div>
                 <div class="col ml-0 hidden" id="2S" style="flex-grow: 0">
-                    <button id="btn2S", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn2S" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button>
                     <div class="semesterHeader hiddable" id="2SHeader" onclick="hide(this.id)">
                         <span>2022S</span>
                     </div>
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="3F" ondrop="drop(event)" ondragover="allowDrop(event)" >
-                    <button id="btn3F", onclick="handleLoadRequest(this.id)">Load</button>  
+                    <button id="btn3F" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button>  
                     <p class="semesterHeader">2022F</p>
                 {% for i in range(len(mainline[4])) %}
                     <div class="{{ resolution(mainline[4][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[4][i])[0].split()[0].lower() ~ '4' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
@@ -110,7 +110,7 @@
                 {% endfor %}
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="3W" ondrop="drop(event)" ondragover="allowDrop(event)" style="flex-grow: 0">
-                    <button id="btn3W", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn3W" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button>
                     <p class="semesterHeader">2023W</p>
                 {% for i in range(len(mainline[5])) %}
                     <div class="{{ resolution(mainline[5][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[5][i])[0].split()[0].lower() ~ '5' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
@@ -120,13 +120,13 @@
                 {% endfor %}
                 </div>
                 <div class="col ml-0 hidden" id="3S" style="flex-grow: 0">
-                    <button id="btn3S", onclick="handleLoadRequest(this.id)">Load</button>
+                    <button id="btn3S" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button>
                     <div class="semesterHeader hiddable" id="3SHeader" onclick="hide(this.id)">
                         <span>2023S</span>
                     </div>
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="4F" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <button id="btn4F", onclick="handleLoadRequest(this.id)">Load</button> 
+                    <button id="btn4F" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button> 
                     <p class="semesterHeader">2023F</p>
                 {% for i in range(len(mainline[6])) %}
                     <div class="{{ resolution(mainline[6][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[6][i])[0].split()[0].lower() ~ '6' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
@@ -136,7 +136,7 @@
                 {% endfor %}
                 </div>
                 <div class="col ml-0 pl-0 pr-0" id="4W" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <button id="btn4W", onclick="handleLoadRequest(this.id)">Load</button>    
+                    <button id="btn4W" onclick="handleLoadRequest(this.id)" style="visibility: hidden;">Load</button>    
                     <p class="semesterHeader">2024W</p>
                 {% for i in range(len(mainline[7])) %}
                     <div class="{{ resolution(mainline[7][i])[0].split()[0].lower() }}" id="{{ resolution(mainline[7][i])[0].split()[0].lower() ~ '7' ~ str(i)}}" style="opacity: 1;" draggable="true" ondragstart="drag(event)" onclick="displayInfo(this.id)">
@@ -188,8 +188,9 @@
                 {% if courses[keys[i]]['prerequisites'] %}
                 prerequisites: {{ courses[keys[i]]['prerequisites']|tojson }},
                 {% else %}
-                prerequisites: null
+                prerequisites: null,
                 {% endif %}
+                semesters: "{{ courses[keys[i]]['semesters'] }}"
             },
             {% endfor %}  
         };
@@ -919,16 +920,34 @@
         function drop(ev) {
             ev.preventDefault();
             var dragged = ev.dataTransfer.getData("text");
-                        
+            const draggedBox = document.getElementById(dragged);
+            
             if (ev.target.tagName != 'DIV') return;
             
-            if (ev.target.className == "col ml-0 pl-0 pr-0") ev.target.appendChild(document.getElementById(dragged));
+            let semesterHeader;
+            for (let element of ev.target.children) {
+                if (element.tagName == 'P') {
+                    semesterHeader = element;
+                    break;
+                }
+            }
+
+            if (!(courseInfo[draggedBox.children[0].textContent].semesters.includes(semesterHeader.textContent[4]))) {
+                // Error state
+                console.log("Here!");
+                draggedBox.style.backgroundColor += "red";
+            }
+            else {
+                // End error state
+                draggedBox.style.backgroundColor += "white";
+            }
+            
+            if (ev.target.className == "col ml-0 pl-0 pr-0") ev.target.appendChild(draggedBox);
             else {
                 var swapSpot = ev.dataTransfer.getData("swap");
                 
-                ev.target.previousElementSibling.insertAdjacentElement("afterend", document.getElementById(dragged)); 
+                ev.target.previousElementSibling.insertAdjacentElement("afterend", draggedBox); 
                 document.getElementById(swapSpot).insertAdjacentElement("afterend", ev.target);
-                
             }
 
             scanReqs();
@@ -1047,7 +1066,7 @@
             return [];
         }
  
-        function getMonthString(m) {
+        function getSemesterString(m) {
             if ((m >= 1) && (m <= 4)) return 'W';
             else if (m < 9) return 'S';
             else return 'F';
@@ -1078,12 +1097,30 @@
         
         function loadStartYear(startYear) {
             const headers = document.getElementsByClassName("semesterHeader");
+                        
             let nextString =  (Number(startYear) + 1) + "W";
             
             document.querySelector("option[value='" + startYear +"']").selected = true;
             
             for (let i = 0; headers.length; ++i) {
+                if (headers[i].className == "semesterHeader hiddable") {
+                    nextString =  getNextString(nextString);
+                    continue;
+                }
+            
                 headers[i].textContent = nextString;
+                
+                let semesterRightNow = getSemesterString(date.getMonth());
+                let yearRightNow = date.getFullYear();
+
+                if ((((semesterRightNow == 'S') || (semesterRightNow == 'F')) && ((nextString == (yearRightNow + 'F')) || (nextString == ((yearRightNow + 1) + 'W')))) ||
+                    ((semesterRightNow == 'W') && (nextString == (yearRightNow + 'W')))) 
+                {
+                    console.log((semesterRightNow == 'W'));
+                    console.log(semesterRightNow);
+                    console.log(yearRightNow);
+                    headers[i].previousElementSibling.style.visibility = "visible";
+                }
                 
                 nextString =  getNextString(nextString);
             }
@@ -1144,7 +1181,6 @@
                         displayInfo(div1.id);
                     }
                     
-                    // courseCode.appendChild(text1);
                     courseTitle.appendChild(text2);
                     div1.appendChild(courseCode);
                     div1.appendChild(courseTitle);
