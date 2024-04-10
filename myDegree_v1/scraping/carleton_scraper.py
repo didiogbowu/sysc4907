@@ -83,23 +83,25 @@ def fetch_and_store(url: str, destination: str, type="html", replace=False) -> N
                     file.write(page.content)
 
 
-def scrape_dept_courses() -> None:
+def scrape_dept_courses(replace=False) -> None:
     """
     Fetches the html for all departments and stores them in the DEPT_HTML_DIR.
-    Files already present will not be fetched again.
+    By default, files already present will not be fetched again.
+    :param replace: If True (default False), replaces scraped files if existing
     :return: None
     """
     for dept in DEPTS:
         dept_file = f"{DEPT_HTML_DIR}/{dept}.html"
         dept_url = DEPT_COURSES_URL + dept
-        fetch_and_store(dept_url, dept_file)
+        fetch_and_store(dept_url, dept_file, replace=replace)
 
 
-def scrape_program_trees() -> None:
+def scrape_program_trees(replace=False) -> None:
     """
     Fetches the html for the last five years from Carleton's website, storing
     the files in the directory specified by global PROGRAM_HTML_DIR.
-    Files already present will not be fetched again.
+    By default, files already present will not be fetched again.
+    :param replace: If True (default False), replace scraped files if existing
     :return: None
     """
     years = get_catalog_years(5)
@@ -109,14 +111,15 @@ def scrape_program_trees() -> None:
             calendar_url = CURRENT_CALENDAR_URL
         else:
             calendar_url = f"{OLD_CALENDAR_URL.replace("YEAR", year)}"
-        fetch_and_store(calendar_url, catalog_file)
+        fetch_and_store(calendar_url, catalog_file, replace=replace)
 
 
-def scrape_electives() -> None:
+def scrape_electives(replace=False) -> None:
     """
     Fetches the current PDF elective lists for Complementary Studies, COMP electives,
     and basic science electives, and stores in the directory specified by
-    global ELECTIVES_PDF_DIR. Replaces existing files.
+    global ELECTIVES_PDF_DIR. Replaces existing files by default.
+    :param replace: If True (default False), replaces scraped files if existing
     :return: None
     """
     for elective_urls in ELECTIVES_URLS:
@@ -126,7 +129,7 @@ def scrape_electives() -> None:
             pdf_link = re.search(pdf_link_regex, page.text)
             if pdf_link:
                 dest = f"{ELECTIVES_PDF_DIR}/{elective_urls.split('/')[-2]}.pdf"
-                fetch_and_store(pdf_link.group(), dest, type="file", replace=True)
+                fetch_and_store(pdf_link.group(), dest, type="file", replace=replace)
 
 
 def catalog_filename(program_name: str, catalog_year: str) -> str:
@@ -159,15 +162,18 @@ def get_catalog_years(years_to_keep: int) -> list[str]:
     return [f"{year}-{year + 1}" for year in start_years]
 
 
-def scrape_and_parse_all():
+def scrape_and_parse_all(replace=False):
     """
     Scrape all data for program trees, department courses, and electives lists.
     Perform parsing on them and store the parsed data as JSON files.
+    Existing files may optionally be replaced. By default, skips fetching files
+    if they already exist.
+    :param replace: True to replace existing files, False (default) to skip
     :return: None
     """
-    scrape_program_trees()
-    scrape_dept_courses()
-    scrape_electives()
+    scrape_program_trees(replace=replace)
+    scrape_dept_courses(replace=replace)
+    scrape_electives(replace=replace)
     course_parser = course_info.CourseInfoParser()
     program_parser = program_tree.ProgramTreeParser()
     electives_parser = electives_pdf.ElectiveParser()
@@ -210,12 +216,13 @@ if __name__ == "__main__":
 
     # Update eng_electives.json
     # directory = DEPT_HTML_DIR
+    # course_scraper = course_info.CourseInfoParser()
     # with open("../mydegree/static/data/eng_electives.json", "r+") as crsfile:
     #     courses = json.loads(crsfile.read())
     #     course_codes = courses.keys()
     #     for dept_file in [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]:
     #         with open(f"{directory}/{dept_file}", "r", encoding="utf-8") as source:
-    #             scraped_courses = course_info.scrape_courses(source.read())
+    #             scraped_courses = course_scraper.parse(source.read())
     #             for new_course in scraped_courses:
     #                 if new_course["code"] in course_codes:
     #                     code = new_course["code"]
