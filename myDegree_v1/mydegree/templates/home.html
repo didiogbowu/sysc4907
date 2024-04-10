@@ -1005,6 +1005,13 @@
             scanReqs();
         }
 
+        /**
+         * Scan all course divs and check if their prerequisites are met.
+         * Required courses must be in a semester column before the current course,
+         * unless the prerequisite is marked as concurrent, in which case it may be
+         * in the same semester. If any prerequisites are missing, the course is
+         * coloured red and a warning will be displayed at the bottom of the page.
+         */
         function scanReqs() {
             let container = document.querySelectorAll("#mainContent > div.row")[1];
             let semesters = [];
@@ -1062,9 +1069,24 @@
             warn.textContent = warntext;
         }
 
+        /**
+         * Check whether the given prerequisites are satisfied using the
+         * provided list of passed courses and list of courses being taken.
+         * Returns a list of courses that are not fulfilled.
+         * @param prerequisites The prerequisite tree to check
+         * @param passed A list of course codes that have been completed
+         * @param concurrent A list of course codes that are being taken
+         * @returns {*[]} A list of unfulfilled courses from the prerequisites
+         */
         function checkReqs(prerequisites, passed, concurrent) {
             if (prerequisites && passed && concurrent) {
 
+                /**
+                 * Return whether the course is taken, factoring in if it is
+                 * concurrent or not.
+                 * @param crs The course in question
+                 * @returns {boolean} True if the course is fulfilled, false otherwise
+                 */
                 function courseTaken(crs) {
                     if (crs && crs[0] == "c") {
                         crs = crs.substring(1);
@@ -1079,6 +1101,13 @@
                     return false;
                 }
 
+                /**
+                 * Recursively check each course in the prerequisite tree and
+                 * call courseTaken on them. Returns a list of courses for which
+                 * courseTaken returned false.
+                 * @param root The root of the tree
+                 * @returns {*[]} A list of unfulfilled courses from the tree
+                 */
                 function evaluate(root) {
                     let missing = [];
                     if (root.data == "&") {
