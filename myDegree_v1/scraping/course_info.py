@@ -226,7 +226,7 @@ class CourseInfoParser(Parser):
                     stack.append(root)
                 elif type(elements[i]) is list:
                     # Compound expression
-                    subtree = self.build_tree(elements[i])
+                    subtree = self.build_tree(elements[i], stack=stack)
                     stack.append(subtree)
                 else:
                     # Operand node
