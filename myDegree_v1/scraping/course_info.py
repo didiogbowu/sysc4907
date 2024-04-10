@@ -18,6 +18,9 @@ class Node:
         self._data = data
         self._children = []
 
+    def __str__(self):
+        return str(self.to_dict())
+
     def add_child(self, node: "Node") -> None:
         """
         Add a child to this Node.
@@ -26,12 +29,12 @@ class Node:
         """
         self._children.append(node)
 
-    def as_dict(self) -> dict:
+    def to_dict(self) -> dict:
         """
         Return a dictionary representation of the Node and its children.
         :return: dictionary of self and children
         """
-        return {"data": self._data, "children": [child.as_dict() for child in self._children]}
+        return {"data": self._data, "children": [child.to_dict() for child in self._children]}
 
 
 class CourseInfoParser(Parser):
@@ -262,7 +265,7 @@ class CourseInfoParser(Parser):
         else:
             parse = []
 
-        tree = self.build_tree(parse).as_dict()
+        tree = self.build_tree(parse).to_dict()
         if conditions:
             tree["conditions"] = conditions
             tree["text"] = req_text
