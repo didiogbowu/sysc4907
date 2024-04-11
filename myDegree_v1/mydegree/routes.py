@@ -22,7 +22,7 @@ courses = dict()
 section_regex = dict()
 
 programs = ["Computer Systems Engineering", "Software Engineering", "Communications Engineering", "Biomedical & Electrical Engineering"]
-years = ["2018", "2019", "2020", "2021"]
+years = ["2018", "2019", "2020", "2021", "2022", "2023"]
 
 elctv_titles = {
     "BASICSCI": "Basic Science Elective",
@@ -54,19 +54,7 @@ all_elctv_data = [
                     }
                 ]
             }
-        ],
-        [    
-            {
-                "total_num_needed": 2,
-                "req_data": [
-                    {
-                        "type": "general",
-                        "code": "(SYSC|ELEC) (3|4)(\\d{3})",
-                        "max_needed": 2
-                    }
-                ]
-            },
-        ],
+        ],       
         [
             {
                 "total_num_needed": 2,
@@ -108,6 +96,18 @@ all_elctv_data = [
                     }
                 ]
             }
+        ],
+        [    
+            {
+                "total_num_needed": 2,
+                "req_data": [
+                    {
+                        "type": "general",
+                        "code": "(SYSC|ELEC) (3|4)(\\d{3})",
+                        "max_needed": 2
+                    }
+                ]
+            },
         ],
         [
             {
@@ -334,7 +334,7 @@ def filters():
             list_of_names = copy_list,
             names_and_sections = names_and_sections,
             none_list = none_list,
-            timetables = timetables       
+            timetables = list(set(timetables))
         )
 
 @app.route("/result/")
