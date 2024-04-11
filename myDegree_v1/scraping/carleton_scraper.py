@@ -206,6 +206,7 @@ def read_and_parse_dir(read_dir: str, dest_dir: str, parser: "Parser", file_type
             for page in reader.pages:
                 text += page.extract_text()
         data_file = file.replace(".pdf", ".json")
+        data_file = data_file.replace(".html", ".json")
         with open(f"{dest_dir}/{data_file}", "w") as destination:
             result = parser.parse(text)
             destination.write(json.dumps(result, indent=2))
