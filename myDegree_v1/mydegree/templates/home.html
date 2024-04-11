@@ -983,17 +983,25 @@
                     break;
                 }
             }
-
-            if (!(courseInfo[draggedBox.children[0].textContent].semesters.includes(semesterHeader.textContent[4]))) {
-                // Error state
-                console.log("Here!");
-                draggedBox.style.backgroundColor += "red";
+            
+            if (draggedBox.children[1].textContent == "Complementary Studies Elective") {
+                
+            }
+            else if (draggedBox.children[1].textContent == "Basic Science Elective") {
+                
             }
             else {
-                // End error state
-                draggedBox.style.backgroundColor += "white";
+                if (!(courseInfo[draggedBox.children[0].textContent].semesters.includes(semesterHeader.textContent[4]))) {
+                    // Error state
+                    console.log("Here!");
+                    draggedBox.style.backgroundColor += "red";
+                }
+                else {
+                    // End error state
+                    draggedBox.style.backgroundColor += "white";
+                }
             }
-            
+
             if (ev.target.className == "col ml-0 pl-0 pr-0") ev.target.appendChild(draggedBox);
             else {
                 var swapSpot = ev.dataTransfer.getData("swap");
@@ -1001,7 +1009,7 @@
                 ev.target.previousElementSibling.insertAdjacentElement("afterend", draggedBox); 
                 document.getElementById(swapSpot).insertAdjacentElement("afterend", ev.target);
             }
-
+                
             scanReqs();
         }
 

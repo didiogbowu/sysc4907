@@ -268,7 +268,7 @@
                             {% endfor %}
                             {% endfor %}
                             {% for j in range(len(timetables[0].courses)) %}
-                            {% if timetables[0].courses[j].days[0] is not none %}
+                            {% if (timetables[0].courses[j].code.split()[0] + " " + timetables[0].courses[j].code.split()[1]) not in none_list.keys() %}
                             {% if len(timetables[0].courses[j].days) == 1 %}
                                 <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock", id={{ "courseBlock" ~ str(j) }}></div>
                             {% elif len(timetables[0].courses[j].days) == 2 %}
@@ -321,7 +321,7 @@
             let HEIGHT = 30;
             let HEIGHT_REF = 30;
             let SCALE = 1.5;
-            
+                        
             var listOfNames = [
                 {% for i in range(len(list_of_names)) %}
                 {% if i != len(list_of_names) - 1 %}
@@ -601,13 +601,15 @@
                 
                 const courseSections = document.getElementsByClassName("courseSection");
                 
-                for (let i = 0; i < courseSections.length; ++i) { 
+                for (let i = 2; i < courseSections.length; ++i) { 
                     let currCourseCode = courseSections[i].children[0].children[0].innerHTML;
                     let alphabets = "";
                     let sectionRegex = "";
                     let lectureCount = 0;
                     let labCount = 0;
                     let hitCount = 0;
+                    
+                    console.log(currCourseCode);
                                         
                     for (let j = 0; j < courseSections[i].children.length; ++j) {
                         if (courseSections[i].children[j].type == "checkbox") {
