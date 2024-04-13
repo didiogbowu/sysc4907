@@ -4,6 +4,41 @@ from mydegree import app, db
 from mydegree.models import CourseData
 
 class Course:
+    """ This class represents a Carleton University course to be scheduled in a timetable.
+    
+        Attributes
+        ----------
+        crn : int
+            The course registration number
+        code : str
+            The course code made up of the department code, the course number, and the 
+            course section
+        title : str
+            The title of the course
+        days : list
+            A list of numbers (1-5) representing the days of the week the course's 
+            meetings occur
+        week : int
+            The week frequency of the course. 0 if every week. 1 for odd biweekly.
+            2 for even biweekly.
+        start_time : int
+            The start time of the course's meetings in minutes
+        end_time : int
+            The end time of the course's meetings in minutes
+            
+        Methods
+        -------
+        __repr__
+            This dunder method is implemented
+        same_day(other : 'data_structures.Course')
+            Returns true if other has any of the same day values as self
+        separate_class_times(other : 'data_structures.Course')
+            Returns true if the start_time and end_time values of other do
+            not intersect with those of self
+        biweekly_separate(other : 'data_structures.Course')
+            Returns true if the week values of other and self are 1 or 2 respectively
+            without loss of generality
+    """
     def __init__(self, crn, code, title, days, week, start_time, end_time):
         self.crn = crn
         self.code = code
@@ -25,15 +60,38 @@ class Course:
                     return True
         return False
                 
-    def seperate_class_times(self, other):
+    def separate_class_times(self, other):
         if (self.start_time is None) or (other.start_time is None):
             return True
         return ((other.start_time < self.start_time) and (other.end_time < self.start_time)) or ((other.start_time > self.end_time) and (other.end_time > self.end_time))
 
-    def biweekly_seperate(self, other):
+    def biweekly_separate(self, other):
         return (self.week != 0) and (other.week != 0) and (self.week != other.week)
     
 class Timetable:
+    """ This class represents a timetable scheduled with Carleton University courses.
+    
+        Attributes
+        ----------
+        courses : list
+            A list of Course objects representing the courses on the timetable
+
+        Methods
+        -------
+        __repr__
+            This dunder method is implemented
+        __add__
+            This dunder method is implemented. It returns a new Timetable object with all
+            the courses from the operands that could be added using add_course().
+        add_course(new_course : 'data_structures.Course')
+            new_course is added to self.courses provided that for all Course objects currently
+            in same_day returns false, separate_class_times returns true, and biweekly_separate
+            returns true.
+        x_add_course(self, new_course: 'data_structures.Course', x_timetable: 'data_structures.Timetable')
+            This does the same thing as add_course() but also considers all the courses (blocked off times) in 
+            x_timetable. This method of implementing time filters should be deprecated. See final report 
+            Chapter 6.
+    """
     def __init__(self, courses: List['data_structures.Course']):
         self.courses = courses
 
@@ -62,10 +120,10 @@ class Timetable:
             if not course.same_day(new_course):
                 add_to_list = True
             else:
-                if course.seperate_class_times(new_course):
+                if course.separate_class_times(new_course):
                     add_to_list = True
                 else:
-                    if course.biweekly_seperate(new_course):
+                    if course.biweekly_separate(new_course):
                         add_to_list = True
                     else:
                         add_to_list = False
@@ -89,10 +147,10 @@ class Timetable:
             if not course.same_day(new_course):
                 add_to_list = True
             else:
-                if course.seperate_class_times(new_course):
+                if course.separate_class_times(new_course):
                     add_to_list = True
                 else:
-                    if course.biweekly_seperate(new_course):
+                    if course.biweekly_separate(new_course):
                         add_to_list = True
                     else:
                         add_to_list = False
@@ -102,7 +160,7 @@ class Timetable:
             if not course.same_day(new_course):
                 add_to_list = True
             else:
-                if course.seperate_class_times(new_course):
+                if course.separate_class_times(new_course):
                     add_to_list = True
                 else:
                     add_to_list = False
@@ -177,7 +235,8 @@ def db_model_to_data_struct(db_model: 'models.CourseData') -> 'data_structures.C
     )
 
 def merge_crses(first: List['data_structures.Timetable'], second: List['data_structures.Timetable']) -> List['data_structures.Timetable']:
-    """ This method implements an algorithm
+    """ This method implements an algorithm to combine two lists of timetable objects into one. This method is recursively called
+        by recursive_merge().
 
         Parameters
         ----------
@@ -210,6 +269,21 @@ def merge_crses(first: List['data_structures.Timetable'], second: List['data_str
     return merger
 
 def recursive_merge(num_of_crses: int, section_combos: List[List['data_structures.Timetable']]) -> List['data_structures.Timetable']:
+    """ This method implements an algorithm to recursively combine all the lists of timetables in the the given list to one list
+        of all possible timetables. It is a helper method for all_timetables().
+
+        Parameters
+        ----------
+        num_of_crses : int
+            The number of course names
+        section_combos : list
+            A two-dimensional list of Timetable objects
+            
+        Returns
+        -------
+        list
+            A list of all possible Timetable objects containing all course names
+    """
     if num_of_crses == 0:
         return []
     elif num_of_crses == 1:
@@ -217,7 +291,28 @@ def recursive_merge(num_of_crses: int, section_combos: List[List['data_structure
     else:
         return merge_crses(recursive_merge(num_of_crses - 1, section_combos), section_combos[num_of_crses - 1])
 
-def all_timetables(input_courses: List[str], x_timetable: 'data_structures.Timetable', section_regex, semester: str) -> List['data_structures.Timetable']:   
+def all_timetables(input_courses: List[str], x_timetable: 'data_structures.Timetable', section_regex: dict, semester: str) -> List['data_structures.Timetable']:   
+    """ This method takes in a list of course names and the current semester. Using data from the database it generates a list of all possible 
+        Timetable objects containing all course names. The parameter x_timetable is for time filteration. The parameter section_regex is for
+        course section filteration.
+
+        Parameters
+        ----------
+        input_courses : list
+            The course names with only the department code and the course number
+        x_timetable : 'data_structures.Timetable'
+            A Timetable object with blocked off times represented by Course objects
+        section_regex : dict
+            A dictionary with the course names as the keys and regular expressions 
+            representing the course sections to include as the corresponding values
+        semester : str
+            The given semester (Fall, Winter, or Summer)
+            
+        Returns
+        -------
+        list
+            A list of all possible Timetable objects containing all course names
+    """
     NUM_OF_CRSES = len(input_courses)
     num_of_reg_crses = NUM_OF_CRSES
     
