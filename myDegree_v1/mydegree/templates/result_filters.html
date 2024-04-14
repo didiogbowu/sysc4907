@@ -383,6 +383,14 @@
         {% endfor %}
             timetables.push({{ "courseBlocks" ~ str(i) }});
         {% endfor %}
+        
+            /**
+             * This function copies text to the clipboard. It is a helper function for copyRegstNum() and copyNoneRegstNum()
+             * for copying CRNs.
+             * 
+             * @param {String} text The CRN to be copied
+             * 
+            */
             function unsecuredCopyToClipboard(text) {
                 const textArea = document.createElement("textarea");
                 textArea.value = text;
@@ -400,6 +408,13 @@
                 document.body.removeChild(textArea);
             }
             
+            /**
+             * This function sets the timetable shown in the carousel. It is the helper function for prevTimetable()
+             * and nextTimetable().
+             * 
+             * @param {Number} i The index of the JSON object to be used to set the timetable
+             * 
+            */
             function setTimetable(i) {
                 let oObject;
                 let eObject;
@@ -465,6 +480,10 @@
                 document.getElementById("currTimetableNum").value = i + 1;
             }
         
+            /**
+             * This function is called when the user clicks the 'Previous' button on top of the carousel.
+             * 
+            */
             function prevTimetable() {
                 if (currTimetable == 0) {
                     return;
@@ -477,6 +496,10 @@
                 setTimetable(currTimetable);  
             }
             
+            /**
+             * This function is called when the user clicks the 'Next' button on top of the carousel.
+             * 
+            */
             function nextTimetable() {
                 if (currTimetable == (NUM_OF_TIMETABLES - 1)) {
                     return;
@@ -489,6 +512,11 @@
                 setTimetable(currTimetable);  
             }
             
+            /**
+             * This function is called on change event of the field on top of the carousel showing the current timetable #.
+             * It is used for jumping around the carousel.
+             * 
+            */
             function editCurrTimetable() {
                 currTimetable = document.getElementById("currTimetableNum").value - 1;
                 
@@ -500,6 +528,12 @@
                 }
             }
             
+            /**
+             * This function is called when a course on the timetable is clicked. 
+             * 
+             * @param {String} targerCrseCode The CRN of the course clicked
+             * 
+            */
             function copyRegstNum(targerCrseCode) {
                 for (let i = 0; i < NUM_OF_TIMETABLES; i++) {
                     for (let j = 0; j < timetables[i].length; j++) {
@@ -518,6 +552,12 @@
                 }
             }
 
+            /**
+             * This function is called when an unscheduled course is clicked. 
+             * 
+             * @param {String} targerCrseCode The CRN of the unscheduled course clicked
+             * 
+            */
             function copyNoneRegstNum(targerCrseCode) {
                 if (window.isSecureContext && navigator.clipboard) {
                     navigator.clipboard.writeText(noneList[targerCrseCode]);
@@ -532,11 +572,26 @@
             setTimetable(currTimetable);
             document.getElementById("allTimetablesNum").innerHTML = NUM_OF_TIMETABLES;
 
+            /**
+             * This function is called when an empty time slot on the timetable is clicked. The time slot will be
+             * blocked off when filters are reapplied. If clicked before, it becomes unblocked.
+             *
+             * @param {String} classId The class name of the time slot div clicked
+             * @param {String} id The id of the time slot div clicked
+             * 
+            */
             function blockOff(classId, id) {
                 if (classId == "courseBlockable") document.getElementById(id).className = "courseBlockable blocked";
                 else if (classId == "courseBlockable blocked") document.getElementById(id).className = "courseBlockable";
             }
             
+            /**
+             * This function is called when one of the day headers or time headers (8:30 etc) is clicked. It is used for 
+             * row-wise and column-wise block off.
+             *
+             * @param {String} id The id of the header div clicked
+             * 
+            */
             function blockOffAll(id) {                
                 let courseBlocks = document.getElementsByClassName("courseBlockable");
                 let element = document.getElementById(id);
@@ -553,18 +608,48 @@
                 }
             }
             
+            /**
+             * This function returns the duration of a course based on its CSS height. It is a helper function
+             * for sendFilters().
+             *
+             * @param {Number} height The CSS height of the course div
+             * @return {Number} The corresponding duration of the course
+             * 
+            */
             function getDuration(height) {
                 return (parseFloat(height) / HEIGHT) * HEIGHT_REF * SCALE;
             }
             
+            /**
+             * This function returns the start time of a course based on its CSS margin top. It is a helper function
+             * for sendFilters().
+             *
+             * @param {Number} height The CSS margin top of the course div
+             * @return {Number} The corresponding start time of the course
+             * 
+            */
             function getStartTime(marginTop) {
                 return getDuration(marginTop) + TIMETABLE_ST;
             }
 
+            /**
+             * This function returns the day of a course based on its CSS margin left. It is a helper function
+             * for sendFilters().
+             *
+             * @param {Number} height The CSS margin left of the course div
+             * @return {Number} The corresponding day (1-5) of the course
+             * 
+            */
             function getDay(marginLeft) {
                 return (parseInt(marginLeft) / COURSE_WIDTH) + 1;
             }
             
+            /**
+             * This function is called when the 'Apply' button at the top of the page is clicked. It sends the filters to apply 
+             * in JSON format to the server using Ajax. The properties of the final JSON object sent are the time filters, the 
+             * course sections to include, and the list of course names.
+             *
+            */
             function sendFilters() {
                 const elementList = document.getElementsByClassName("courseBlockable blocked");
                 const timeSlots = [];               

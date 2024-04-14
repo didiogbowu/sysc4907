@@ -510,10 +510,6 @@
             "ENGELCTV": "Engineering Elective"
         }
 
-        // REFACTOR  
-        //    |
-        //    v
-        
         const BASIC_SCI = "Basic Science Elective";
         const COMPLEMENTARY = "Complementary Studies Elective";
         const ENGINEERING = "Engineering Elective"
@@ -869,11 +865,11 @@
             
             endYear = getNextString(rowOfSemesters.lastElementChild.children[1].textContent);
             
+            button.id = "btn" + endYear;
+            button.textContent = "Load";
             newEmptyColumn.id = endYear;
             newEmptyColumn.className = "col ml-0 hidden";
             
-            button.id = "btn" + endYear;
-            button.textContent = "Load";
             header.id = endYear + "Header";
             header.className = "semesterHeader hiddable";
             header.innerHTML = "<span>" + endYear + "</span>";
@@ -882,11 +878,24 @@
             newEmptyColumn.appendChild(header);
             rowOfSemesters.appendChild(newEmptyColumn);
             
+            let semesterRightNow = getSemesterString(date.getMonth());
+            let yearRightNow = date.getFullYear();
+
+
             button.onclick = () => {
                 handleLoadRequest(button.id);
             }
             header.onclick = () => {
                 hide(header.id);
+            }
+            
+            if ((((semesterRightNow == 'S') || (semesterRightNow == 'F')) && ((endYear == (yearRightNow + 'F')) || (endYear == ((yearRightNow + 1) + 'W')))) ||
+                ((semesterRightNow == 'W') && (endYear == (yearRightNow + 'W')))) 
+            {
+                button.style.visibility = "visible";
+            }
+            else {
+                button.style.visibility = "hidden";
             }
             
             numOfAddedColumns++;
@@ -909,6 +918,10 @@
             }
         }
         
+        /**
+         * This function is called when the the user tries to hide a semester column. 
+         * 
+        */
         function hide(id) {
             let currentElement = document.getElementById(id);
             let column = document.getElementById(id.split("Header")[0]);
@@ -995,6 +1008,7 @@
                     // Error state
                     console.log("Here!");
                     draggedBox.style.backgroundColor += "red";
+                    alert(draggedBox.children[0].textContent + " is not offered in this semester");
                 }
                 else {
                     // End error state
@@ -1227,11 +1241,9 @@
                 if ((((semesterRightNow == 'S') || (semesterRightNow == 'F')) && ((nextString == (yearRightNow + 'F')) || (nextString == ((yearRightNow + 1) + 'W')))) ||
                     ((semesterRightNow == 'W') && (nextString == (yearRightNow + 'W')))) 
                 {
-                    console.log((semesterRightNow == 'W'));
-                    console.log(semesterRightNow);
-                    console.log(yearRightNow);
                     headers[i].previousElementSibling.style.visibility = "visible";
                 }
+                else headers[i].previousElementSibling.style.visibility = "hidden";
                 
                 nextString =  getNextString(nextString);
             }
