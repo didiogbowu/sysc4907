@@ -287,9 +287,6 @@ def handle_filters():
     timetables = all_timetables(list_of_names, x_timetable, section_regex, semester) 
     
     return jsonify(dict(url = url))
-    # return f"<h1>{section_regex}</h1>"
-    # return url_for('filters')
-
 
 @app.route("/filters/")
 def filters():
@@ -298,11 +295,18 @@ def filters():
     global x_timetable
     global section_regex
     global timetables
-    # select_form = SelectProgramForm()
     
     names_and_sections = dict()
-    none_list = dict()
     copy_list = []
+    none_list_keys = []
+    
+    for i in range(len(timetables["none_list"])):
+        course_code = timetables["none_list"][i].code
+        none_list_keys.append(course_code[0] + " " + course_code[1])
+    
+    for i in range(len(list_of_names)):
+        if list_of_names[i] in none_list_keys:
+            list_of_names.remove(list_of_names[i])
     
     for i in range(len(list_of_names)):
         copy_list.append(list_of_names[i])
@@ -310,15 +314,12 @@ def filters():
         names_and_sections[course_name] = get_sections(course_name, semester)
 
     list_of_names.clear()
-    # semester = ""
+
+    timetable_list = timetables["timetables"]
+    none_list = timetables["none_list"]
     
-    for i in range(len(timetables[0].courses)):
-        if timetables[0].courses[i].days[0] is None:
-            curr_string = timetables[0].courses[i].code.split()
-            none_list[curr_string[0] + " " + curr_string[1]] = timetables[0].courses[i].crn
-        
+    # return f"<h1>{timetable_list} <br> and <br> {none_list} </h1>"
     
-    # if select_form.validate_on_submit():
     
     if len(timetables) == 0:
         return f"<h1>Unable to generate time table for {copy_list} with the given filter parameters</h1>"
@@ -333,8 +334,8 @@ def filters():
             course_ml = course_ml,
             list_of_names = copy_list,
             names_and_sections = names_and_sections,
-            none_list = none_list,
-            timetables = list(set(timetables))
+            none_list = timetables["none_list"],
+            timetables = timetables["timetables"] 
         )
 
 @app.route("/result/")

@@ -291,7 +291,7 @@ def recursive_merge(num_of_crses: int, section_combos: List[List['data_structure
     else:
         return merge_crses(recursive_merge(num_of_crses - 1, section_combos), section_combos[num_of_crses - 1])
 
-def all_timetables(input_courses: List[str], x_timetable: 'data_structures.Timetable', section_regex: dict, semester: str) -> List['data_structures.Timetable']:   
+def all_timetables(input_courses: List[str], x_timetable: 'data_structures.Timetable', section_regex: dict, semester: str) -> dict:   
     """ This method takes in a list of course names and the current semester. Using data from the database it generates a list of all possible 
         Timetable objects containing all course names. The parameter x_timetable is for time filteration. The parameter section_regex is for
         course section filteration.
@@ -316,33 +316,55 @@ def all_timetables(input_courses: List[str], x_timetable: 'data_structures.Timet
     NUM_OF_CRSES = len(input_courses)
     num_of_reg_crses = NUM_OF_CRSES
     
-    all_sections = []
     lecture_sections = []
     lab_sections = []
+    none_list = []
     
     section_combinations = []
     
-    for i in range(NUM_OF_CRSES):
-        all_sections.append(list())
-        lecture_sections.append(list())
-        lab_sections.append(list())
-        
+    i = 0
+    for i in range(len(input_courses)):
         with app.app_context():
-            all_sections[i] = CourseData.query.filter(CourseData.course_code.op('regexp')(r'' + input_courses[i] + section_regex[input_courses[i]]), 
+            all_sections = CourseData.query.filter(CourseData.course_code.op('regexp')(r'' + input_courses[i] + section_regex[input_courses[i]]), 
                 CourseData.semester == semester).all()
+                
+            modifySequence = False
             
-            for course_data_obj in all_sections[i]:
+            lect_hold_list = []
+            lab_hold_list = []
+            
+            for course_data_obj in all_sections:
                 lect_pattern = re.compile(r'' + input_courses[i] + r'\s\w$')
                 lab_pattern = re.compile(r'' + input_courses[i] + r'\s(\w{2}|\w{3})$')
 
                 if lect_pattern.fullmatch(course_data_obj.course_code):
-                    lecture_sections[i].append(db_model_to_data_struct(course_data_obj))
+                    if (course_data_obj.first_day is not None) and (course_data_obj.start_time is not None):
+                        lect_hold_list.append(db_model_to_data_struct(course_data_obj))
+                    else:
+                        none_list.append(db_model_to_data_struct(course_data_obj))
+                        modifySequence = True
                 elif lab_pattern.fullmatch(course_data_obj.course_code):
-                    lab_sections[i].append(db_model_to_data_struct(course_data_obj))
+                    if (course_data_obj.first_day is not None) and (course_data_obj.start_time is not None): # Kind of unnecessary
+                        lab_hold_list.append(db_model_to_data_struct(course_data_obj))
+                    else:
+                        none_list.append(db_model_to_data_struct(course_data_obj))
+                        modifySequence = True
                 else:
                     print("Something's not right")
-        
-    for p in range(NUM_OF_CRSES): 
+
+            if (modifySequence):
+                num_of_reg_crses = num_of_reg_crses - 1
+            else:
+                lecture_sections.append(lect_hold_list)    
+                lab_sections.append(lab_hold_list)    
+    
+    print("Number of courses " + str(num_of_reg_crses))    
+    print("lecture courses")
+    print(lecture_sections)    
+    print("lab courses")
+    print(lab_sections)    
+    
+    for p in range(num_of_reg_crses): 
         lecture_section = lecture_sections[p]
         lab_section = lab_sections[p]
         
@@ -358,9 +380,7 @@ def all_timetables(input_courses: List[str], x_timetable: 'data_structures.Timet
                 
                     if (lab_section[r].code.split()[2][0] == section_letter) and (timetable.x_add_course(lab_section[r], x_timetable)):
                         lect_and_lab_sections1.append(timetable)
-            
-            print(lect_and_lab_sections1)
-            
+                        
             section_combinations.append(lect_and_lab_sections1)  
         
         else:
@@ -379,11 +399,8 @@ def all_timetables(input_courses: List[str], x_timetable: 'data_structures.Timet
 
                         if timetable.x_add_course(lab_section[r], x_timetable):
                             lect_and_lab_sections2.append(timetable)       
-
-            print(lect_and_lab_sections2)
             
             section_combinations.append(lect_and_lab_sections2)
-            
-    print(section_combinations) 
-    
-    return recursive_merge(NUM_OF_CRSES, section_combinations)             
+                
+    timetables = recursive_merge(num_of_reg_crses, section_combinations)
+    return dict(timetables = timetables, none_list = none_list)            

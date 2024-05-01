@@ -268,13 +268,11 @@
                             {% endfor %}
                             {% endfor %}
                             {% for j in range(len(timetables[0].courses)) %}
-                            {% if (timetables[0].courses[j].code.split()[0] + " " + timetables[0].courses[j].code.split()[1]) not in none_list.keys() %}
                             {% if len(timetables[0].courses[j].days) == 1 %}
                                 <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock", id={{ "courseBlock" ~ str(j) }}></div>
                             {% elif len(timetables[0].courses[j].days) == 2 %}
                                 <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock",  id={{ "courseBlock" ~ str(j) ~ "_1"}}></div>
                                 <div onclick="copyRegstNum(this.innerHTML)" class="courseBlock",  id={{ "courseBlock" ~ str(j) ~ "_2"}}></div>
-                            {% endif %}
                             {% endif %}
                             {% endfor %}
                         </td>
@@ -283,9 +281,7 @@
             </div>
             <div class="col-6" id="sectionFilters">
                 <h4>Course Section Filter</h4>
-                {% for i in range(len(list_of_names)) %}
-                {% if list_of_names[i] not in none_list.keys() %}
-                <div class="courseSection">
+                {% for i in range(len(list_of_names)) %}                <div class="courseSection">
                     <span><strong>{{ list_of_names[i] }}</strong></span>
                     <br>
                     <input type="radio" id="include{{ i }}" name="inex{{ i }}" value="include">
@@ -298,7 +294,6 @@
                     <label for="{{ names_and_sections[list_of_names[i]][j].lower() ~ i }}">{{ names_and_sections[list_of_names[i]][j] }}</label>
                     {% endfor %}    
                 </div>
-                {% endif %}
                 {% endfor %}
                 {% if len(none_list) > 0 %}
                 <br><br>
@@ -306,8 +301,8 @@
                     <h4>Unscheduled Courses</h4>
                     <p style="margin-right: auto; margin-bottom: 0"><i>Click boxes to copy course registration numbers (CRNs)</i></p>
                     <div class="row" style="margin-left: 0">
-                        {% for i in none_list %}
-                        <div onclick="copyNoneRegstNum(this.innerHTML)" class="noneBlock">{{ i }}</div>
+                        {% for course in none_list %}
+                        <div onclick="copyNoneRegstNum(this.innerHTML)" class="noneBlock">{{ course.code }}</div>
                         {% endfor %}
                     </div>
                 </div>
@@ -336,8 +331,8 @@
             const timetables = [];            
             
             const noneList = {
-                {% for i in none_list %}
-                "{{ i }}": "{{ none_list[i] }}",
+                {% for course in none_list %}
+                "{{ course.code }}": "{{ course.crn }}",   
                 {% endfor %}
             }
             
@@ -479,7 +474,7 @@
                 
                 document.getElementById("currTimetableNum").value = i + 1;
             }
-        
+            
             /**
              * This function is called when the user clicks the 'Previous' button on top of the carousel.
              * 
